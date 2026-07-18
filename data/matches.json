@@ -1,0 +1,88 @@
+{
+  "alice@example.com": {
+    "token": "AB12CD",
+    "name": "Alice",
+    "praise": "We read your answers twice — once to smile, once to be sure we weren't imagining how good they were. Curious, a little mischievous, and refreshingly honest. You made the matchmaking easy.",
+    "matches": [
+      {
+        "name": "Bob",
+        "photo": "",
+        "whyMatched": "You both chase curiosity over comfort and listed 'someone who can laugh at themselves' as a green flag. Your answers rhymed in the best way.",
+        "commonAttributes": ["Trail hikes", "Sci-fi deep-cuts", "Unapologetically bad puns"],
+        "iceBreakers": [
+          "Ask about the hike that made them rethink camping forever.",
+          "Find out which sci-fi world they'd actually want to live in — and why it's a terrible idea."
+        ],
+        "whatToTalkAbout": "Weekend misadventures, the last book that kept them up too late, and your competing theories on the best cheap eats in town.",
+        "quirkyComment": "Fair warning: you two might out-pun the entire room by 8pm."
+      },
+      {
+        "name": "Devon",
+        "photo": "",
+        "whyMatched": "You both put 'deep conversations at 1am' near the top and value slow mornings. Different energies, same wavelength.",
+        "commonAttributes": ["Vinyl records", "Cooking for people", "Overthinking playlists"],
+        "iceBreakers": [
+          "Ask what's currently on their turntable / most-played album.",
+          "Trade the one dish you'd cook to impress someone."
+        ],
+        "whatToTalkAbout": "Music that raised you, the city you'd move to on a whim, and what a perfect lazy Sunday looks like.",
+        "quirkyComment": "Statistically high chance this ends in a shared playlist. We support it."
+      },
+      {
+        "name": "Sam",
+        "photo": "",
+        "whyMatched": "Your senses of humor scored almost identically, and you both wrote about wanting a partner-in-crime, not just a partner.",
+        "commonAttributes": ["Spontaneous road trips", "Board-game competitiveness", "Dog people"],
+        "iceBreakers": [
+          "Ask about the most spontaneous thing they've done this year.",
+          "Declare your board-game rivalry early — it'll be funnier later."
+        ],
+        "whatToTalkAbout": "Dream road trips, the game you refuse to lose at, and the dogs you'd both adopt immediately.",
+        "quirkyComment": "The final match, and possibly the most dangerous — in a fun way."
+      }
+    ]
+  },
+  "bob@example.com": {
+    "token": "EF34GH",
+    "name": "Bob",
+    "praise": "Warm, grounded, and quietly funny — your answers had a steadiness that's genuinely rare. People are going to feel easy around you tonight.",
+    "matches": [
+      {
+        "name": "Alice",
+        "photo": "",
+        "whyMatched": "You both chase curiosity over comfort and want someone who can laugh at themselves. The match was mutual and obvious.",
+        "commonAttributes": ["Trail hikes", "Sci-fi deep-cuts", "Unapologetically bad puns"],
+        "iceBreakers": [
+          "Ask which fictional universe they'd move to tomorrow.",
+          "Compare your worst-ever pun. Winner buys the first drink."
+        ],
+        "whatToTalkAbout": "Trails worth the early alarm, comfort books, and the best cheap eats you've each found.",
+        "quirkyComment": "You two matched each other first. Read into that however you like."
+      },
+      {
+        "name": "Priya",
+        "photo": "",
+        "whyMatched": "You both value directness and wrote about wanting a genuine connection over small talk. Low-drama, high-warmth energy.",
+        "commonAttributes": ["Live music", "Weekend markets", "Strong coffee opinions"],
+        "iceBreakers": [
+          "Ask about the best show they've seen live.",
+          "Debate the correct coffee order — respectfully."
+        ],
+        "whatToTalkAbout": "Neighborhood gems, the market stall you'd go back for, and what a good weekend actually looks like.",
+        "quirkyComment": "Coffee-order debate could get heated. That's chemistry."
+      },
+      {
+        "name": "Jordan",
+        "photo": "",
+        "whyMatched": "Your answers on 'what makes you feel understood' lined up almost word for word. Quietly a strong one.",
+        "commonAttributes": ["Photography", "Late-night walks", "Trying every ramen spot"],
+        "iceBreakers": [
+          "Ask what they always end up photographing.",
+          "Rank your top ramen spots and find the overlap."
+        ],
+        "whatToTalkAbout": "The shots that got away, your favorite walking routes, and the noodle hunt you're clearly both on.",
+        "quirkyComment": "Saved a good one for last. Go say hi."
+      }
+    ]
+  }
+}
