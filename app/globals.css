@@ -4,6 +4,11 @@
 
 :root {
   color-scheme: dark;
+  --gold: #b99043;
+  --cream: #f1e6d4;
+  --beige: #bfb3a2;
+  --ink: #0d0c0b;
+  --card: #171411;
 }
 
 html,
@@ -15,71 +20,74 @@ body {
 
 body {
   background: radial-gradient(
-      1200px 800px at 50% -10%,
-      rgba(181, 123, 255, 0.25),
-      transparent 60%
+      1100px 700px at 50% -12%,
+      rgba(185, 144, 67, 0.14),
+      transparent 62%
     ),
     radial-gradient(
-      1000px 700px at 90% 20%,
-      rgba(255, 107, 157, 0.2),
-      transparent 55%
+      900px 700px at 92% 8%,
+      rgba(185, 144, 67, 0.08),
+      transparent 58%
     ),
-    radial-gradient(
-      900px 700px at 0% 90%,
-      rgba(255, 184, 107, 0.15),
-      transparent 55%
-    ),
-    #0b0714;
-  color: #f6f0ff;
+    #0d0c0b;
+  color: #f1e6d4;
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
 }
 
-/* Reusable glass card */
+/* Reusable card — dark panel with a thin 1px gold hairline */
 .glass {
-  background: rgba(24, 16, 40, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: #171411;
+  border: 1px solid rgba(185, 144, 67, 0.35);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(241, 230, 212, 0.04);
+}
+
+.hairline {
+  border: 1px solid rgba(185, 144, 67, 0.35);
 }
 
 .gradient-text {
-  background: linear-gradient(100deg, #ff6b9d, #ffb86b, #b57bff, #ff6b9d);
+  background: linear-gradient(100deg, #b99043, #f1e6d4, #b99043);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shimmer 8s linear infinite;
+  animation: shimmer 9s linear infinite;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.32rem 0.8rem;
   border-radius: 999px;
   font-size: 0.8rem;
-  background: rgba(255, 107, 157, 0.12);
-  border: 1px solid rgba(255, 107, 157, 0.3);
-  color: #ffd6e6;
+  letter-spacing: 0.02em;
+  background: rgba(185, 144, 67, 0.08);
+  border: 1px solid rgba(185, 144, 67, 0.4);
+  color: #f1e6d4;
 }
 
 /* Nicer inputs */
 input.field {
   width: 100%;
   padding: 0.9rem 1.1rem;
-  border-radius: 14px;
-  background: rgba(12, 8, 22, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f6f0ff;
+  border-radius: 12px;
+  background: rgba(13, 12, 11, 0.7);
+  border: 1px solid rgba(185, 144, 67, 0.3);
+  color: #f1e6d4;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+input.field::placeholder {
+  color: rgba(191, 179, 162, 0.55);
+}
 input.field:focus {
-  border-color: rgba(255, 107, 157, 0.6);
-  box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.15);
+  border-color: rgba(185, 144, 67, 0.85);
+  box-shadow: 0 0 0 3px rgba(185, 144, 67, 0.16);
 }
 
 .btn-primary {
@@ -87,21 +95,55 @@ input.field:focus {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.9rem 1.5rem;
+  padding: 0.85rem 1.6rem;
   border-radius: 999px;
   font-weight: 600;
-  color: #1a0f2b;
-  background: linear-gradient(100deg, #ff6b9d, #ffb86b);
-  border: none;
+  letter-spacing: 0.02em;
+  color: #0d0c0b;
+  background: linear-gradient(100deg, #b99043, #d8b878);
+  border: 1px solid rgba(185, 144, 67, 0.6);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s;
-  box-shadow: 0 12px 30px -8px rgba(255, 107, 157, 0.6);
+  box-shadow: 0 14px 32px -14px rgba(185, 144, 67, 0.7);
 }
 .btn-primary:hover {
   transform: translateY(-1px);
+  box-shadow: 0 18px 38px -14px rgba(185, 144, 67, 0.85);
 }
 .btn-primary:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
+}
+
+/* Outlined / ghost variant for secondary actions */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #f1e6d4;
+  background: transparent;
+  border: 1px solid rgba(185, 144, 67, 0.5);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.btn-ghost:hover {
+  background: rgba(185, 144, 67, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Thin decorative gold divider */
+.rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(185, 144, 67, 0.5),
+    transparent
+  );
 }

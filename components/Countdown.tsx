@@ -23,7 +23,7 @@ function Unit({ value, label }: { value: string; label: string }) {
       <div className="glass rounded-2xl w-16 sm:w-20 py-3 font-display text-3xl sm:text-4xl tabular-nums">
         {value}
       </div>
-      <span className="text-[11px] uppercase tracking-widest text-white/50 mt-2">
+      <span className="text-[11px] uppercase tracking-widest text-beige/70 mt-2">
         {label}
       </span>
     </div>
@@ -62,19 +62,24 @@ export default function Countdown({
   }, [targetMs]);
 
   const isLast = index === matchCount - 1;
-  const label = isLast
-    ? "Your final match unlocks in…"
-    : `Match ${index + 1} of ${matchCount} unlocks in…`;
+  const label =
+    matchCount === 1
+      ? "Your match unlocks in…"
+      : isLast
+        ? "Your final match unlocks in…"
+        : `Match ${index + 1} of ${matchCount} unlocks in…`;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="glass rounded-3xl max-w-lg w-full p-8 sm:p-10 text-center"
+      className="glass rounded-2xl max-w-lg w-full p-8 sm:p-10 text-center"
     >
-      <div className="text-4xl mb-4 animate-floaty">⏳</div>
-      <p className="text-white/75 mb-7 text-lg font-display">{label}</p>
+      <div className="text-2xl mb-4 text-gold animate-floaty">✦</div>
+      <p className="text-cream/85 mb-7 text-lg font-display tracking-wide">
+        {label}
+      </p>
 
       <div className="flex items-start justify-center gap-3 sm:gap-4 mb-7">
         {time.days > 0 && <Unit value={pad(time.days)} label="days" />}
@@ -83,9 +88,9 @@ export default function Countdown({
         <Unit value={pad(time.seconds)} label="sec" />
       </div>
 
-      <p className="text-white/50 text-sm">
+      <p className="text-beige/70 text-sm">
         Keep this page open — it&apos;ll reveal automatically. Grab a drink, look
-        around the room. 👀
+        around the room.
       </p>
     </motion.div>
   );

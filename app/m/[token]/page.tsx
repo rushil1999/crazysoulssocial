@@ -70,7 +70,7 @@ export default function TokenPage({
   return (
     <main className="min-h-screen flex items-center justify-center px-5 py-12">
       {restoring ? (
-        <div className="text-white/50 animate-pulse font-display text-xl">
+        <div className="text-beige/70 animate-pulse font-display text-xl tracking-wide">
           Loading…
         </div>
       ) : phase === "gate" ? (
@@ -118,27 +118,34 @@ export default function TokenPage({
           }}
         />
       ) : phase === "done" && data ? (
-        <div className="glass rounded-3xl max-w-lg w-full p-10 text-center">
-          <div className="text-5xl mb-5 animate-floaty">🥂</div>
-          <h1 className="font-display text-3xl sm:text-4xl mb-4">
-            <span className="gradient-text">That&apos;s everyone, {data.name}.</span>
+        <div className="glass rounded-2xl max-w-lg w-full p-10 text-center">
+          <div className="text-3xl mb-5 text-gold animate-floaty">✦</div>
+          <h1 className="font-display text-3xl sm:text-4xl mb-4 tracking-wide">
+            <span className="gradient-text">
+              {data.matchCount === 1
+                ? `There they are, ${data.name}.`
+                : `That's everyone, ${data.name}.`}
+            </span>
           </h1>
-          <p className="text-white/80 leading-relaxed mb-2">
-            You&apos;ve met all your matches for tonight. The rest is up to you —
-            go find them, say hi, and enjoy yourself.
+          <div className="rule w-24 mx-auto mb-5" />
+          <p className="text-cream/85 leading-relaxed mb-2">
+            {data.matchCount === 1
+              ? "That's your match for tonight. The rest is up to you — go find them, say hi, and enjoy yourself."
+              : "You've met all your matches for tonight. The rest is up to you — go find them, say hi, and enjoy yourself."}
           </p>
-          <p className="text-white/50 text-sm mt-6">
-            You can revisit this page anytime tonight to check names, ice
-            breakers, and talking points. 💛
+          <p className="text-beige/70 text-sm mt-6">
+            You can revisit this page anytime tonight to check{" "}
+            {data.matchCount === 1 ? "the name" : "names"}, ice breakers, and
+            talking points.
           </p>
           <button
-            className="btn-primary mt-8"
+            className="btn-ghost mt-8"
             onClick={() => {
               setIndex(0);
               setPhase("countdown");
             }}
           >
-            Revisit my matches
+            {data.matchCount === 1 ? "Revisit my match" : "Revisit my matches"}
           </button>
         </div>
       ) : null}

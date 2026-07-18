@@ -27,7 +27,7 @@ function Section({
 }) {
   return (
     <motion.div variants={item} className="text-left">
-      <h3 className="flex items-center gap-2 text-sm uppercase tracking-widest text-white/50 mb-2">
+      <h3 className="flex items-center gap-2 text-sm uppercase tracking-widest text-beige/70 mb-2">
         <span>{icon}</span> {title}
       </h3>
       {children}
@@ -56,13 +56,15 @@ export default function MatchCard({
       variants={container}
       initial="hidden"
       animate="show"
-      className="glass rounded-3xl max-w-lg w-full p-8 sm:p-10"
+      className="glass rounded-2xl max-w-lg w-full p-8 sm:p-10"
     >
       <motion.div variants={item} className="text-center mb-6">
-        <span className="text-xs uppercase tracking-[0.2em] text-white/40">
-          {index === matchCount - 1
-            ? "Your final match"
-            : `Match ${index + 1} of ${matchCount}`}
+        <span className="text-xs uppercase tracking-[0.25em] text-gold/80">
+          {matchCount === 1
+            ? "Your match"
+            : index === matchCount - 1
+              ? "Your final match"
+              : `Match ${index + 1} of ${matchCount}`}
         </span>
         <div className="flex flex-col items-center mt-4">
           {match.photo ? (
@@ -70,25 +72,25 @@ export default function MatchCard({
             <img
               src={match.photo}
               alt={match.name}
-              className="w-24 h-24 rounded-full object-cover border-2 border-blush/40 shadow-lg"
+              className="w-24 h-24 rounded-full object-cover border border-gold/50 shadow-lg"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full grid place-items-center font-display text-3xl bg-gradient-to-br from-blush/30 to-plum/30 border-2 border-white/15">
+            <div className="w-24 h-24 rounded-full grid place-items-center font-display text-3xl text-cream bg-gradient-to-br from-gold/25 to-gold/5 border border-gold/45">
               {initials}
             </div>
           )}
-          <h2 className="font-display text-4xl mt-4">
+          <h2 className="font-display text-4xl mt-4 tracking-wide">
             <span className="gradient-text">{match.name}</span>
           </h2>
         </div>
       </motion.div>
 
       <div className="space-y-6">
-        <Section icon="✨" title="Why you two">
-          <p className="text-white/85 leading-relaxed">{match.whyMatched}</p>
+        <Section icon="✦" title="Why you two">
+          <p className="text-cream/90 leading-relaxed">{match.whyMatched}</p>
         </Section>
 
-        <Section icon="🔗" title="What you share">
+        <Section icon="❧" title="What you share">
           <div className="flex flex-wrap gap-2">
             {match.commonAttributes.map((attr, i) => (
               <span key={i} className="chip">
@@ -98,24 +100,24 @@ export default function MatchCard({
           </div>
         </Section>
 
-        <Section icon="💬" title="Ice breakers">
+        <Section icon="❝" title="Ice breakers">
           <ul className="space-y-2">
             {match.iceBreakers.map((ib, i) => (
-              <li key={i} className="flex gap-2 text-white/85 leading-relaxed">
-                <span className="text-blush">→</span>
+              <li key={i} className="flex gap-2 text-cream/90 leading-relaxed">
+                <span className="text-gold">→</span>
                 <span>{ib}</span>
               </li>
             ))}
           </ul>
         </Section>
 
-        <Section icon="🎯" title="What to talk about">
-          <p className="text-white/85 leading-relaxed">{match.whatToTalkAbout}</p>
+        <Section icon="✧" title="What to talk about">
+          <p className="text-cream/90 leading-relaxed">{match.whatToTalkAbout}</p>
         </Section>
 
         <motion.div
           variants={item}
-          className="rounded-2xl px-5 py-4 bg-gradient-to-r from-blush/15 to-ember/15 border border-white/10 text-center italic text-white/90"
+          className="rounded-xl px-5 py-4 bg-gradient-to-r from-gold/12 to-gold/5 border border-gold/30 text-center italic text-cream/90"
         >
           {match.quirkyComment}
         </motion.div>

@@ -57,13 +57,14 @@ export default function EmailGate({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="glass rounded-3xl max-w-md w-full p-8 sm:p-10 text-center"
+      className="glass rounded-2xl max-w-md w-full p-8 sm:p-10 text-center"
     >
-      <div className="text-4xl mb-4 animate-floaty">🔮</div>
-      <h1 className="font-display text-3xl sm:text-4xl mb-3">
+      <div className="text-2xl mb-4 text-gold animate-floaty">✦</div>
+      <h1 className="font-display text-3xl sm:text-4xl mb-3 tracking-wide">
         <span className="gradient-text">Someone&apos;s waiting.</span>
       </h1>
-      <p className="text-white/70 mb-7 leading-relaxed">
+      <div className="rule w-20 mx-auto mb-5" />
+      <p className="text-beige mb-7 leading-relaxed">
         This link is yours and yours alone. Confirm the email you signed up with
         to unlock what we found for you.
       </p>
@@ -84,17 +85,17 @@ export default function EmailGate({
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-sm text-blush"
+            className="text-sm text-gold"
           >
             {error}
           </motion.p>
         )}
         <button className="btn-primary w-full" disabled={loading}>
-          {loading ? "Unlocking…" : "Unlock my matches ✨"}
+          {loading ? "Unlocking…" : "Unlock my match ✦"}
         </button>
       </form>
 
-      <p className="text-white/40 text-xs mt-6">
+      <p className="text-beige/60 text-xs mt-6">
         Private &amp; just for you. Nothing is shared without you.
       </p>
     </motion.div>

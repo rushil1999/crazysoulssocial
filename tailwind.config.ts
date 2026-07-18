@@ -8,10 +8,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0b0714",
-        blush: "#ff6b9d",
-        ember: "#ffb86b",
-        plum: "#b57bff",
+        ink: "#0D0C0B",
+        card: "#171411",
+        gold: "#B99043",
+        cream: "#F1E6D4",
+        beige: "#BFB3A2",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

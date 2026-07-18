@@ -7,7 +7,7 @@ import type { Match } from "@/lib/data";
 import MatchCard from "./MatchCard";
 
 function fireConfetti() {
-  const colors = ["#ff6b9d", "#ffb86b", "#b57bff", "#ffffff"];
+  const colors = ["#B99043", "#D8B878", "#F1E6D4", "#BFB3A2"];
   confetti({ particleCount: 90, spread: 75, origin: { y: 0.35 }, colors });
   setTimeout(
     () => confetti({ particleCount: 60, angle: 60, spread: 65, origin: { x: 0 }, colors }),
@@ -81,16 +81,18 @@ export default function MatchReveal({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.4 }}
-            className="glass rounded-3xl max-w-md w-full p-10 text-center"
+            className="glass rounded-2xl max-w-md w-full p-10 text-center"
           >
-            <div className="text-5xl mb-5 animate-floaty">💞</div>
-            <h2 className="font-display text-3xl mb-3">
+            <div className="text-2xl mb-5 text-gold animate-floaty">✦</div>
+            <h2 className="font-display text-3xl mb-3 tracking-wide">
               <span className="gradient-text">It&apos;s time.</span>
             </h2>
-            <p className="text-white/70 mb-8">
-              {isLast
-                ? "Your final match is ready. Take a breath."
-                : `Match ${index + 1} is ready to meet you.`}
+            <p className="text-beige mb-8">
+              {matchCount === 1
+                ? "Your match is ready. Take a breath."
+                : isLast
+                  ? "Your final match is ready. Take a breath."
+                  : `Match ${index + 1} is ready to meet you.`}
             </p>
             <button
               className="btn-primary"
@@ -103,9 +105,9 @@ export default function MatchReveal({
                 }
               }}
             >
-              {!match && !error ? "Preparing…" : "Reveal 💫"}
+              {!match && !error ? "Preparing…" : "Reveal ✦"}
             </button>
-            {error && <p className="text-sm text-blush mt-5">{error}</p>}
+            {error && <p className="text-sm text-gold mt-5">{error}</p>}
           </motion.div>
         ) : match ? (
           <motion.div
@@ -116,7 +118,7 @@ export default function MatchReveal({
           >
             <MatchCard match={match} index={index} matchCount={matchCount} />
             <button className="btn-primary mt-8" onClick={onNext}>
-              {isLast ? "That's everyone — see you tonight 🥂" : "Next match →"}
+              {isLast ? "See you tonight 🥂" : "Next match →"}
             </button>
           </motion.div>
         ) : (
@@ -124,9 +126,9 @@ export default function MatchReveal({
             key="err"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="glass rounded-3xl max-w-md w-full p-10 text-center"
+            className="glass rounded-2xl max-w-md w-full p-10 text-center"
           >
-            <p className="text-white/80">{error}</p>
+            <p className="text-cream/85">{error}</p>
           </motion.div>
         )}
       </AnimatePresence>
