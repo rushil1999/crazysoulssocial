@@ -1,14 +1,32 @@
 {
   "alice@example.com": {
-    "token": "AB12CD",
     "name": "Alice",
-    "praise": "We read your answers twice — once to smile, once to be sure we weren't imagining how good they were. Curious, a little mischievous, and refreshingly honest. You made the matchmaking easy.",
+    "praise": "We read your answers twice — once to smile, once to make sure we weren't imagining how good they were. Curious, a little mischievous, and refreshingly honest. Whoever ends up across the table from you tonight is in for a treat.",
     "matches": [
       {
         "name": "Bob",
+        "age": 30,
+        "location": "Downtown",
+        "role": "Software Engineer",
+        "tagline": "Big questions, bad puns, good coffee.",
+        "compatibility": 91,
         "photo": "",
+        "howToSpot": "Navy linen shirt and tortoise-shell glasses. Most likely near the record player, quietly debating the correct album order.",
         "whyMatched": "You both chase curiosity over comfort and listed 'someone who can laugh at themselves' as a green flag. Your answers rhymed in the best way.",
-        "commonAttributes": ["Trail hikes", "Sci-fi deep-cuts", "Unapologetically bad puns"],
+        "commonAttributes": [
+          "Both chase curiosity over comfort",
+          "Weekend trail hikers",
+          "Unapologetically bad puns",
+          "Coffee before conversation"
+        ],
+        "interests": [
+          { "label": "Hiking", "icon": "hiking" },
+          { "label": "Sci-Fi", "icon": "book" },
+          { "label": "Coffee", "icon": "coffee" },
+          { "label": "Film Photo", "icon": "camera" },
+          { "label": "Live Music", "icon": "music" },
+          { "label": "Travel", "icon": "travel" }
+        ],
         "iceBreakers": [
           "Ask about the hike that made them rethink camping forever.",
           "Find out which sci-fi world they'd actually want to live in — and why it's a terrible idea."
@@ -19,15 +37,33 @@
     ]
   },
   "bob@example.com": {
-    "token": "EF34GH",
     "name": "Bob",
     "praise": "Warm, grounded, and quietly funny — your answers had a steadiness that's genuinely rare. People are going to feel easy around you tonight.",
     "matches": [
       {
         "name": "Alice",
+        "age": 28,
+        "location": "Riverside",
+        "role": "Illustrator",
+        "tagline": "Curious, a little mischievous, always game.",
+        "compatibility": 91,
         "photo": "",
+        "howToSpot": "Emerald jacket with a sketchbook tucked in her bag. Follow the loudest, most contagious laugh in the room.",
         "whyMatched": "You both chase curiosity over comfort and want someone who can laugh at themselves. The match was mutual and obvious.",
-        "commonAttributes": ["Trail hikes", "Sci-fi deep-cuts", "Unapologetically bad puns"],
+        "commonAttributes": [
+          "Both want a partner-in-crime",
+          "Weekend trail hikers",
+          "Comfort-book re-readers",
+          "Coffee before conversation"
+        ],
+        "interests": [
+          { "label": "Hiking", "icon": "hiking" },
+          { "label": "Sketching", "icon": "camera" },
+          { "label": "Coffee", "icon": "coffee" },
+          { "label": "Poetry", "icon": "book" },
+          { "label": "Live Music", "icon": "music" },
+          { "label": "Travel", "icon": "travel" }
+        ],
         "iceBreakers": [
           "Ask which fictional universe they'd move to tomorrow.",
           "Compare your worst-ever pun. Winner buys the first drink."

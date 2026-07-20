@@ -1,0 +1,4 @@
+{
+  "_comment": "Rounds currently in play. A round's matches only appear once its reveal times (in schedule.json) arrive — but a round must be listed here to be considered at all. Add 2 when round two is ready.",
+  "enabledRounds": [1, 2]
+}

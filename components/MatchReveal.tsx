@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import type { Match } from "@/lib/data";
 import MatchCard from "./MatchCard";
+import InlineCountdown from "./InlineCountdown";
 
 function fireConfetti() {
   const colors = ["#B99043", "#D8B878", "#F1E6D4", "#BFB3A2"];
@@ -20,21 +21,27 @@ function fireConfetti() {
 }
 
 export default function MatchReveal({
-  token,
   email,
+  firstName,
   index,
   matchCount,
+  nextRevealIso,
   onNext,
 }: {
-  token: string;
   email: string;
+  firstName: string;
   index: number;
   matchCount: number;
+  nextRevealIso?: string | null;
   onNext: () => void;
 }) {
   const [match, setMatch] = useState<Match | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [revealed, setRevealed] = useState(false);
+  // Whether the NEXT match's reveal time has already arrived.
+  const [nextReady, setNextReady] = useState(() =>
+    nextRevealIso ? Date.now() >= new Date(nextRevealIso).getTime() : false
+  );
   const firedRef = useRef(false);
 
   useEffect(() => {
@@ -45,7 +52,7 @@ export default function MatchReveal({
         const res = await fetch("/api/match", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token, email, index }),
+          body: JSON.stringify({ email, firstName, index }),
         });
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
@@ -67,7 +74,7 @@ export default function MatchReveal({
     return () => {
       cancelled = true;
     };
-  }, [token, email, index]);
+  }, [email, firstName, index]);
 
   const isLast = index === matchCount - 1;
 
@@ -117,9 +124,37 @@ export default function MatchReveal({
             className="w-full flex flex-col items-center"
           >
             <MatchCard match={match} index={index} matchCount={matchCount} />
-            <button className="btn-primary mt-8" onClick={onNext}>
-              {isLast ? "See you tonight 🥂" : "Next match →"}
-            </button>
+
+            {isLast ? (
+              <button className="btn-primary mt-8" onClick={onNext}>
+                See you tonight 🥂
+              </button>
+            ) : nextReady ? (
+              <button className="btn-primary mt-8" onClick={onNext}>
+                Reveal next match →
+              </button>
+            ) : nextRevealIso ? (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="glass rounded-2xl mt-8 px-8 py-5 text-center"
+              >
+                <p className="text-[11px] uppercase tracking-[0.25em] text-beige/70 mb-2">
+                  Your next match unlocks in
+                </p>
+                <p className="font-display text-3xl text-cream">
+                  <InlineCountdown
+                    targetIso={nextRevealIso}
+                    onComplete={() => setNextReady(true)}
+                  />
+                </p>
+              </motion.div>
+            ) : (
+              <button className="btn-primary mt-8" onClick={onNext}>
+                Next match →
+              </button>
+            )}
           </motion.div>
         ) : (
           <motion.div

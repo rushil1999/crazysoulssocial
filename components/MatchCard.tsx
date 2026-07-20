@@ -2,36 +2,35 @@
 
 import { motion } from "framer-motion";
 import type { Match } from "@/lib/data";
+import { Ornament, FooterTag } from "./Ornament";
+import { EyeIcon, PinIcon, QuoteIcon, InterestIcon } from "./icons";
 
 const container = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
 };
-
 const item = {
   hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0 },
 };
 
-function Section({
-  icon,
+function pad2(n: number) {
+  return n.toString().padStart(2, "0");
+}
+
+function SectionHeading({
   title,
-  children,
+  subtitle,
 }: {
-  icon: string;
   title: string;
-  children: React.ReactNode;
+  subtitle?: string;
 }) {
   return (
-    <motion.div variants={item} className="text-left">
-      <h3 className="flex items-center gap-2 text-sm uppercase tracking-widest text-beige/70 mb-2">
-        <span>{icon}</span> {title}
-      </h3>
-      {children}
-    </motion.div>
+    <div className="text-center">
+      <Ornament className="mb-5" />
+      <h3 className="font-display text-3xl tracking-wide">{title}</h3>
+      {subtitle && <p className="text-beige/70 mt-2">{subtitle}</p>}
+    </div>
   );
 }
 
@@ -44,84 +43,175 @@ export default function MatchCard({
   index: number;
   matchCount: number;
 }) {
-  const initials = match.name
-    .split(" ")
-    .map((p) => p[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+  const initial = match.name.trim().charAt(0).toUpperCase();
+  const meta = [match.location, match.role].filter(Boolean).join("  ·  ");
 
   return (
     <motion.div
       variants={container}
       initial="hidden"
       animate="show"
-      className="glass rounded-2xl max-w-lg w-full p-8 sm:p-10"
+      className="w-full max-w-lg space-y-6"
     >
-      <motion.div variants={item} className="text-center mb-6">
-        <span className="text-xs uppercase tracking-[0.25em] text-gold/80">
-          {matchCount === 1
-            ? "Your match"
-            : index === matchCount - 1
-              ? "Your final match"
-              : `Match ${index + 1} of ${matchCount}`}
-        </span>
-        <div className="flex flex-col items-center mt-4">
+      {/* — Match header — */}
+      <motion.div variants={item} className="glass rounded-[26px] p-8 sm:p-10 text-center">
+        <Ornament className="mb-6" />
+        <p className="eyebrow">You&apos;ve been matched with</p>
+
+        <div className="mt-6 mb-5 flex justify-center">
           {match.photo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={match.photo}
               alt={match.name}
-              className="w-24 h-24 rounded-full object-cover border border-gold/50 shadow-lg"
+              className="w-28 h-28 rounded-full object-cover ring"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full grid place-items-center font-display text-3xl text-cream bg-gradient-to-br from-gold/25 to-gold/5 border border-gold/45">
-              {initials}
+            <div className="w-28 h-28 rounded-full ring grid place-items-center">
+              <span className="font-display text-5xl text-gold">{initial}</span>
             </div>
           )}
-          <h2 className="font-display text-4xl mt-4 tracking-wide">
-            <span className="gradient-text">{match.name}</span>
-          </h2>
         </div>
+
+        <h2 className="font-display text-4xl sm:text-5xl tracking-wide">
+          {match.name}
+          {match.age ? `, ${match.age}` : ""}
+        </h2>
+
+        {meta && (
+          <p className="mt-3 text-sm text-beige/70 flex items-center justify-center gap-1.5">
+            <PinIcon className="text-gold/80" />
+            {meta}
+          </p>
+        )}
+
+        {match.tagline && (
+          <p className="mt-5 text-lg italic text-beige/85">
+            &ldquo;{match.tagline}&rdquo;
+          </p>
+        )}
+
+        {typeof match.compatibility === "number" && (
+          <div className="mt-7 inline-flex items-center gap-2.5 rounded-full ring px-6 py-2.5">
+            <span className="font-display text-xl text-gold">
+              {match.compatibility}%
+            </span>
+            <span className="text-[11px] tracking-[0.22em] uppercase text-beige/70">
+              Compatibility
+            </span>
+          </div>
+        )}
       </motion.div>
 
-      <div className="space-y-6">
-        <Section icon="✦" title="Why you two">
-          <p className="text-cream/90 leading-relaxed">{match.whyMatched}</p>
-        </Section>
+      {/* — How to spot them — */}
+      {match.howToSpot && (
+        <motion.div variants={item} className="glass rounded-[22px] p-7">
+          <div className="eyebrow flex items-center gap-2 mb-4">
+            <EyeIcon className="text-gold/80" /> How to spot them
+          </div>
+          <p className="font-display text-xl leading-relaxed text-cream/95">
+            {match.howToSpot}
+          </p>
+        </motion.div>
+      )}
 
-        <Section icon="❧" title="What you share">
-          <div className="flex flex-wrap gap-2">
-            {match.commonAttributes.map((attr, i) => (
-              <span key={i} className="chip">
-                {attr}
-              </span>
+      {/* — Why you two — */}
+      <motion.div variants={item} className="pt-2">
+        <SectionHeading title="Why You Two" />
+        <p className="mt-5 text-center font-display text-lg leading-relaxed text-cream/90">
+          {match.whyMatched}
+        </p>
+      </motion.div>
+
+      {/* — Common ground — */}
+      {match.commonAttributes.length > 0 && (
+        <motion.div variants={item}>
+          <p className="eyebrow mb-3">Common Ground</p>
+          <div className="space-y-3">
+            {match.commonAttributes.map((c, i) => (
+              <div
+                key={i}
+                className="tile rounded-2xl px-5 py-3.5 flex items-center gap-3.5"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                <span className="text-cream/90">{c}</span>
+              </div>
             ))}
           </div>
-        </Section>
+        </motion.div>
+      )}
 
-        <Section icon="❝" title="Ice breakers">
-          <ul className="space-y-2">
-            {match.iceBreakers.map((ib, i) => (
-              <li key={i} className="flex gap-2 text-cream/90 leading-relaxed">
-                <span className="text-gold">→</span>
-                <span>{ib}</span>
-              </li>
+      {/* — Interests & hobbies — */}
+      {match.interests && match.interests.length > 0 && (
+        <motion.div variants={item}>
+          <p className="eyebrow mb-3">Interests &amp; Hobbies</p>
+          <div className="grid grid-cols-3 gap-3">
+            {match.interests.map((it, i) => (
+              <div
+                key={i}
+                className="tile rounded-2xl py-5 px-2 flex flex-col items-center gap-3"
+              >
+                <span className="w-12 h-12 rounded-full ring grid place-items-center text-gold">
+                  <InterestIcon name={it.icon || it.label} />
+                </span>
+                <span className="text-[10px] sm:text-[11px] tracking-[0.12em] uppercase text-beige/80 text-center leading-tight">
+                  {it.label}
+                </span>
+              </div>
             ))}
-          </ul>
-        </Section>
+          </div>
+        </motion.div>
+      )}
 
-        <Section icon="✧" title="What to talk about">
-          <p className="text-cream/90 leading-relaxed">{match.whatToTalkAbout}</p>
-        </Section>
+      {/* — Ice breakers — */}
+      {match.iceBreakers.length > 0 && (
+        <motion.div variants={item} className="pt-2">
+          <SectionHeading
+            title="Ice Breakers"
+            subtitle="A few nudges past the small talk."
+          />
+          <div className="mt-6 space-y-4">
+            {match.iceBreakers.map((ib, i) => (
+              <div
+                key={i}
+                className="tile rounded-2xl p-5 flex items-center gap-4"
+              >
+                <span className="shrink-0 w-11 h-11 rounded-full ring grid place-items-center text-gold text-xs tracking-wider tabular-nums">
+                  {pad2(i + 1)}
+                </span>
+                <QuoteIcon className="text-gold/70 shrink-0" />
+                <p className="font-display text-lg leading-snug text-cream/95">
+                  {ib}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
+      {/* — What to talk about — */}
+      {match.whatToTalkAbout && (
+        <motion.div variants={item}>
+          <p className="eyebrow mb-3">What to Talk About</p>
+          <div className="glass rounded-[22px] p-7">
+            <p className="text-cream/90 leading-relaxed">{match.whatToTalkAbout}</p>
+          </div>
+        </motion.div>
+      )}
+
+      {/* — Quirky closer — */}
+      {match.quirkyComment && (
         <motion.div
           variants={item}
-          className="rounded-xl px-5 py-4 bg-gradient-to-r from-gold/12 to-gold/5 border border-gold/30 text-center italic text-cream/90"
+          className="rounded-2xl px-6 py-4 text-center italic text-cream/90 bg-gradient-to-r from-gold/12 to-gold/5 border border-gold/25"
         >
           {match.quirkyComment}
         </motion.div>
-      </div>
+      )}
+
+      <motion.div variants={item} className="pt-2">
+        <FooterTag />
+      </motion.div>
     </motion.div>
   );
 }

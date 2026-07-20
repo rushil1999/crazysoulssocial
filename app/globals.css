@@ -39,9 +39,28 @@ body {
 /* Reusable card — dark panel with a thin 1px gold hairline */
 .glass {
   background: #171411;
-  border: 1px solid rgba(185, 144, 67, 0.35);
+  border: 1px solid rgba(185, 144, 67, 0.28);
   box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85),
     inset 0 1px 0 rgba(241, 230, 212, 0.04);
+}
+
+/* Subtle inner tile — used for list items, interest icons, etc. */
+.tile {
+  background: rgba(241, 230, 212, 0.02);
+  border: 1px solid rgba(185, 144, 67, 0.14);
+}
+
+/* Small gold-outline circle (number badges, interest icons, avatar) */
+.ring {
+  border: 1px solid rgba(185, 144, 67, 0.45);
+}
+
+/* Uppercase gold section label */
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(185, 144, 67, 0.9);
 }
 
 .hairline {

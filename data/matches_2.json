@@ -1,0 +1,216 @@
+{
+  "alice@example.com": {
+    "name": "Alice",
+    "praise": "Round two, and your answers only got sharper — playful, self-aware, and quietly bold. You clearly know exactly what you're looking for, and that made this easy.",
+    "matches": [
+      {
+        "name": "Carol",
+        "age": 29,
+        "location": "Arts District",
+        "role": "Ceramicist",
+        "tagline": "Makes things with her hands, means what she says.",
+        "compatibility": 94,
+        "photo": "",
+        "howToSpot": "Rust-colored jumpsuit and clay-stained fingers she'll laugh about. Usually near the courtyard, drink in hand.",
+        "whyMatched": "You both wrote about wanting someone who challenges you without keeping score. Same appetite for a good debate, same soft landing after it.",
+        "commonAttributes": [
+          "Challenge each other, gently",
+          "Aggressively planned trips",
+          "True-crime podcast rabbit holes",
+          "Competitive in a fun way"
+        ],
+        "interests": [
+          {
+            "label": "Climbing",
+            "icon": "hiking"
+          },
+          {
+            "label": "Podcasts",
+            "icon": "music"
+          },
+          {
+            "label": "Travel",
+            "icon": "travel"
+          },
+          {
+            "label": "Ceramics",
+            "icon": "star"
+          },
+          {
+            "label": "Wine",
+            "icon": "wine"
+          },
+          {
+            "label": "Reading",
+            "icon": "book"
+          }
+        ],
+        "iceBreakers": [
+          "Ask which climb scared her the most — and whether she'd do it again.",
+          "Compare your most unhinged trip spreadsheet."
+        ],
+        "whatToTalkAbout": "The trip you'd take tomorrow with zero planning, the podcast episode you can't shut up about, and who's actually more competitive.",
+        "quirkyComment": "Two planners walk into a bar. Nobody knows what happens next — you didn't schedule it."
+      }
+    ]
+  },
+  "bob@example.com": {
+    "name": "Bob",
+    "praise": "Second time around, you leaned into the fun — honest, a little goofy, and generous with your answers. People are going to gravitate to you tonight.",
+    "matches": [
+      {
+        "name": "Dana",
+        "age": 27,
+        "location": "Midtown",
+        "role": "Comedian",
+        "tagline": "Will make you laugh before she gets your name.",
+        "compatibility": 90,
+        "photo": "",
+        "howToSpot": "Red lipstick and a leather jacket, working the room like she owns it.",
+        "whyMatched": "You both said the fastest way to your heart is making you laugh, and your humor styles scored almost identically. Expect a lot of grinning.",
+        "commonAttributes": [
+          "Laughter is the love language",
+          "Street-food crawlers",
+          "Terrible, committed karaoke",
+          "Live comedy diehards"
+        ],
+        "interests": [
+          {
+            "label": "Comedy",
+            "icon": "star"
+          },
+          {
+            "label": "Street Food",
+            "icon": "coffee"
+          },
+          {
+            "label": "Karaoke",
+            "icon": "music"
+          },
+          {
+            "label": "Travel",
+            "icon": "travel"
+          },
+          {
+            "label": "Film",
+            "icon": "film"
+          },
+          {
+            "label": "Wine",
+            "icon": "wine"
+          }
+        ],
+        "iceBreakers": [
+          "Ask for the comedian she'd fly across the country to see.",
+          "Agree on a karaoke duet before you lose your nerve."
+        ],
+        "whatToTalkAbout": "The best cheap meal you've ever had, your go-to karaoke disaster, and what actually makes you laugh.",
+        "quirkyComment": "Odds of an impromptu duet tonight: dangerously high."
+      }
+    ]
+  },
+  "carol@example.com": {
+    "name": "Carol",
+    "praise": "You write like you mean it — thoughtful, funny in a dry way, and completely unpretentious. It made picking your matches genuinely fun.",
+    "matches": [
+      {
+        "name": "Alice",
+        "age": 28,
+        "location": "Riverside",
+        "role": "Illustrator",
+        "tagline": "Curious, a little mischievous, always game.",
+        "compatibility": 94,
+        "photo": "",
+        "howToSpot": "Emerald jacket with a sketchbook in her bag. Follow the loudest laugh in the room.",
+        "whyMatched": "You both want someone who challenges you without keeping score. The match was mutual — she picked you too.",
+        "commonAttributes": [
+          "Challenge each other, gently",
+          "Aggressively planned trips",
+          "True-crime podcast rabbit holes",
+          "Competitive in a fun way"
+        ],
+        "interests": [
+          {
+            "label": "Climbing",
+            "icon": "hiking"
+          },
+          {
+            "label": "Podcasts",
+            "icon": "music"
+          },
+          {
+            "label": "Travel",
+            "icon": "travel"
+          },
+          {
+            "label": "Sketching",
+            "icon": "camera"
+          },
+          {
+            "label": "Wine",
+            "icon": "wine"
+          },
+          {
+            "label": "Reading",
+            "icon": "book"
+          }
+        ],
+        "iceBreakers": [
+          "Ask about the trip she overplanned to perfection.",
+          "Find out which true-crime rabbit hole she went down last."
+        ],
+        "whatToTalkAbout": "Your next big climb, the trip you'd take on no notice, and who's secretly more competitive.",
+        "quirkyComment": "You two matched each other. Make of that what you will."
+      },
+      {
+        "name": "Bob",
+        "age": 30,
+        "location": "Downtown",
+        "role": "Software Engineer",
+        "tagline": "Grounded, funny, low-drama.",
+        "compatibility": 89,
+        "photo": "",
+        "howToSpot": "Navy linen shirt and tortoise-shell glasses. Near the record player, most likely.",
+        "whyMatched": "You both wrote about wanting something real and low-drama, and your weekend answers overlapped almost completely. Comfortable from minute one.",
+        "commonAttributes": [
+          "Something real, no games",
+          "Weekend hikers",
+          "Board-game night regulars",
+          "Rescue-dog people"
+        ],
+        "interests": [
+          {
+            "label": "Hiking",
+            "icon": "hiking"
+          },
+          {
+            "label": "Board Games",
+            "icon": "star"
+          },
+          {
+            "label": "Dogs",
+            "icon": "heart"
+          },
+          {
+            "label": "Coffee",
+            "icon": "coffee"
+          },
+          {
+            "label": "Live Music",
+            "icon": "music"
+          },
+          {
+            "label": "Travel",
+            "icon": "travel"
+          }
+        ],
+        "iceBreakers": [
+          "Ask which board game brings out his competitive side.",
+          "Swap rescue-dog stories."
+        ],
+        "whatToTalkAbout": "Favorite trails, game-night rules, and the dogs you'd rescue immediately.",
+        "quirkyComment": "Saved a warm one for last. Go say hi."
+      }
+    ]
+  }
+}

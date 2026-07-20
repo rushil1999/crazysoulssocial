@@ -2,12 +2,14 @@
 /**
  * gen-links.mjs
  * -------------
- * Reads a CSV of participants (email,name), generates a unique token per
- * person, scaffolds/updates data/matches.json with empty match slots, and
- * prints each person's shareable link for distribution (SMS / QR / email).
+ * Access is now via a single SHARED link — each guest just enters the email
+ * they signed up with. So there are no per-person links to generate. This
+ * script instead scaffolds data/matches.json from a CSV of participants, so
+ * you have an empty entry (keyed by email) to paste each person's AI matches
+ * into.
  *
  * Usage:
- *   node scripts/gen-links.mjs participants.csv https://your-app.vercel.app
+ *   node scripts/gen-links.mjs participants.csv [matchesPerPerson] [baseUrl] [round]
  *
  * CSV format (header optional, comma-separated):
  *   email,name
@@ -15,38 +17,35 @@
  *   bob@example.com,Bob
  *
  * Notes:
- *   - Existing people (matched by email) keep their existing token + data.
- *   - New people get a fresh token and 3 empty match slots to fill in.
- *   - Writes the updated matches.json and a links CSV to scripts/output/.
+ *   - `round` (default 1) picks the target file: round 1 -> data/matches.json,
+ *     round N -> data/matches_N.json.
+ *   - Existing people (matched by email) keep their data untouched.
+ *   - New people get an entry with `matchesPerPerson` empty match slots
+ *     (default 1 — matches round one).
+ *   - The shared link everyone uses is just your site's base URL.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
-import { randomBytes } from "node:crypto";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
-const matchesPath = resolve(root, "data/matches.json");
-const outDir = resolve(root, "scripts/output");
 
-const [, , csvArg, baseUrlArg] = process.argv;
+const [, , csvArg, countArg, baseUrlArg, roundArg] = process.argv;
 
 if (!csvArg) {
-  console.error("Usage: node scripts/gen-links.mjs <participants.csv> [baseUrl]");
+  console.error(
+    "Usage: node scripts/gen-links.mjs <participants.csv> [matchesPerPerson] [baseUrl] [round]"
+  );
   process.exit(1);
 }
 
+const matchesPerPerson = Math.max(1, parseInt(countArg || "1", 10) || 1);
 const baseUrl = (baseUrlArg || "https://your-app.vercel.app").replace(/\/$/, "");
-
-// Unambiguous token alphabet (no 0/O/1/I/L).
-const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-function makeToken(len = 6) {
-  const bytes = randomBytes(len);
-  let out = "";
-  for (let i = 0; i < len; i++) out += ALPHABET[bytes[i] % ALPHABET.length];
-  return out;
-}
+const round = Math.max(1, parseInt(roundArg || "1", 10) || 1);
+const matchesFile = round === 1 ? "matches.json" : `matches_${round}.json`;
+const matchesPath = resolve(root, "data", matchesFile);
 
 function emptyMatch() {
   return {
@@ -76,20 +75,8 @@ const matches = existsSync(matchesPath)
   ? JSON.parse(readFileSync(matchesPath, "utf8"))
   : {};
 
-const usedTokens = new Set(
-  Object.values(matches).map((p) => String(p.token).toUpperCase())
-);
-function uniqueToken() {
-  let t;
-  do {
-    t = makeToken();
-  } while (usedTokens.has(t));
-  usedTokens.add(t);
-  return t;
-}
-
 // --- Upsert people ---------------------------------------------------------
-const links = [];
+let added = 0;
 for (const [emailRaw, nameRaw] of rows) {
   if (!emailRaw) continue;
   const email = emailRaw.toLowerCase();
@@ -97,41 +84,30 @@ for (const [emailRaw, nameRaw] of rows) {
 
   if (!matches[email]) {
     matches[email] = {
-      token: uniqueToken(),
       name,
       praise: "",
-      matches: [emptyMatch(), emptyMatch(), emptyMatch()],
+      matches: Array.from({ length: matchesPerPerson }, emptyMatch),
     };
+    added++;
   } else if (name && !matches[email].name) {
     matches[email].name = name;
   }
-
-  links.push({
-    email,
-    name: matches[email].name,
-    token: matches[email].token,
-    link: `${baseUrl}/m/${matches[email].token}`,
-  });
 }
 
-// --- Write outputs ---------------------------------------------------------
+// --- Write output ----------------------------------------------------------
 writeFileSync(matchesPath, JSON.stringify(matches, null, 2) + "\n");
 
-if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
-const linksCsv =
-  "email,name,token,link\n" +
-  links.map((l) => `${l.email},${l.name},${l.token},${l.link}`).join("\n") +
-  "\n";
-writeFileSync(resolve(outDir, "links.csv"), linksCsv);
-
 // --- Report ----------------------------------------------------------------
-console.log(`\n✅ Processed ${links.length} participant(s).`);
-console.log(`   Updated: ${matchesPath}`);
-console.log(`   Links CSV: ${resolve(outDir, "links.csv")}\n`);
-for (const l of links) {
-  console.log(`   ${l.name || l.email}`.padEnd(28), l.link);
-}
+const total = Object.keys(matches).length;
+console.log(`\n✅ Scaffolded round ${round}: ${matchesFile}`);
+console.log(`   Added ${added} new person(s); ${total} total.`);
+console.log(`   ${matchesPath}\n`);
+console.log(`🔗 Shared link for EVERYONE (no per-person links needed):`);
+console.log(`   ${baseUrl}\n`);
 console.log(
-  "\nNext: fill in praise + match details for each person in data/matches.json,\n" +
-    "set reveal times in data/schedule.json, commit, and push to deploy.\n"
+  `Next for round ${round}:\n` +
+    `  1. Fill in praise + match details in data/${matchesFile}\n` +
+    `  2. Add a "${round}" entry with reveal times in data/schedule.json (California/Pacific)\n` +
+    `  3. Add ${round} to enabledRounds in data/round.json to put it in play\n` +
+    `  4. Commit and push to deploy. Matches accumulate — guests keep earlier rounds too.\n`
 );
