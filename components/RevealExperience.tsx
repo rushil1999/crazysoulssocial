@@ -5,6 +5,7 @@ import EmailGate from "@/components/EmailGate";
 import Praise from "@/components/Praise";
 import Countdown from "@/components/Countdown";
 import MatchReveal from "@/components/MatchReveal";
+import PulseFeed from "@/components/PulseFeed";
 
 type UnlockResult = {
   name: string;
@@ -70,6 +71,7 @@ export default function RevealExperience() {
 
   return (
     <main className="min-h-screen flex items-center justify-center px-5 py-12">
+      <PulseFeed active={phase !== "gate"} />
       {restoring ? (
         <div className="text-beige/70 animate-pulse font-display text-xl tracking-wide">
           Loading…

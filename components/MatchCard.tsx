@@ -75,7 +75,6 @@ export default function MatchCard({
 
         <h2 className="font-display text-4xl sm:text-5xl tracking-wide">
           {match.name}
-          {match.age ? `, ${match.age}` : ""}
         </h2>
 
         {meta && (

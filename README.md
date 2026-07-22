@@ -189,6 +189,53 @@ devtools can't peek ahead.
 
 ---
 
+## Live audience "pulses"
+
+Alongside the per-person match reveal, you can fire **anonymous room broadcasts**
+in real time — e.g. *"Someone in the room knows how to surf 🏄"*. Guests don't
+swipe or refresh: their phones **poll** every ~15s and a new pulse pops in as a
+gold toast, then settles into a scrollable feed.
+
+Unlike the match data (static JSON, redeploy to update), pulses are **spontaneous**,
+so they live in a small shared store instead of the repo.
+
+### Host console — `/host`
+
+Open `/host` on your phone, enter the admin secret, then:
+
+- **Load the queue** — paste your AI output (one pulse per line) or add single
+  lines. The queue lives on your device (localStorage).
+- **Send one-by-one** — tap **Send** on a queued line to broadcast it instantly;
+  it moves to the "Sent" list. Meter them out as the night unfolds.
+
+Guests never see `/host`, and nothing sends without the secret (validated
+server-side).
+
+### Setup
+
+1. **Add a store.** In Vercel: **Storage → add Redis** (Upstash-backed). Vercel
+   injects `KV_REST_API_URL` / `KV_REST_API_TOKEN` automatically — no code change.
+2. **Set the host password.** Add `PULSE_ADMIN_SECRET` in the Vercel project's
+   Environment Variables. Redeploy.
+
+Locally, put `PULSE_ADMIN_SECRET=dev123` in `.env.local`. With no Redis env vars,
+the app falls back to an **in-memory store** so `npm run dev` works end-to-end
+(single-process only — not for production).
+
+> Scale note: ~20 guests polling every 15s is a handful of Redis reads per second —
+> comfortably within Upstash's free tier for an evening event.
+
+### Reset before an event
+
+Clear any test pulses with a secret-gated request:
+
+```bash
+curl -X DELETE https://your-site/api/pulses \
+  -H 'Content-Type: application/json' -d '{"secret":"YOUR_SECRET"}'
+```
+
+---
+
 ## Deploy (GitHub → Vercel)
 
 1. Push this repo to GitHub:
