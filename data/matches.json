@@ -6,32 +6,23 @@
       {
         "name": "Bob",
         "age": 30,
-        "location": "Downtown",
-        "role": "Software Engineer",
         "tagline": "Big questions, bad puns, good coffee.",
+        "vibe": "The one who finds the person standing alone and quietly makes them the center of the night.",
         "compatibility": 91,
-        "photo": "",
-        "howToSpot": "Navy linen shirt and tortoise-shell glasses. Most likely near the record player, quietly debating the correct album order.",
-        "whyMatched": "You both chase curiosity over comfort and listed 'someone who can laugh at themselves' as a green flag. Your answers rhymed in the best way.",
+        "whyMatched": "You both chase curiosity over comfort, and you both said the compliment you'd secretly value most is 'you make people feel seen.' Your answers rhymed in the best way.",
         "commonAttributes": [
           "Both chase curiosity over comfort",
-          "Weekend trail hikers",
-          "Unapologetically bad puns",
-          "Coffee before conversation"
+          "Would take the 6am road trip with strangers",
+          "Value being made to feel seen over being called interesting",
+          "Rescue a dying conversation by pulling someone new in"
         ],
-        "interests": [
-          { "label": "Hiking", "icon": "hiking" },
-          { "label": "Sci-Fi", "icon": "book" },
-          { "label": "Coffee", "icon": "coffee" },
-          { "label": "Film Photo", "icon": "camera" },
-          { "label": "Live Music", "icon": "music" },
-          { "label": "Travel", "icon": "travel" }
-        ],
+        "unexpectedFlex": "Can name almost any song within the first two seconds of the intro.",
+        "canTeach": "How to order wine at a restaurant without pretending you know anything about wine.",
         "iceBreakers": [
-          "Ask about the hike that made them rethink camping forever.",
-          "Find out which sci-fi world they'd actually want to live in — and why it's a terrible idea."
+          "Ask which song he can name in two seconds flat — then try to stump him.",
+          "Find out which sci-fi world he'd actually want to live in — and why it's a terrible idea."
         ],
-        "whatToTalkAbout": "Weekend misadventures, the last book that kept them up too late, and your competing theories on the best cheap eats in town.",
+        "whatToTalkAbout": "The boldest decision each of you made without knowing it would work, comfort books, and your competing theories on the best cheap eats in town.",
         "quirkyComment": "Fair warning: you two might out-pun the entire room by 8pm."
       }
     ]
@@ -43,32 +34,23 @@
       {
         "name": "Alice",
         "age": 28,
-        "location": "Riverside",
-        "role": "Illustrator",
         "tagline": "Curious, a little mischievous, always game.",
+        "vibe": "Walks up to the loudest group and asks how everyone knows each other — then owns the room by midnight.",
         "compatibility": 91,
-        "photo": "",
-        "howToSpot": "Emerald jacket with a sketchbook tucked in her bag. Follow the loudest, most contagious laugh in the room.",
-        "whyMatched": "You both chase curiosity over comfort and want someone who can laugh at themselves. The match was mutual and obvious.",
+        "whyMatched": "You both chase curiosity over comfort and both picked the stranger whose life looks nothing like yours as the introduction you're most curious about. The match was mutual and obvious.",
         "commonAttributes": [
-          "Both want a partner-in-crime",
-          "Weekend trail hikers",
-          "Comfort-book re-readers",
-          "Coffee before conversation"
+          "Both want a partner-in-crime for the night",
+          "Drawn to people whose lives look nothing like theirs",
+          "Would host the dinner for eight and own the chemistry",
+          "Here for one conversation they're still thinking about tomorrow"
         ],
-        "interests": [
-          { "label": "Hiking", "icon": "hiking" },
-          { "label": "Sketching", "icon": "camera" },
-          { "label": "Coffee", "icon": "coffee" },
-          { "label": "Poetry", "icon": "book" },
-          { "label": "Live Music", "icon": "music" },
-          { "label": "Travel", "icon": "travel" }
-        ],
+        "unexpectedFlex": "Can sketch a recognizable portrait of anyone in under sixty seconds.",
+        "canTeach": "How to start a conversation with literally anyone in a room full of strangers.",
         "iceBreakers": [
-          "Ask which fictional universe they'd move to tomorrow.",
-          "Compare your worst-ever pun. Winner buys the first drink."
+          "Ask her to sketch the most interesting stranger in the room — winner buys the first drink.",
+          "Compare the boldest decision you each made without knowing it would work."
         ],
-        "whatToTalkAbout": "Trails worth the early alarm, comfort books, and the best cheap eats you've each found.",
+        "whatToTalkAbout": "The strangest thing each of you is unusually good at, the places you'd live if you could, and the best cheap eats you've each found.",
         "quirkyComment": "You two matched each other first. Read into that however you like."
       }
     ]

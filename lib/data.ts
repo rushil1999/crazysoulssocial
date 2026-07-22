@@ -3,25 +3,29 @@ import scheduleData from "@/data/schedule.json";
 import matches1 from "@/data/matches.json";
 import matches2 from "@/data/matches_2.json";
 
-export type Interest = {
-  label: string;
-  /** Optional icon keyword (e.g. "wine", "music", "travel"). Falls back to
-   *  matching a keyword inside the label, then to a sparkle. */
-  icon?: string;
-};
-
+/**
+ * Everything here is derivable from the "Beyond Small Talk" intake form —
+ * either a direct answer or an AI synthesis of the personality answers. The
+ * form asks NO appearance, hobby, or photo questions, so there is intentionally
+ * no `howToSpot`, `interests`, or `photo` field: the card would otherwise force
+ * the AI to invent them.
+ */
 export type Match = {
   name: string;
   age?: number;
-  location?: string;
-  role?: string;
+  /** Short vibe quote (AI-written flavor, grounded in their answers). */
   tagline?: string;
+  /** One-line read on how they move socially, distilled from the "Natural
+   *  Rhythm" scenario answers (e.g. "Finds the person standing alone and makes
+   *  them the center of the night"). */
+  vibe?: string;
   compatibility?: number;
-  photo?: string;
-  howToSpot?: string;
   whyMatched: string;
   commonAttributes: string[];
-  interests?: Interest[];
+  /** From the form's open-text "most unexpected flex". */
+  unexpectedFlex?: string;
+  /** From the form's "what could you teach someone in ten minutes". */
+  canTeach?: string;
   iceBreakers: string[];
   whatToTalkAbout: string;
   quirkyComment: string;

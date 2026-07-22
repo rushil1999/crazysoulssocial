@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import type { Match } from "@/lib/data";
 import { Ornament, FooterTag } from "./Ornament";
-import { EyeIcon, PinIcon, QuoteIcon, InterestIcon } from "./icons";
+import { QuoteIcon, SparkleGlyph } from "./icons";
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,7 +44,16 @@ export default function MatchCard({
   matchCount: number;
 }) {
   const initial = match.name.trim().charAt(0).toUpperCase();
-  const meta = [match.location, match.role].filter(Boolean).join("  ·  ");
+  const funFacts = [
+    match.unexpectedFlex && {
+      label: "Unexpected flex",
+      value: match.unexpectedFlex,
+    },
+    match.canTeach && {
+      label: "Can teach you in 10 min",
+      value: match.canTeach,
+    },
+  ].filter(Boolean) as { label: string; value: string }[];
 
   return (
     <motion.div
@@ -59,30 +68,14 @@ export default function MatchCard({
         <p className="eyebrow">You&apos;ve been matched with</p>
 
         <div className="mt-6 mb-5 flex justify-center">
-          {match.photo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={match.photo}
-              alt={match.name}
-              className="w-28 h-28 rounded-full object-cover ring"
-            />
-          ) : (
-            <div className="w-28 h-28 rounded-full ring grid place-items-center">
-              <span className="font-display text-5xl text-gold">{initial}</span>
-            </div>
-          )}
+          <div className="w-28 h-28 rounded-full ring grid place-items-center">
+            <span className="font-display text-5xl text-gold">{initial}</span>
+          </div>
         </div>
 
         <h2 className="font-display text-4xl sm:text-5xl tracking-wide">
           {match.name}
         </h2>
-
-        {meta && (
-          <p className="mt-3 text-sm text-beige/70 flex items-center justify-center gap-1.5">
-            <PinIcon className="text-gold/80" />
-            {meta}
-          </p>
-        )}
 
         {match.tagline && (
           <p className="mt-5 text-lg italic text-beige/85">
@@ -102,14 +95,14 @@ export default function MatchCard({
         )}
       </motion.div>
 
-      {/* — How to spot them — */}
-      {match.howToSpot && (
+      {/* — Their rhythm (social style) — */}
+      {match.vibe && (
         <motion.div variants={item} className="glass rounded-[22px] p-7">
           <div className="eyebrow flex items-center gap-2 mb-4">
-            <EyeIcon className="text-gold/80" /> How to spot them
+            <SparkleGlyph size={15} className="text-gold/80" /> Their Rhythm
           </div>
           <p className="font-display text-xl leading-relaxed text-cream/95">
-            {match.howToSpot}
+            {match.vibe}
           </p>
         </motion.div>
       )}
@@ -140,25 +133,19 @@ export default function MatchCard({
         </motion.div>
       )}
 
-      {/* — Interests & hobbies — */}
-      {match.interests && match.interests.length > 0 && (
-        <motion.div variants={item}>
-          <p className="eyebrow mb-3">Interests &amp; Hobbies</p>
-          <div className="grid grid-cols-3 gap-3">
-            {match.interests.map((it, i) => (
-              <div
-                key={i}
-                className="tile rounded-2xl py-5 px-2 flex flex-col items-center gap-3"
-              >
-                <span className="w-12 h-12 rounded-full ring grid place-items-center text-gold">
-                  <InterestIcon name={it.icon || it.label} />
-                </span>
-                <span className="text-[10px] sm:text-[11px] tracking-[0.12em] uppercase text-beige/80 text-center leading-tight">
-                  {it.label}
-                </span>
+      {/* — Fun facts (unexpected flex + can-teach) — */}
+      {funFacts.length > 0 && (
+        <motion.div variants={item} className="grid sm:grid-cols-2 gap-3">
+          {funFacts.map((f, i) => (
+            <div key={i} className="tile rounded-2xl p-5">
+              <div className="eyebrow flex items-center gap-2 mb-2.5">
+                <SparkleGlyph size={13} className="text-gold/80" /> {f.label}
               </div>
-            ))}
-          </div>
+              <p className="font-display text-lg leading-snug text-cream/95">
+                {f.value}
+              </p>
+            </div>
+          ))}
         </motion.div>
       )}
 

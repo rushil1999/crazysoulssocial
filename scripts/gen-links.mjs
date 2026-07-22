@@ -50,9 +50,13 @@ const matchesPath = resolve(root, "data", matchesFile);
 function emptyMatch() {
   return {
     name: "",
-    photo: "",
+    tagline: "",
+    vibe: "",
+    compatibility: 0,
     whyMatched: "",
     commonAttributes: [],
+    unexpectedFlex: "",
+    canTeach: "",
     iceBreakers: [],
     whatToTalkAbout: "",
     quirkyComment: "",

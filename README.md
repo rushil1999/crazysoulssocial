@@ -63,19 +63,13 @@ Two files under `data/`:
       {
         "name": "Bob",
         "age": 30,
-        "location": "Downtown",
-        "role": "Software Engineer",
         "tagline": "Big questions, bad puns, good coffee.",
+        "vibe": "The one who finds the person standing alone and makes them the center of the night.",
         "compatibility": 91,
-        "photo": "",
-        "howToSpot": "What they're wearing / where they'll be, so guests can find each other.",
         "whyMatched": "Why the AI paired them…",
-        "commonAttributes": ["Both chase curiosity", "Weekend hikers", "Coffee first"],
-        "interests": [
-          { "label": "Hiking", "icon": "hiking" },
-          { "label": "Sci-Fi", "icon": "book" },
-          { "label": "Coffee", "icon": "coffee" }
-        ],
+        "commonAttributes": ["Both chase curiosity", "Would take the 6am road trip", "Value feeling seen"],
+        "unexpectedFlex": "Can name almost any song in the first two seconds.",
+        "canTeach": "How to order wine without pretending to know anything about wine.",
         "iceBreakers": ["Ask about…", "Find out…"],
         "whatToTalkAbout": "Topics that'll land…",
         "quirkyComment": "A fun one-liner shown at the bottom of the card."
@@ -85,16 +79,28 @@ Two files under `data/`:
 }
 ```
 
+**Every field is sourced from the "Beyond Small Talk" intake form** — either a
+direct answer or an AI synthesis of the personality answers — because at the
+event the AI has *only* the form to work from. The form asks about social style,
+values, and curiosity, and asks **no** job, location, appearance, hobby, or photo
+questions. So the schema deliberately has **no `role`, `location`, `howToSpot`,
+`interests`, or `photo`** — any of those would force the AI to invent facts it
+can't know. (Guests find each other by first name; the avatar is the initial.)
+
 - The **email is the key** and is what the guest types to unlock (case-insensitive).
 - **Required per match:** `name`, `whyMatched`, `commonAttributes`, `iceBreakers`,
   `whatToTalkAbout`, `quirkyComment`.
-- **Optional (shown only if present):** `age`, `location`, `role`, `tagline`
-  (italic quote), `compatibility` (number → "NN% COMPATIBILITY" pill), `photo`
-  (URL → avatar), `howToSpot`, `interests`.
-- `interests` is a grid of icon tiles. `icon` keywords: `wine`, `music`, `book`,
-  `poetry`, `camera`, `photography`, `travel`, `plane`, `garden`, `hiking`,
-  `coffee`, `film`, `heart`, `star`. If omitted or unknown, it matches a keyword
-  in the label, then falls back to a sparkle.
+- **Direct from a form answer:** `unexpectedFlex` ("most unexpected flex"),
+  `canTeach` ("teach in ten minutes"), `age`.
+- **AI-synthesized from the personality answers:**
+  - `vibe` — one-line read on how they move socially (from the "Natural Rhythm"
+    scenarios), shown in a **"Their Rhythm"** panel.
+  - `whyMatched`, `commonAttributes`, `iceBreakers`, `whatToTalkAbout` — grounded
+    in the two people's actual answers.
+  - `tagline` — a short vibe quote (AI flavor), `quirkyComment` — a fun closer.
+  - `compatibility` — the AI's match score (number → "NN% COMPATIBILITY" pill).
+- The form's **dealbreakers** answer ("anything that makes an intro unsuitable")
+  is a **matching signal for the AI, not a display field** — don't put it in the JSON.
 - `matches` order = reveal order. Round one uses **one** match; more also works
   (extra matches reuse the last reveal time).
 - Paste your AI output straight into these fields.

@@ -6,51 +6,24 @@
       {
         "name": "Carol",
         "age": 29,
-        "location": "Arts District",
-        "role": "Ceramicist",
         "tagline": "Makes things with her hands, means what she says.",
+        "vibe": "Would host the dinner for eight and own the food, the music, and the chemistry — then win every debate at the table without keeping score.",
         "compatibility": 94,
-        "photo": "",
-        "howToSpot": "Rust-colored jumpsuit and clay-stained fingers she'll laugh about. Usually near the courtyard, drink in hand.",
-        "whyMatched": "You both wrote about wanting someone who challenges you without keeping score. Same appetite for a good debate, same soft landing after it.",
+        "whyMatched": "You both picked the debate about whether ambition improves your life or quietly consumes it as the table you'd join. Same appetite for a good argument, same soft landing after it.",
         "commonAttributes": [
           "Challenge each other, gently",
-          "Aggressively planned trips",
-          "True-crime podcast rabbit holes",
+          "Would host the dinner and own the room",
+          "Here for a debate about ambition vs. a quiet life",
           "Competitive in a fun way"
         ],
-        "interests": [
-          {
-            "label": "Climbing",
-            "icon": "hiking"
-          },
-          {
-            "label": "Podcasts",
-            "icon": "music"
-          },
-          {
-            "label": "Travel",
-            "icon": "travel"
-          },
-          {
-            "label": "Ceramics",
-            "icon": "star"
-          },
-          {
-            "label": "Wine",
-            "icon": "wine"
-          },
-          {
-            "label": "Reading",
-            "icon": "book"
-          }
-        ],
+        "unexpectedFlex": "Can throw a lopsided but genuinely usable mug on a pottery wheel in one sitting.",
+        "canTeach": "How to win an argument by asking better questions instead of talking louder.",
         "iceBreakers": [
           "Ask which climb scared her the most — and whether she'd do it again.",
-          "Compare your most unhinged trip spreadsheet."
+          "Take opposite sides on 'does ambition improve your life or consume it' and see who folds first."
         ],
-        "whatToTalkAbout": "The trip you'd take tomorrow with zero planning, the podcast episode you can't shut up about, and who's actually more competitive.",
-        "quirkyComment": "Two planners walk into a bar. Nobody knows what happens next — you didn't schedule it."
+        "whatToTalkAbout": "The trip you'd take tomorrow with zero planning, the strangest thing each of you is unusually good at, and who's actually more competitive.",
+        "quirkyComment": "Two people who host the dinner and own the room, at one table. Somebody's ceding control tonight."
       }
     ]
   },
@@ -61,50 +34,23 @@
       {
         "name": "Dana",
         "age": 27,
-        "location": "Midtown",
-        "role": "Comedian",
         "tagline": "Will make you laugh before she gets your name.",
+        "vibe": "Rescues a dying conversation by telling the story that makes her look slightly ridiculous — and the whole group leans in.",
         "compatibility": 90,
-        "photo": "",
-        "howToSpot": "Red lipstick and a leather jacket, working the room like she owns it.",
-        "whyMatched": "You both said the fastest way to your heart is making you laugh, and your humor styles scored almost identically. Expect a lot of grinning.",
+        "whyMatched": "You both kept the social superpower 'make almost anyone laugh,' and you'd both rescue a stalling conversation the same way — with a story at your own expense. Expect a lot of grinning.",
         "commonAttributes": [
-          "Laughter is the love language",
-          "Street-food crawlers",
-          "Terrible, committed karaoke",
-          "Live comedy diehards"
+          "Laughter is the social superpower",
+          "Save a dying conversation with a story at their own expense",
+          "Would learn a completely useless skill for the story",
+          "Here to leave with a story worth retelling"
         ],
-        "interests": [
-          {
-            "label": "Comedy",
-            "icon": "star"
-          },
-          {
-            "label": "Street Food",
-            "icon": "coffee"
-          },
-          {
-            "label": "Karaoke",
-            "icon": "music"
-          },
-          {
-            "label": "Travel",
-            "icon": "travel"
-          },
-          {
-            "label": "Film",
-            "icon": "film"
-          },
-          {
-            "label": "Wine",
-            "icon": "wine"
-          }
-        ],
+        "unexpectedFlex": "Can do a dead-on impression of almost anyone after hearing them talk for a minute.",
+        "canTeach": "How to tell a story so a whole table leans in — including where to pause.",
         "iceBreakers": [
-          "Ask for the comedian she'd fly across the country to see.",
-          "Agree on a karaoke duet before you lose your nerve."
+          "Ask for the impression she's proudest of — then request an encore.",
+          "Trade the most ridiculous story you each have, winner picks the karaoke duet."
         ],
-        "whatToTalkAbout": "The best cheap meal you've ever had, your go-to karaoke disaster, and what actually makes you laugh.",
+        "whatToTalkAbout": "The useless skill each of you would learn on a phone-free Saturday, your go-to karaoke disaster, and what actually makes you laugh.",
         "quirkyComment": "Odds of an impromptu duet tonight: dangerously high."
       }
     ]
@@ -116,48 +62,21 @@
       {
         "name": "Alice",
         "age": 28,
-        "location": "Riverside",
-        "role": "Illustrator",
         "tagline": "Curious, a little mischievous, always game.",
+        "vibe": "Walks up to the loudest group and asks how everyone knows each other — then quietly runs the night.",
         "compatibility": 94,
-        "photo": "",
-        "howToSpot": "Emerald jacket with a sketchbook in her bag. Follow the loudest laugh in the room.",
-        "whyMatched": "You both want someone who challenges you without keeping score. The match was mutual — she picked you too.",
+        "whyMatched": "You both picked the debate about ambition as the table you'd join, and you both want someone who challenges you without keeping score. The match was mutual — she picked you too.",
         "commonAttributes": [
           "Challenge each other, gently",
-          "Aggressively planned trips",
-          "True-crime podcast rabbit holes",
+          "Both drawn to the ambition debate",
+          "Curious about people whose lives look nothing like theirs",
           "Competitive in a fun way"
         ],
-        "interests": [
-          {
-            "label": "Climbing",
-            "icon": "hiking"
-          },
-          {
-            "label": "Podcasts",
-            "icon": "music"
-          },
-          {
-            "label": "Travel",
-            "icon": "travel"
-          },
-          {
-            "label": "Sketching",
-            "icon": "camera"
-          },
-          {
-            "label": "Wine",
-            "icon": "wine"
-          },
-          {
-            "label": "Reading",
-            "icon": "book"
-          }
-        ],
+        "unexpectedFlex": "Can sketch a recognizable portrait of anyone in under sixty seconds.",
+        "canTeach": "How to start a conversation with literally anyone in a room full of strangers.",
         "iceBreakers": [
-          "Ask about the trip she overplanned to perfection.",
-          "Find out which true-crime rabbit hole she went down last."
+          "Ask her to sketch the most interesting stranger in the room.",
+          "Take opposite sides of the ambition debate and see who gives first."
         ],
         "whatToTalkAbout": "Your next big climb, the trip you'd take on no notice, and who's secretly more competitive.",
         "quirkyComment": "You two matched each other. Make of that what you will."
@@ -165,50 +84,23 @@
       {
         "name": "Bob",
         "age": 30,
-        "location": "Downtown",
-        "role": "Software Engineer",
         "tagline": "Grounded, funny, low-drama.",
+        "vibe": "The steady one who ends a good conversation warmly and means it when he says he'll come find you later.",
         "compatibility": 89,
-        "photo": "",
-        "howToSpot": "Navy linen shirt and tortoise-shell glasses. Near the record player, most likely.",
-        "whyMatched": "You both wrote about wanting something real and low-drama, and your weekend answers overlapped almost completely. Comfortable from minute one.",
+        "whyMatched": "You both said the compliment you'd secretly value most is 'you always follow through,' and your phone-free-Saturday answers overlapped almost completely. Comfortable from minute one.",
         "commonAttributes": [
-          "Something real, no games",
-          "Weekend hikers",
-          "Board-game night regulars",
+          "Both secretly value 'you always follow through'",
+          "Would do the low-key city crawl, everyone picks one stop",
+          "Here to find people they'd actually make plans with",
           "Rescue-dog people"
         ],
-        "interests": [
-          {
-            "label": "Hiking",
-            "icon": "hiking"
-          },
-          {
-            "label": "Board Games",
-            "icon": "star"
-          },
-          {
-            "label": "Dogs",
-            "icon": "heart"
-          },
-          {
-            "label": "Coffee",
-            "icon": "coffee"
-          },
-          {
-            "label": "Live Music",
-            "icon": "music"
-          },
-          {
-            "label": "Travel",
-            "icon": "travel"
-          }
-        ],
+        "unexpectedFlex": "Remembers the tiny detail you mentioned once, three weeks later, and brings it up.",
+        "canTeach": "How to make a perfect pour-over without any of the expensive gear.",
         "iceBreakers": [
-          "Ask which board game brings out his competitive side.",
+          "Ask which one stop he'd pick if tonight turned into a city crawl.",
           "Swap rescue-dog stories."
         ],
-        "whatToTalkAbout": "Favorite trails, game-night rules, and the dogs you'd rescue immediately.",
+        "whatToTalkAbout": "Favorite trails, the people you'd actually keep seeing after tonight, and the dogs you'd rescue immediately.",
         "quirkyComment": "Saved a warm one for last. Go say hi."
       }
     ]
