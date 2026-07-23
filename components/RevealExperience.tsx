@@ -24,6 +24,26 @@ export default function RevealExperience() {
   const [firstName, setFirstName] = useState<string>("");
   const [index, setIndex] = useState(0);
   const [restoring, setRestoring] = useState(true);
+  const [rechecking, setRechecking] = useState(false);
+
+  // Re-fetch the profile — used by the "no match yet" screen, since rounds are
+  // additive and the host may assign a match during the event.
+  async function recheck() {
+    if (!email || !firstName) return;
+    setRechecking(true);
+    try {
+      const res = await fetch("/api/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstName }),
+      });
+      if (res.ok) setData((await res.json()) as UnlockResult);
+    } catch {
+      /* leave the current state in place */
+    } finally {
+      setRechecking(false);
+    }
+  }
 
   // Auto-restore an already-unlocked session (no need to re-enter details).
   useEffect(() => {
@@ -87,6 +107,34 @@ export default function RevealExperience() {
             setPhase("praise");
           }}
         />
+      ) : data && data.matchCount === 0 ? (
+        // Person exists but has no match assigned (e.g. skewed ratio). Show a
+        // warm, non-breaking screen instead of proceeding into the countdown.
+        <div className="glass rounded-2xl max-w-lg w-full p-8 sm:p-10 text-center">
+          <div className="text-3xl mb-5 text-gold animate-floaty">✦</div>
+          <h1 className="font-display text-3xl sm:text-4xl mb-4 tracking-wide">
+            Hi <span className="gradient-text">{data.name}</span>.
+          </h1>
+          {data.praise && (
+            <p className="text-cream/90 leading-relaxed mb-6">{data.praise}</p>
+          )}
+          <div className="rule w-full mb-6" />
+          <p className="text-cream/85 leading-relaxed mb-2">
+            We don&apos;t have a match to reveal for you just yet — the night&apos;s
+            still unfolding.
+          </p>
+          <p className="text-beige/75 leading-relaxed">
+            So make it yours: grab a drink, start a conversation, and keep this page
+            handy. If we find someone for you tonight, they&apos;ll appear right here.
+          </p>
+          <button
+            className="btn-ghost mt-8"
+            disabled={rechecking}
+            onClick={recheck}
+          >
+            {rechecking ? "Checking…" : "Check again"}
+          </button>
+        </div>
       ) : phase === "praise" && data ? (
         <Praise
           name={data.name}
