@@ -56,6 +56,7 @@ function emptyMatch() {
     commonAttributes: [],
     unexpectedFlex: "",
     canTeach: "",
+    freeMonth: "",
     iceBreakers: [],
     whatToTalkAbout: "",
     quirkyComment: "",

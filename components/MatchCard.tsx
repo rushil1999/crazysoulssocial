@@ -50,8 +50,12 @@ export default function MatchCard({
       value: match.unexpectedFlex,
     },
     match.canTeach && {
-      label: "Can teach you in 10 min",
+      label: "Can teach you in an hour",
       value: match.canTeach,
+    },
+    match.freeMonth && {
+      label: "With a free month, they'd…",
+      value: match.freeMonth,
     },
   ].filter(Boolean) as { label: string; value: string }[];
 

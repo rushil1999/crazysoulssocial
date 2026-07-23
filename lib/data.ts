@@ -22,8 +22,11 @@ export type Match = {
   commonAttributes: string[];
   /** From the form's open-text "most unexpected flex". */
   unexpectedFlex?: string;
-  /** From the form's "what could you teach someone in ten minutes". */
+  /** From the form's "what could you confidently teach someone in 1 hour". */
   canTeach?: string;
+  /** From the form's "one-month sabbatical, travel banned — what are you doing
+   *  with thirty responsibility-free days?" */
+  freeMonth?: string;
   iceBreakers: string[];
   whatToTalkAbout: string;
   quirkyComment: string;

@@ -69,6 +69,7 @@ Two files under `data/`:
         "commonAttributes": ["Both chase curiosity", "Would take the 6am road trip", "Value feeling seen"],
         "unexpectedFlex": "Can name almost any song in the first two seconds.",
         "canTeach": "How to order wine without pretending to know anything about wine.",
+        "freeMonth": "Build the analog synth he's been collecting parts for and record an album.",
         "iceBreakers": ["Ask about…", "Find out…"],
         "whatToTalkAbout": "Topics that'll land…",
         "quirkyComment": "A fun one-liner shown at the bottom of the card."
@@ -90,7 +91,9 @@ can't know. (Guests find each other by first name; the avatar is the initial.)
 - **Required per match:** `name`, `whyMatched`, `commonAttributes`, `iceBreakers`,
   `whatToTalkAbout`, `quirkyComment`.
 - **Direct from a form answer:** `unexpectedFlex` ("most unexpected flex"),
-  `canTeach` ("teach in ten minutes"), `age`.
+  `canTeach` ("teach someone in 1 hour"), `freeMonth` (the "one-month sabbatical,
+  travel banned" question), `age`. Each of the first three shows as a **fun-fact
+  tile**.
 - **AI-synthesized from the personality answers:**
   - `vibe` — one-line read on how they move socially (from the "Natural Rhythm"
     scenarios), shown in a **"Their Rhythm"** panel.
