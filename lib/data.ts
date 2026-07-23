@@ -13,8 +13,6 @@ import matches2 from "@/data/matches_2.json";
 export type Match = {
   name: string;
   age?: number;
-  /** Short vibe quote (AI-written flavor, grounded in their answers). */
-  tagline?: string;
   /** One-line read on how they move socially, distilled from the "Natural
    *  Rhythm" scenario answers (e.g. "Finds the person standing alone and makes
    *  them the center of the night"). */

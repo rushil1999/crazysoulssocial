@@ -77,12 +77,6 @@ export default function MatchCard({
           {match.name}
         </h2>
 
-        {match.tagline && (
-          <p className="mt-5 text-lg italic text-beige/85">
-            &ldquo;{match.tagline}&rdquo;
-          </p>
-        )}
-
         {typeof match.compatibility === "number" && (
           <div className="mt-7 inline-flex items-center gap-2.5 rounded-full ring px-6 py-2.5">
             <span className="font-display text-xl text-gold">

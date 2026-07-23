@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { addPulse, getPulsesSince, getRecent, clearPulses } from "@/lib/pulses";
+import { sendPushToAll } from "@/lib/push";
 
 // Never cache — guests poll this for live updates.
 export const dynamic = "force-dynamic";
@@ -62,7 +63,21 @@ export async function POST(request: Request) {
   }
 
   const pulse = await addPulse(text);
-  return NextResponse.json({ pulse });
+
+  // Fan the pulse out to push subscribers (locked/backgrounded phones). This is
+  // best-effort — never let a push failure break firing the pulse.
+  let push = { sent: 0, pruned: 0 };
+  try {
+    push = await sendPushToAll({
+      title: "Crazy Souls · From the room",
+      body: text,
+      url: "/",
+    });
+  } catch {
+    /* ignore — the in-app feed still updates via polling */
+  }
+
+  return NextResponse.json({ pulse, push });
 }
 
 /**

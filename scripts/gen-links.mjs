@@ -50,7 +50,6 @@ const matchesPath = resolve(root, "data", matchesFile);
 function emptyMatch() {
   return {
     name: "",
-    tagline: "",
     vibe: "",
     compatibility: 0,
     whyMatched: "",

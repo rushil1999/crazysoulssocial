@@ -98,9 +98,9 @@ export default function PulseFeed({ active }: { active: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-x-0 top-[5.5rem] z-50 px-3 pointer-events-none"
+            className="fixed inset-x-0 top-[7rem] z-50 px-3 pointer-events-none"
           >
-            <div className="glass rounded-2xl max-w-2xl mx-auto max-h-[50vh] flex flex-col overflow-hidden pointer-events-auto">
+            <div className="glass rounded-2xl max-w-3xl mx-auto max-h-[50vh] flex flex-col overflow-hidden pointer-events-auto">
               <div className="flex items-center justify-between px-5 py-3 border-b border-gold/20">
                 <div className="eyebrow">From the room</div>
                 <button
@@ -130,28 +130,41 @@ export default function PulseFeed({ active }: { active: boolean }) {
 
       {/* Persistent bar — always shows the latest pulse */}
       <div className="fixed inset-x-0 top-0 z-50 px-3 pt-3">
-        <div className="glass rounded-2xl max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
+        <motion.div
+          key={`bar-${latest.id}`}
+          initial={{ scale: 0.99 }}
+          animate={{
+            scale: [1, 1.02, 1],
+            boxShadow: [
+              "0 24px 55px -24px rgba(0,0,0,0.85), 0 0 0px rgba(185,144,67,0)",
+              "0 24px 55px -24px rgba(0,0,0,0.85), 0 0 52px rgba(185,144,67,0.6)",
+              "0 24px 55px -24px rgba(0,0,0,0.85), 0 0 26px rgba(185,144,67,0.22)",
+            ],
+          }}
+          transition={{ duration: 1.5, ease: "easeOut", times: [0, 0.35, 1] }}
+          className="glass rounded-2xl max-w-3xl mx-auto px-5 sm:px-7 py-4 sm:py-5 flex items-center gap-4"
+        >
           <motion.span
             key={`icon-${latest.id}`}
-            initial={{ scale: 0.6, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="text-gold text-lg shrink-0"
+            initial={{ scale: 0.4, opacity: 0, rotate: -25 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-gold text-2xl sm:text-3xl shrink-0"
             aria-hidden
           >
             ✦
           </motion.span>
 
           <div className="flex-1 min-w-0">
-            <div className="eyebrow mb-0.5">From the room</div>
+            <div className="eyebrow mb-1">From the room</div>
             <AnimatePresence mode="wait">
               <motion.p
                 key={latest.id}
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="text-cream leading-snug line-clamp-2"
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="font-display text-lg sm:text-2xl leading-snug text-cream line-clamp-2"
               >
                 {latest.text}
               </motion.p>
@@ -167,7 +180,7 @@ export default function PulseFeed({ active }: { active: boolean }) {
               {open ? "Hide" : `Earlier · ${earlier.length}`}
             </button>
           )}
-        </div>
+        </motion.div>
       </div>
     </>
   );

@@ -63,7 +63,6 @@ Two files under `data/`:
       {
         "name": "Bob",
         "age": 30,
-        "tagline": "Big questions, bad puns, good coffee.",
         "vibe": "The one who finds the person standing alone and makes them the center of the night.",
         "compatibility": 91,
         "whyMatched": "Why the AI paired them…",
@@ -97,7 +96,7 @@ can't know. (Guests find each other by first name; the avatar is the initial.)
     scenarios), shown in a **"Their Rhythm"** panel.
   - `whyMatched`, `commonAttributes`, `iceBreakers`, `whatToTalkAbout` — grounded
     in the two people's actual answers.
-  - `tagline` — a short vibe quote (AI flavor), `quirkyComment` — a fun closer.
+  - `quirkyComment` — a fun closer (the one field allowed light AI flavor).
   - `compatibility` — the AI's match score (number → "NN% COMPATIBILITY" pill).
 - The form's **dealbreakers** answer ("anything that makes an intro unsuitable")
   is a **matching signal for the AI, not a display field** — don't put it in the JSON.
@@ -199,8 +198,9 @@ devtools can't peek ahead.
 
 Alongside the per-person match reveal, you can fire **anonymous room broadcasts**
 in real time — e.g. *"Someone in the room knows how to surf 🏄"*. Guests don't
-swipe or refresh: their phones **poll** every ~15s and a new pulse pops in as a
-gold toast, then settles into a scrollable feed.
+swipe or refresh: their phones **poll** every ~15s and the latest pulse stays in a
+prominent bar pinned to the top of the screen (with an "Earlier" button for the
+history), flashing gold when a new one lands.
 
 Unlike the match data (static JSON, redeploy to update), pulses are **spontaneous**,
 so they live in a small shared store instead of the repo.
@@ -217,16 +217,37 @@ Open `/host` on your phone, enter the admin secret, then:
 Guests never see `/host`, and nothing sends without the secret (validated
 server-side).
 
+### Reaching phones that aren't watching
+
+The top bar only helps a guest who's looking. Two extra channels reach further:
+
+- **Web push notifications.** After unlocking, guests get a "🔔 Get a heads-up"
+  prompt; tapping **Enable** subscribes them, and every fired pulse then sends an
+  OS notification — even when the tab is backgrounded or the phone is locked.
+  - ✅ Android + desktop Chrome/Firefox/Edge: works after one tap.
+  - ⚠️ **iPhone:** Safari only delivers push to an **installed** app, so the prompt
+    instead tells iPhone users to **Share → Add to Home Screen** and open it from
+    there. A plain Safari tab can't get push — an Apple limitation, not ours.
+- **Venue screen — `/screen`.** Open this on a TV/projector if one's available. It
+  shows the latest pulse large with recent ones beneath — no phones needed. (The
+  event this was built for had no screen, so this is a backup.)
+
 ### Setup
 
 1. **Add a store.** In Vercel: **Storage → add Redis** (Upstash-backed). Vercel
    injects `KV_REST_API_URL` / `KV_REST_API_TOKEN` automatically — no code change.
 2. **Set the host password.** Add `PULSE_ADMIN_SECRET` in the Vercel project's
-   Environment Variables. Redeploy.
+   Environment Variables.
+3. **Enable web push.** Generate a VAPID key pair once with
+   `node -e "console.log(require('web-push').generateVAPIDKeys())"`, then set three
+   env vars: `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, and
+   `VAPID_SUBJECT` (a `mailto:` address). Redeploy. (Push subscriptions are stored
+   in the same Redis.)
 
-Locally, put `PULSE_ADMIN_SECRET=dev123` in `.env.local`. With no Redis env vars,
-the app falls back to an **in-memory store** so `npm run dev` works end-to-end
-(single-process only — not for production).
+Locally, put `PULSE_ADMIN_SECRET=dev123` plus the three `VAPID_*` vars in
+`.env.local`. With no Redis env vars, both pulses and push subscriptions fall back
+to an **in-memory store** so `npm run dev` works end-to-end (single-process only —
+not for production).
 
 > Scale note: ~20 guests polling every 15s is a handful of Redis reads per second —
 > comfortably within Upstash's free tier for an evening event.
