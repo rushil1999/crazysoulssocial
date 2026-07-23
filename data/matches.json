@@ -1,55 +1,118 @@
 {
-  "alice@example.com": {
-    "name": "Alice",
-    "praise": "We read your answers twice — once to smile, once to make sure we weren't imagining how good they were. Curious, a little mischievous, and refreshingly honest. Whoever ends up across the table from you tonight is in for a treat.",
+  "rushil1999.dev@gmail.com": {
+    "name": "Rushil",
+    "praise": "Your answers have the energy of someone who can walk into the loudest group, host the dinner, and still notice whether everyone feels included. Curious, expressive, and just mischievous enough to keep the room interesting.",
     "matches": [
       {
-        "name": "Bob",
-        "age": 30,
-        "vibe": "The one who finds the person standing alone and quietly makes them the center of the night.",
-        "compatibility": 91,
-        "whyMatched": "You both chase curiosity over comfort, and you both said the compliment you'd secretly value most is 'you make people feel seen.' Your answers rhymed in the best way.",
+        "name": "Alia",
+        "age": 32,
+        "vibe": "The warm adventurer who finds the person standing alone, chooses the 6 AM road trip, and still makes the room feel easy.",
+        "compatibility": 94,
+        "whyMatched": "You both chose curiosity over caution, want one conversation that stays with you tomorrow, and naturally try to make people feel comfortable. The creative overlap made this especially hard to ignore: you already DJ and dance; Alia would spend a free month learning to DJ.",
         "commonAttributes": [
-          "Both chase curiosity over comfort",
-          "Would take the 6am road trip with strangers",
-          "Value being made to feel seen over being called interesting",
-          "Rescue a dying conversation by pulling someone new in"
+          "Both chose the free trip over the career opportunity",
+          "Both would rescue a fading conversation with an unexpected question",
+          "Both value making people feel comfortable",
+          "Both want one memorable conversation rather than collecting introductions"
         ],
-        "unexpectedFlex": "Can name almost any song within the first two seconds of the intro.",
-        "canTeach": "How to order wine at a restaurant without pretending you know anything about wine.",
+        "unexpectedFlex": "Can actually dance when the rest of the room is still negotiating with the beat.",
+        "canTeach": "How to make an omelet good enough to become the main event.",
+        "freeMonth": "Learn how to DJ and probably become overly opinionated about transitions by week two.",
         "iceBreakers": [
-          "Ask which song he can name in two seconds flat — then try to stump him.",
-          "Find out which sci-fi world he'd actually want to live in — and why it's a terrible idea."
+          "You already DJ and Alia wants to learn. What song belongs in the first five minutes of the set?",
+          "You both took the free trip. What career opportunity could genuinely make either of you stay?"
         ],
-        "whatToTalkAbout": "The boldest decision each of you made without knowing it would work, comfort books, and your competing theories on the best cheap eats in town.",
-        "quirkyComment": "Fair warning: you two might out-pun the entire room by 8pm."
+        "whatToTalkAbout": "Music, dance, bold decisions, people who build something from nothing, and whether a perfect evening needs a plan or a detour.",
+        "quirkyComment": "This pairing may accidentally turn a thoughtful conversation into a dance floor with a business plan."
       }
     ]
   },
-  "bob@example.com": {
-    "name": "Bob",
-    "praise": "Warm, grounded, and quietly funny — your answers had a steadiness that's genuinely rare. People are going to feel easy around you tonight.",
+  "aliabhatt@gmail.com": {
+    "name": "Alia",
+    "praise": "Warm, adventurous, and quietly bold — your answers suggest you notice the person standing alone, but you are also completely willing to leave at 6 AM with strangers and no destination. That combination should make people feel both comfortable and curious around you.",
     "matches": [
       {
-        "name": "Alice",
-        "age": 28,
-        "vibe": "Walks up to the loudest group and asks how everyone knows each other — then owns the room by midnight.",
-        "compatibility": 91,
-        "whyMatched": "You both chase curiosity over comfort and both picked the stranger whose life looks nothing like yours as the introduction you're most curious about. The match was mutual and obvious.",
+        "name": "Rushil",
+        "age": 27,
+        "vibe": "The one who joins the loudest group, hosts the dinner, and somehow still makes everyone feel personally welcomed.",
+        "compatibility": 94,
+        "whyMatched": "You both choose curiosity over comfort, value making people feel at ease, and want one genuinely memorable conversation from the evening. There is also an unusually convenient creative connection: Rushil dances, plays guitar, and DJs; you would spend your sabbatical learning to DJ.",
         "commonAttributes": [
-          "Both want a partner-in-crime for the night",
-          "Drawn to people whose lives look nothing like theirs",
-          "Would host the dinner for eight and own the chemistry",
-          "Here for one conversation they're still thinking about tomorrow"
+          "Both chose the free trip over the career opportunity",
+          "Both revive a fading conversation with an oddly specific question",
+          "Both value making people feel comfortable",
+          "Both are drawn to bold people who build or change something"
         ],
-        "unexpectedFlex": "Can sketch a recognizable portrait of anyone in under sixty seconds.",
-        "canTeach": "How to start a conversation with literally anyone in a room full of strangers.",
+        "unexpectedFlex": "Dances, plays guitar, and DJs — apparently choosing one creative outlet was not an option.",
+        "canTeach": "Mythology without making it feel like a school lesson.",
+        "freeMonth": "Left this one unanswered — apparently the sabbatical plan is still classified.",
         "iceBreakers": [
-          "Ask her to sketch the most interesting stranger in the room — winner buys the first drink.",
-          "Compare the boldest decision you each made without knowing it would work."
+          "You want to learn DJing and Rushil already does it. Which song should open your imaginary first set?",
+          "You both took the free trip. What opportunity on Monday would be difficult enough to change your answer?"
         ],
-        "whatToTalkAbout": "The strangest thing each of you is unusually good at, the places you'd live if you could, and the best cheap eats you've each found.",
-        "quirkyComment": "You two matched each other first. Read into that however you like."
+        "whatToTalkAbout": "Music, dance, ambitious people, bold life decisions, memorable conversations, and whether a great night is hosted or discovered.",
+        "quirkyComment": "There is a non-zero chance you leave this conversation with a collaborative playlist and an unnecessary event concept."
+      }
+    ]
+  },
+  "pharshiv07@gmail.com": {
+    "name": "John",
+    "praise": "Thoughtful, ambitious, and quietly funny — your answers suggest you pay attention to the person who might otherwise be overlooked. You also seem to enjoy people who disturb the routine just enough to make life more interesting.",
+    "matches": []
+  },
+  "ranbirkapoor@gmail.com": {
+    "name": "Ranbir",
+    "praise": "Observant, playful, and strategically social — you seem like the person who reads the room before entering it, then makes it noticeably more fun. Your answers balance curiosity, ambition, and just enough chaos to keep a conversation from becoming predictable.",
+    "matches": [
+      {
+        "name": "Jainam",
+        "age": 26,
+        "vibe": "The scenic-route storyteller who finds the person standing alone, chooses the stranger with the better story, and brings Catan-level strategy to casual plans.",
+        "compatibility": 91,
+        "whyMatched": "You both choose experience over safety, prefer the city crawl, revive conversations with self-deprecating stories, and are drawn to people who know things you do not. You are also both interested in lives shaped by travel and unexpected perspectives.",
+        "commonAttributes": [
+          "Both chose the city crawl where everyone adds one stop",
+          "Both took the free trip over the career opportunity",
+          "Both rescue a conversation with a slightly embarrassing story",
+          "Both want to meet someone who knows things they know nothing about"
+        ],
+        "unexpectedFlex": "Can make rajma better than your mom, a claim delivered with dangerous confidence.",
+        "canTeach": "How to play Catan and discover which friendships can survive resource scarcity.",
+        "freeMonth": "Left this one unanswered — ask them whether the month becomes food, games, or complete chaos.",
+        "iceBreakers": [
+          "Catan versus improv: which one reveals a person's true character faster?",
+          "Jainam chose a stranger and no Google Maps; you chose the career-changing colleague. Whose sunset drive ends better?"
+        ],
+        "whatToTalkAbout": "Travel stories, city adventures, unusual expertise, strategic games, guitar, improv, and the funniest way a plan has gone wrong.",
+        "quirkyComment": "One teaches Catan, one teaches improv; the friendship may briefly end over rules nobody agreed on."
+      }
+    ]
+  },
+  "jnchhatbar@gmail.com": {
+    "name": "Jainam",
+    "praise": "Adventurous, welcoming, and comfortably unfiltered — your answers suggest you would take the scenic route, rescue a conversation with a story at your own expense, and make sure nobody feels left outside the group.",
+    "matches": [
+      {
+        "name": "Ranbir",
+        "age": 28,
+        "vibe": "The room-reader who starts with the bartender, keeps the best story for later, and believes a city crawl should never have only one decision-maker.",
+        "compatibility": 91,
+        "whyMatched": "You both chose the city crawl, the free trip, the embarrassing story as a conversation rescue, and the person who can teach you something unfamiliar. You also share a fascination with people who have lived widely and collected stories along the way.",
+        "commonAttributes": [
+          "Both prefer a city crawl built by the whole group",
+          "Both prioritize the free trip over Monday's opportunity",
+          "Both use humor and self-deprecation to revive a conversation",
+          "Both are curious about knowledge and lives unlike their own"
+        ],
+        "unexpectedFlex": "Lists 'looks' as the flex, with the confidence of someone who skipped the modesty section.",
+        "canTeach": "How to improvise when there is no script and everyone is waiting.",
+        "freeMonth": "Learn guitar and become confident enough to volunteer a song before anyone asks.",
+        "iceBreakers": [
+          "You can teach Catan and Ranbir can teach improv. Which one is more dangerous in a competitive group?",
+          "You chose a stranger and no Google Maps; Ranbir chose the career-changing colleague. Who has the better sunset?"
+        ],
+        "whatToTalkAbout": "Travel stories, city adventures, game-night diplomacy, improvisation, learning new things, and the best plan that began with no plan at all.",
+        "quirkyComment": "This conversation has equal potential to become a jam session, a game night, or a dispute about sheep."
       }
     ]
   }
