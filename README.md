@@ -108,7 +108,9 @@ ops — not the card.
   and ops signals, **not display fields** — don't put them in the per-match JSON.
 - `matches` order = reveal order. Round one uses **one** match; more also works
   (extra matches reuse the last reveal time).
-- Paste your AI output straight into these fields.
+- Paste your AI output straight into these fields. A ready-to-use LLM prompt that
+  emits exactly this schema (with `howToSpot` and the fun-fact fields) lives in
+  [`docs/matching-prompt.md`](docs/matching-prompt.md) — keep the two in sync.
 
 ---
 
