@@ -8,6 +8,7 @@ type UnlockResult = {
   praise: string;
   revealTimes: string[];
   matchCount: number;
+  nextWindow: string | null;
 };
 
 export default function EmailGate({

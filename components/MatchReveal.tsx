@@ -26,6 +26,7 @@ export default function MatchReveal({
   index,
   matchCount,
   nextRevealIso,
+  moreComing,
   onNext,
 }: {
   email: string;
@@ -33,6 +34,9 @@ export default function MatchReveal({
   index: number;
   matchCount: number;
   nextRevealIso?: string | null;
+  /** True when this is the last assigned match but a later reveal window is
+   *  still scheduled (e.g. round 2's data gets filled during the event). */
+  moreComing?: boolean;
   onNext: () => void;
 }) {
   const [match, setMatch] = useState<Match | null>(null);
@@ -127,7 +131,7 @@ export default function MatchReveal({
 
             {isLast ? (
               <button className="btn-primary mt-8" onClick={onNext}>
-                See you tonight 🥂
+                {moreComing ? "What's next →" : "See you tonight 🥂"}
               </button>
             ) : nextReady ? (
               <button className="btn-primary mt-8" onClick={onNext}>

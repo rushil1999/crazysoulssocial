@@ -50,6 +50,14 @@ export type Profile = {
   praise: string;
   matches: Match[];
   revealTimes: string[]; // parallel to `matches`
+  /**
+   * The next scheduled reveal time beyond this guest's current matches, if any.
+   * Lets the client show a "next match unlocks in…" countdown for a round whose
+   * matches file is filled *during* the event (matches_2.json, etc.). Null when
+   * there's no upcoming window. Includes a 30-min grace so a window whose data
+   * is filled slightly late still surfaces.
+   */
+  nextWindow: string | null;
 };
 
 type MatchesFile = Record<string, Person>;
@@ -115,11 +123,29 @@ export function getProfileByEmail(email: string): Profile | null {
     (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
   );
 
+  const revealTimes = entries.map((e) => e.time);
+
+  // Next scheduled reveal beyond this guest's current matches — a round whose
+  // matches may be filled in later during the event. 30-min grace so a window
+  // whose data lands slightly after its time still shows.
+  const lastMatchMs = revealTimes.reduce(
+    (max, t) => Math.max(max, new Date(t).getTime()),
+    0
+  );
+  const graceMs = Date.now() - 30 * 60 * 1000;
+  const nextWindow =
+    [...enabledRounds]
+      .flatMap((r) => scheduleRounds[String(r)] ?? [])
+      .map((t) => ({ t, ms: new Date(t).getTime() }))
+      .filter((x) => x.ms > lastMatchMs && x.ms > graceMs)
+      .sort((a, b) => a.ms - b.ms)[0]?.t ?? null;
+
   return {
     name,
     praise,
     matches: entries.map((e) => e.match),
-    revealTimes: entries.map((e) => e.time),
+    revealTimes,
+    nextWindow,
   };
 }
 

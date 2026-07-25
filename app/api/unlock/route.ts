@@ -36,5 +36,6 @@ export async function POST(request: Request) {
     praise: person.praise,
     revealTimes: person.revealTimes,
     matchCount: person.matches.length,
+    nextWindow: person.nextWindow,
   });
 }
