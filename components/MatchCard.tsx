@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import type { Match } from "@/lib/data";
 import { Ornament, FooterTag } from "./Ornament";
-import { QuoteIcon, SparkleGlyph } from "./icons";
+import { EyeIcon, QuoteIcon, SparkleGlyph } from "./icons";
 
 const container = {
   hidden: { opacity: 0 },
@@ -101,6 +101,18 @@ export default function MatchCard({
           </div>
           <p className="font-display text-xl leading-relaxed text-cream/95">
             {match.vibe}
+          </p>
+        </motion.div>
+      )}
+
+      {/* — How to spot them — */}
+      {match.howToSpot && (
+        <motion.div variants={item} className="glass rounded-[22px] p-7">
+          <div className="eyebrow flex items-center gap-2 mb-4">
+            <EyeIcon className="text-gold/80" /> How to spot them
+          </div>
+          <p className="font-display text-xl leading-relaxed text-cream/95">
+            {match.howToSpot}
           </p>
         </motion.div>
       )}

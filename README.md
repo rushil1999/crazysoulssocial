@@ -64,6 +64,7 @@ Two files under `data/`:
         "name": "Bob",
         "age": 30,
         "vibe": "The one who finds the person standing alone and makes them the center of the night.",
+        "howToSpot": "Navy linen shirt and tortoise-shell glasses, near the record player.",
         "compatibility": 91,
         "whyMatched": "Why the AI paired them…",
         "commonAttributes": ["Both chase curiosity", "Would take the 6am road trip", "Value feeling seen"],
@@ -81,19 +82,21 @@ Two files under `data/`:
 
 **Every field is sourced from the "Beyond Small Talk" intake form** — either a
 direct answer or an AI synthesis of the personality answers — because at the
-event the AI has *only* the form to work from. The form asks about social style,
-values, and curiosity, and asks **no** job, location, appearance, hobby, or photo
-questions. So the schema deliberately has **no `role`, `location`, `howToSpot`,
-`interests`, or `photo`** — any of those would force the AI to invent facts it
-can't know. (Guests find each other by first name; the avatar is the initial.)
+event the AI has *only* the form to work from. The form covers social style,
+values, curiosity, a few open-text answers, and "how can someone spot you during
+the event?" It asks **no** job, hobby, or photo questions, so the schema has no
+`role`, `location`, `interests`, or `photo` (the avatar is the guest's initial).
+The form also collects **gender** and **SMS consent**, which feed matching and
+ops — not the card.
 
 - The **email is the key** and is what the guest types to unlock (case-insensitive).
 - **Required per match:** `name`, `whyMatched`, `commonAttributes`, `iceBreakers`,
   `whatToTalkAbout`, `quirkyComment`.
 - **Direct from a form answer:** `unexpectedFlex` ("most unexpected flex"),
   `canTeach` ("teach someone in 1 hour"), `freeMonth` (the "one-month sabbatical,
-  travel banned" question), `age`. Each of the first three shows as a **fun-fact
-  tile**.
+  travel banned" question) — each a **fun-fact tile** — plus `howToSpot` (the "how
+  can someone spot you during the event?" answer → a **"How to spot them"** panel)
+  and `age`.
 - **AI-synthesized from the personality answers:**
   - `vibe` — one-line read on how they move socially (from the "Natural Rhythm"
     scenarios), shown in a **"Their Rhythm"** panel.
@@ -101,8 +104,8 @@ can't know. (Guests find each other by first name; the avatar is the initial.)
     in the two people's actual answers.
   - `quirkyComment` — a fun closer (the one field allowed light AI flavor).
   - `compatibility` — the AI's match score (number → "NN% COMPATIBILITY" pill).
-- The form's **dealbreakers** answer ("anything that makes an intro unsuitable")
-  is a **matching signal for the AI, not a display field** — don't put it in the JSON.
+- **Gender**, **"open to being introduced to"**, and **SMS consent** are matching
+  and ops signals, **not display fields** — don't put them in the per-match JSON.
 - `matches` order = reveal order. Round one uses **one** match; more also works
   (extra matches reuse the last reveal time).
 - Paste your AI output straight into these fields.

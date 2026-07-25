@@ -138,12 +138,12 @@ export default function MatchReveal({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="glass rounded-2xl mt-8 px-8 py-5 text-center"
+                className="glass rounded-[22px] mt-8 px-10 py-7 text-center shadow-[0_0_50px_-12px_rgba(185,144,67,0.4)]"
               >
-                <p className="text-[11px] uppercase tracking-[0.25em] text-beige/70 mb-2">
-                  Your next match unlocks in
+                <p className="text-xs uppercase tracking-[0.28em] text-gold/90 mb-3">
+                  ✦ Your next match unlocks in
                 </p>
-                <p className="font-display text-3xl text-cream">
+                <p className="font-display text-5xl sm:text-6xl tabular-nums gradient-text leading-none">
                   <InlineCountdown
                     targetIso={nextRevealIso}
                     onComplete={() => setNextReady(true)}

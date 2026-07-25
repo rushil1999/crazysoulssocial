@@ -51,6 +51,7 @@ function emptyMatch() {
   return {
     name: "",
     vibe: "",
+    howToSpot: "",
     compatibility: 0,
     whyMatched: "",
     commonAttributes: [],

@@ -20,10 +20,19 @@ function remaining(targetMs: number) {
 function Unit({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="glass rounded-2xl w-16 sm:w-20 py-3 font-display text-3xl sm:text-4xl tabular-nums">
-        {value}
+      <div className="glass rounded-2xl w-[4.5rem] sm:w-28 py-4 sm:py-6 grid place-items-center shadow-[0_0_50px_-10px_rgba(185,144,67,0.4)]">
+        {/* Re-mounts on each change → a subtle pop as the number ticks. */}
+        <motion.span
+          key={value}
+          initial={{ scale: 0.6, opacity: 0, y: -6 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="block font-display text-4xl sm:text-6xl tabular-nums gradient-text leading-none"
+        >
+          {value}
+        </motion.span>
       </div>
-      <span className="text-[11px] uppercase tracking-widest text-beige/70 mt-2">
+      <span className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-beige/70 mt-3">
         {label}
       </span>
     </div>
@@ -74,14 +83,14 @@ export default function Countdown({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="glass rounded-2xl max-w-lg w-full p-8 sm:p-10 text-center"
+      className="glass rounded-[26px] max-w-xl w-full p-8 sm:p-12 text-center"
     >
-      <div className="text-2xl mb-4 text-gold animate-floaty">✦</div>
-      <p className="text-cream/85 mb-7 text-lg font-display tracking-wide">
+      <div className="text-3xl mb-5 text-gold animate-floaty">✦</div>
+      <p className="text-cream/90 mb-9 text-xl sm:text-2xl font-display tracking-wide">
         {label}
       </p>
 
-      <div className="flex items-start justify-center gap-3 sm:gap-4 mb-7">
+      <div className="flex items-start justify-center gap-2.5 sm:gap-4 mb-9">
         {time.days > 0 && <Unit value={pad(time.days)} label="days" />}
         <Unit value={pad(time.hours)} label="hrs" />
         <Unit value={pad(time.minutes)} label="min" />

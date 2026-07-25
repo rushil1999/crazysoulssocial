@@ -4,11 +4,9 @@ import matches1 from "@/data/matches.json";
 import matches2 from "@/data/matches_2.json";
 
 /**
- * Everything here is derivable from the "Beyond Small Talk" intake form —
- * either a direct answer or an AI synthesis of the personality answers. The
- * form asks NO appearance, hobby, or photo questions, so there is intentionally
- * no `howToSpot`, `interests`, or `photo` field: the card would otherwise force
- * the AI to invent them.
+ * Every field is derivable from the "Beyond Small Talk" intake form — a direct
+ * answer or an AI synthesis of the personality answers. (The form also collects
+ * gender and SMS consent, which feed matching/ops, not the card.)
  */
 export type Match = {
   name: string;
@@ -17,6 +15,9 @@ export type Match = {
    *  Rhythm" scenario answers (e.g. "Finds the person standing alone and makes
    *  them the center of the night"). */
   vibe?: string;
+  /** How to physically find them in the room — the form's "how can someone spot
+   *  you during the event?" answer. Optional; hidden if absent. */
+  howToSpot?: string;
   compatibility?: number;
   whyMatched: string;
   commonAttributes: string[];

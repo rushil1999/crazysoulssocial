@@ -7,6 +7,7 @@
         "name": "Carol",
         "age": 29,
         "vibe": "Would host the dinner for eight and own the food, the music, and the chemistry — then win every debate at the table without keeping score.",
+        "howToSpot": "Rust-colored jumpsuit and clay-stained hands she'll laugh about — usually near the courtyard, drink in hand.",
         "compatibility": 94,
         "whyMatched": "You both picked the debate about whether ambition improves your life or quietly consumes it as the table you'd join. Same appetite for a good argument, same soft landing after it.",
         "commonAttributes": [
@@ -35,6 +36,7 @@
         "name": "Dana",
         "age": 27,
         "vibe": "Rescues a dying conversation by telling the story that makes her look slightly ridiculous — and the whole group leans in.",
+        "howToSpot": "Red lipstick and a leather jacket, working the room like she owns it.",
         "compatibility": 90,
         "whyMatched": "You both kept the social superpower 'make almost anyone laugh,' and you'd both rescue a stalling conversation the same way — with a story at your own expense. Expect a lot of grinning.",
         "commonAttributes": [
@@ -63,6 +65,7 @@
         "name": "Alice",
         "age": 28,
         "vibe": "Walks up to the loudest group and asks how everyone knows each other — then quietly runs the night.",
+        "howToSpot": "Emerald jacket with a sketchbook in her bag — follow the loudest, most contagious laugh in the room.",
         "compatibility": 94,
         "whyMatched": "You both picked the debate about ambition as the table you'd join, and you both want someone who challenges you without keeping score. The match was mutual — she picked you too.",
         "commonAttributes": [
@@ -85,6 +88,7 @@
         "name": "Bob",
         "age": 30,
         "vibe": "The steady one who ends a good conversation warmly and means it when he says he'll come find you later.",
+        "howToSpot": "Navy linen shirt and tortoise-shell glasses — most likely near the record player.",
         "compatibility": 89,
         "whyMatched": "You both said the compliment you'd secretly value most is 'you always follow through,' and your phone-free-Saturday answers overlapped almost completely. Comfortable from minute one.",
         "commonAttributes": [
