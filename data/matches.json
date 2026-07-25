@@ -1,58 +1,582 @@
 {
-  "shahrushil1999@gmail.com": {
-    "name": "Rushil",
-    "praise": "Your vibrant multi-talented energy and natural ability to make anyone feel comfortable set an effortless, welcoming tone for high-energy conversation.",
+  "aarav.mehta@example.com": {
+    "name": "Aarav",
+    "praise": "Your warm curiosity makes new people feel instantly included.",
     "matches": [
       {
-        "name": "Ananya",
-        "age": 29,
-        "vibe": "An adventurous, spontaneous spirit who loves high-energy road trips, bold story-driven social settings, and keeping every group lively.",
-        "howToSpot": "She'll be wherever the energy is highest — likely mid-story in the liveliest group, with everyone leaning in.",
-        "compatibility": 86,
-        "whyMatched": "You both share a fearless approach to entering social spaces—stepping right up to the loudest group—and both prefer taking spontaneous trips over staying put for work. While Rushil brings a multi-faceted creative flair across music and mythology, Ananya brings an open-ended craving for bold stories and spontaneous adventures.",
+        "name": "Naina",
+        "age": 28,
+        "vibe": "Warm adventurers",
+        "howToSpot": "Look for the woman in a rust-colored dress with small gold hoops.",
+        "compatibility": 98,
+        "whyMatched": "You both choose spontaneous adventures, make people comfortable, and want one memorable conversation.",
         "commonAttributes": [
-          "Confident social icebreakers",
-          "Spontaneous adventure over work obligations",
-          "Shared humor in disarming conversations with self-deprecating stories"
+          "Spontaneous road trips",
+          "Making people feel seen",
+          "Curious, thoughtful questions"
         ],
-        "unexpectedFlex": "",
-        "canTeach": "",
-        "freeMonth": "",
+        "unexpectedFlex": "Has done a sunrise hike every month for two straight years.",
+        "canTeach": "How to take genuinely good photos on a phone.",
+        "freeMonth": "Train for a half-marathon and host a themed dinner every weekend.",
         "iceBreakers": [
-          "If we dropped everything and hopped into a car right now for a destination-free road trip, who gets control of the AUX cord?",
-          "What is the single most absurd story from a rooftop party or spontaneous trip that you still talk about?"
+          "What makes a spontaneous day trip genuinely great?",
+          "Which bold decision changed you most?"
         ],
-        "whatToTalkAbout": "Spontaneous travel decisions vs. career ambitions, favourite music playlists for Bay Area sunsets, and disarming social techniques.",
-        "quirkyComment": "You both claim your go-to move for rescuing a dying conversation is telling a slightly ridiculous story about yourselves—so prepare for a legendary battle of disarming anecdotes."
+        "whatToTalkAbout": "Spontaneous road trips, Making people feel seen, Curious, thoughtful questions.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Naina is your clearest conversation fit tonight."
       }
     ]
   },
-  "ananyapandey@gmail.com": {
-    "name": "Ananya",
-    "praise": "Your spontaneous, high-fun energy and ability to make any room open up bring an irreplaceable spark to deep and memorable conversations.",
+  "naina.kapoor@example.com": {
+    "name": "Naina",
+    "praise": "Your adventurous warmth makes meaningful conversation feel effortless.",
     "matches": [
       {
-        "name": "Rushil",
-        "age": 27,
-        "vibe": "A multi-talented creative and founder-minded conversationalist who balances deep curiosity about mythology with a knack for making anyone feel at ease.",
-        "howToSpot": "Look for the one making a circle of strangers feel like old friends — odds are he's near the music.",
-        "compatibility": 86,
-        "whyMatched": "You both instinctively head straight for the loudest group at a party to kick off conversation and agree that a free trip always trumps a big work opportunity. Ananya brings an appetite for unpredictable stories, while Rushil brings an eclectic mix of creative pursuits from DJing to classical mythology.",
+        "name": "Aarav",
+        "age": 29,
+        "vibe": "Warm adventurers",
+        "howToSpot": "I’ll probably be wearing a dark green shirt and a silver watch.",
+        "compatibility": 98,
+        "whyMatched": "You both choose spontaneous adventures, make people comfortable, and want one memorable conversation.",
         "commonAttributes": [
-          "Bold, proactive room-entry style",
-          "Thrill-seeking travel over corporate grind",
-          "Valuing playful disarming humor in conversation"
+          "Spontaneous road trips",
+          "Making people feel seen",
+          "Curious, thoughtful questions"
         ],
-        "unexpectedFlex": "Dance, Guitar, DJ",
-        "canTeach": "Mythology",
-        "freeMonth": "start my side project. A new one. Wrap up all other. Go to the gym",
+        "unexpectedFlex": "Completed a solo 100-mile charity bike ride.",
+        "canTeach": "How to plan a spontaneous day trip without wasting half the day.",
+        "freeMonth": "Build a neighborhood supper club and finally learn film photography.",
         "iceBreakers": [
-          "How would you balance launching a brand-new side project with taking off on a zero-destination road trip tomorrow morning?",
-          "What is the most unexpected lesson from ancient mythology that actually applies to modern party chemistry?"
+          "What makes a spontaneous day trip genuinely great?",
+          "Which bold decision changed you most?"
         ],
-        "whatToTalkAbout": "Combining creative side hustles with spontaneous travel, music DJing setups, and the art of making strangers feel instantly like old friends.",
-        "quirkyComment": "Since you both independently chose the exact same response for rescuing dying conversations (telling a slightly ridiculous self-deprecating story), you'll never have an awkward silence."
+        "whatToTalkAbout": "Spontaneous road trips, Making people feel seen, Curious, thoughtful questions.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Aarav is your clearest conversation fit tonight."
       }
     ]
+  },
+  "rohan.shah@example.com": {
+    "name": "Rohan",
+    "praise": "Your calm depth invites people to open up naturally.",
+    "matches": [
+      {
+        "name": "Priya",
+        "age": 30,
+        "vibe": "Calm deep thinkers",
+        "howToSpot": "I’ll have a cream handbag and round glasses.",
+        "compatibility": 98,
+        "whyMatched": "You both prefer intimate conversations, thoughtful hosting, and people with unusual knowledge.",
+        "commonAttributes": [
+          "Meaningful conversations",
+          "Quietly making people open up",
+          "Creative time at home"
+        ],
+        "unexpectedFlex": "Has kept a handwritten journal every day for six years.",
+        "canTeach": "How to make a room feel calmer in five minutes.",
+        "freeMonth": "Write a collection of short essays and learn pottery properly.",
+        "iceBreakers": [
+          "Which unwritten friendship rule matters most?",
+          "What niche subject could hold your attention all night?"
+        ],
+        "whatToTalkAbout": "Meaningful conversations, Quietly making people open up, Creative time at home.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Priya is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "priya.desai@example.com": {
+    "name": "Priya",
+    "praise": "Your thoughtful presence brings calm and substance to a room.",
+    "matches": [
+      {
+        "name": "Rohan",
+        "age": 31,
+        "vibe": "Calm deep thinkers",
+        "howToSpot": "I’ll be in a navy blazer, most likely holding a glass of sparkling water.",
+        "compatibility": 98,
+        "whyMatched": "You both prefer intimate conversations, thoughtful hosting, and people with unusual knowledge.",
+        "commonAttributes": [
+          "Meaningful conversations",
+          "Quietly making people open up",
+          "Creative time at home"
+        ],
+        "unexpectedFlex": "Can identify most Indian spices by smell alone.",
+        "canTeach": "How to make restaurant-style chai without measuring anything.",
+        "freeMonth": "Read twelve books, perfect three family recipes, and volunteer weekly.",
+        "iceBreakers": [
+          "Which unwritten friendship rule matters most?",
+          "What niche subject could hold your attention all night?"
+        ],
+        "whatToTalkAbout": "Meaningful conversations, Quietly making people open up, Creative time at home.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Rohan is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "kunal.patel@example.com": {
+    "name": "Kunal",
+    "praise": "Your playful hosting energy makes groups feel alive.",
+    "matches": [
+      {
+        "name": "Isha",
+        "age": 27,
+        "vibe": "Playful creative hosts",
+        "howToSpot": "Look for a bright blue scarf and a small sketchbook in hand.",
+        "compatibility": 98,
+        "whyMatched": "You both bring bold social energy, love hosting, and use humor to make a room feel easy.",
+        "commonAttributes": [
+          "Hosting with flair",
+          "Playful self-deprecating humor",
+          "Creative side projects"
+        ],
+        "unexpectedFlex": "Designed and sewed an outfit for a friend’s wedding.",
+        "canTeach": "How to style a dinner table using things already at home.",
+        "freeMonth": "Create a tiny clothing collection and host weekly creative workshops.",
+        "iceBreakers": [
+          "What makes a gathering instantly memorable?",
+          "Which creative project would you launch with a free month?"
+        ],
+        "whatToTalkAbout": "Hosting with flair, Playful self-deprecating humor, Creative side projects.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Isha is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "isha.rao@example.com": {
+    "name": "Isha",
+    "praise": "Your creative confidence adds warmth and fun to any gathering.",
+    "matches": [
+      {
+        "name": "Kunal",
+        "age": 27,
+        "vibe": "Playful creative hosts",
+        "howToSpot": "I’ll be wearing a black overshirt and white sneakers.",
+        "compatibility": 98,
+        "whyMatched": "You both bring bold social energy, love hosting, and use humor to make a room feel easy.",
+        "commonAttributes": [
+          "Hosting with flair",
+          "Playful self-deprecating humor",
+          "Creative side projects"
+        ],
+        "unexpectedFlex": "Once organized a 40-person dinner in under 24 hours.",
+        "canTeach": "How to build a party playlist that never loses the room.",
+        "freeMonth": "Turn his apartment into a pop-up dinner space and learn screen-printing.",
+        "iceBreakers": [
+          "What makes a gathering instantly memorable?",
+          "Which creative project would you launch with a free month?"
+        ],
+        "whatToTalkAbout": "Hosting with flair, Playful self-deprecating humor, Creative side projects.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Kunal is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "arjun.nair@example.com": {
+    "name": "Arjun",
+    "praise": "Your sharp memory and quiet curiosity make conversations richer.",
+    "matches": [
+      {
+        "name": "Diya",
+        "age": 29,
+        "vibe": "Curious quiet observers",
+        "howToSpot": "I’ll have a mustard-yellow top and a book-shaped phone case.",
+        "compatibility": 98,
+        "whyMatched": "You both notice small details, enjoy unusual knowledge, and prefer depth over noisy networking.",
+        "commonAttributes": [
+          "Remembering details",
+          "Books and learning",
+          "Oddly specific questions"
+        ],
+        "unexpectedFlex": "Has read a book from every country in South Asia.",
+        "canTeach": "How to choose a book for someone based on one conversation.",
+        "freeMonth": "Read thirty books and produce a small literary podcast from home.",
+        "iceBreakers": [
+          "What book would you recommend after five minutes with someone?",
+          "Which useless skill is secretly worth learning?"
+        ],
+        "whatToTalkAbout": "Remembering details, Books and learning, Oddly specific questions.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Diya is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "diya.menon@example.com": {
+    "name": "Diya",
+    "praise": "Your literary curiosity helps you notice what makes people unique.",
+    "matches": [
+      {
+        "name": "Arjun",
+        "age": 30,
+        "vibe": "Curious quiet observers",
+        "howToSpot": "I’ll be in a charcoal sweater with rectangular glasses.",
+        "compatibility": 98,
+        "whyMatched": "You both notice small details, enjoy unusual knowledge, and prefer depth over noisy networking.",
+        "commonAttributes": [
+          "Remembering details",
+          "Books and learning",
+          "Oddly specific questions"
+        ],
+        "unexpectedFlex": "Can solve a Rubik’s Cube blindfolded.",
+        "canTeach": "How to remember names after meeting someone once.",
+        "freeMonth": "Build a reading nook, study astronomy, and finish a long-abandoned novel.",
+        "iceBreakers": [
+          "What book would you recommend after five minutes with someone?",
+          "Which useless skill is secretly worth learning?"
+        ],
+        "whatToTalkAbout": "Remembering details, Books and learning, Oddly specific questions.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Arjun is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "dev.malhotra@example.com": {
+    "name": "Dev",
+    "praise": "Your focused builder energy turns interesting ideas into action.",
+    "matches": [
+      {
+        "name": "Kavya",
+        "age": 28,
+        "vibe": "Strategic builders",
+        "howToSpot": "Look for a burgundy top and a thin gold chain.",
+        "compatibility": 98,
+        "whyMatched": "You both are ambitious, composed, and curious about people who can open a completely new world.",
+        "commonAttributes": [
+          "Building from ideas",
+          "Thoughtful ambition",
+          "Strategic social instincts"
+        ],
+        "unexpectedFlex": "Negotiated a four-day workweek for herself.",
+        "canTeach": "How to prepare for a difficult negotiation without sounding rehearsed.",
+        "freeMonth": "Build a community mentorship project and learn furniture restoration.",
+        "iceBreakers": [
+          "When does ambition improve life—and when does it consume it?",
+          "What would you build during a responsibility-free month?"
+        ],
+        "whatToTalkAbout": "Building from ideas, Thoughtful ambition, Strategic social instincts.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Kavya is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "kavya.iyer@example.com": {
+    "name": "Kavya",
+    "praise": "Your strategic confidence makes ambitious conversations feel grounded.",
+    "matches": [
+      {
+        "name": "Dev",
+        "age": 28,
+        "vibe": "Strategic builders",
+        "howToSpot": "I’ll be wearing a fitted grey jacket and a simple black watch.",
+        "compatibility": 98,
+        "whyMatched": "You both are ambitious, composed, and curious about people who can open a completely new world.",
+        "commonAttributes": [
+          "Building from ideas",
+          "Thoughtful ambition",
+          "Strategic social instincts"
+        ],
+        "unexpectedFlex": "Built and sold a tiny app before turning twenty-five.",
+        "canTeach": "How to turn a vague idea into a one-page action plan.",
+        "freeMonth": "Prototype a product, interview users, and learn woodworking.",
+        "iceBreakers": [
+          "When does ambition improve life—and when does it consume it?",
+          "What would you build during a responsibility-free month?"
+        ],
+        "whatToTalkAbout": "Building from ideas, Thoughtful ambition, Strategic social instincts.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Dev is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "neel.chopra@example.com": {
+    "name": "Neel",
+    "praise": "Your humor turns awkward moments into shared stories.",
+    "matches": [
+      {
+        "name": "Riya",
+        "age": 31,
+        "vibe": "Magnetic entertainers",
+        "howToSpot": "I’ll be wearing a deep red jumpsuit and comfortable dancing shoes.",
+        "compatibility": 98,
+        "whyMatched": "You both thrive on lively groups, spontaneous plans, and making awkward moments genuinely fun.",
+        "commonAttributes": [
+          "Comedy and performance",
+          "Bold room-entry energy",
+          "Story-worthy adventures"
+        ],
+        "unexpectedFlex": "Can learn the hook step of almost any Bollywood song in ten minutes.",
+        "canTeach": "How to make a dance floor welcoming to non-dancers.",
+        "freeMonth": "Choreograph a short dance project and organize weekend social pop-ups.",
+        "iceBreakers": [
+          "What is your best rescue for an awkward silence?",
+          "Which Bollywood hook step wins over non-dancers?"
+        ],
+        "whatToTalkAbout": "Comedy and performance, Bold room-entry energy, Story-worthy adventures.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Riya is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "riya.bhatia@example.com": {
+    "name": "Riya",
+    "praise": "Your joyful energy makes even hesitant people feel included.",
+    "matches": [
+      {
+        "name": "Neel",
+        "age": 32,
+        "vibe": "Magnetic entertainers",
+        "howToSpot": "I’ll probably be the guy in a patterned shirt making someone laugh.",
+        "compatibility": 98,
+        "whyMatched": "You both thrive on lively groups, spontaneous plans, and making awkward moments genuinely fun.",
+        "commonAttributes": [
+          "Comedy and performance",
+          "Bold room-entry energy",
+          "Story-worthy adventures"
+        ],
+        "unexpectedFlex": "Has performed improv comedy in front of 300 people.",
+        "canTeach": "How to turn an awkward silence into a running joke.",
+        "freeMonth": "Take improv classes, write comedy sketches, and host open-mic nights.",
+        "iceBreakers": [
+          "What is your best rescue for an awkward silence?",
+          "Which Bollywood hook step wins over non-dancers?"
+        ],
+        "whatToTalkAbout": "Comedy and performance, Bold room-entry energy, Story-worthy adventures.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Neel is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "sameer.gupta@example.com": {
+    "name": "Sameer",
+    "praise": "Your dependable warmth makes people want to stay at the table.",
+    "matches": [
+      {
+        "name": "Tara",
+        "age": 29,
+        "vibe": "Grounded natural hosts",
+        "howToSpot": "Look for a cream blouse and a tiny bread-shaped pin on my bag.",
+        "compatibility": 98,
+        "whyMatched": "You both value reliability, warm hosting, and conversations that can turn into real plans.",
+        "commonAttributes": [
+          "Food and hosting",
+          "Dependability",
+          "Comfortable conversation"
+        ],
+        "unexpectedFlex": "Can recreate a restaurant dish after tasting it once.",
+        "canTeach": "How to host six people without spending the evening in the kitchen.",
+        "freeMonth": "Create a recipe zine and host quiet Sunday lunches for friends.",
+        "iceBreakers": [
+          "What dish tells you the most about a person?",
+          "What is the secret to hosting without missing your own party?"
+        ],
+        "whatToTalkAbout": "Food and hosting, Dependability, Comfortable conversation.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Tara is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "tara.joshi@example.com": {
+    "name": "Tara",
+    "praise": "Your thoughtful hosting style makes connection feel natural.",
+    "matches": [
+      {
+        "name": "Sameer",
+        "age": 29,
+        "vibe": "Grounded natural hosts",
+        "howToSpot": "I’ll have a checked shirt with the sleeves rolled up.",
+        "compatibility": 98,
+        "whyMatched": "You both value reliability, warm hosting, and conversations that can turn into real plans.",
+        "commonAttributes": [
+          "Food and hosting",
+          "Dependability",
+          "Comfortable conversation"
+        ],
+        "unexpectedFlex": "Makes sourdough from a starter older than his car.",
+        "canTeach": "How to cook a complete dinner using one pan.",
+        "freeMonth": "Perfect five signature dishes and build a balcony herb garden.",
+        "iceBreakers": [
+          "What dish tells you the most about a person?",
+          "What is the secret to hosting without missing your own party?"
+        ],
+        "whatToTalkAbout": "Food and hosting, Dependability, Comfortable conversation.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Sameer is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "vikram.singh@example.com": {
+    "name": "Vikram",
+    "praise": "Your discipline and curiosity bring momentum to every conversation.",
+    "matches": [
+      {
+        "name": "Sanjana",
+        "age": 32,
+        "vibe": "Driven organizers",
+        "howToSpot": "I’ll be wearing a forest-green dress and carrying a small planner.",
+        "compatibility": 98,
+        "whyMatched": "You both balance serious ambition with structure, follow-through, and curiosity beyond your usual circles.",
+        "commonAttributes": [
+          "Discipline and systems",
+          "Career curiosity",
+          "Reliable follow-through"
+        ],
+        "unexpectedFlex": "Completed a professional certification in eight weeks.",
+        "canTeach": "How to organize a chaotic calendar without losing every weekend.",
+        "freeMonth": "Launch a practical career workshop and get serious about strength training.",
+        "iceBreakers": [
+          "Which personal system has saved you the most time?",
+          "What would make a career workshop genuinely useful?"
+        ],
+        "whatToTalkAbout": "Discipline and systems, Career curiosity, Reliable follow-through.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Sanjana is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "sanjana.malhotra@example.com": {
+    "name": "Sanjana",
+    "praise": "Your organized, encouraging energy helps people feel capable.",
+    "matches": [
+      {
+        "name": "Vikram",
+        "age": 33,
+        "vibe": "Driven organizers",
+        "howToSpot": "I’ll be in a dark blue shirt with a fitness watch.",
+        "compatibility": 98,
+        "whyMatched": "You both balance serious ambition with structure, follow-through, and curiosity beyond your usual circles.",
+        "commonAttributes": [
+          "Discipline and systems",
+          "Career curiosity",
+          "Reliable follow-through"
+        ],
+        "unexpectedFlex": "Ran a marathon while working through a full product launch.",
+        "canTeach": "How to create a weekly system that survives a busy job.",
+        "freeMonth": "Train for a triathlon and build an accountability group for friends.",
+        "iceBreakers": [
+          "Which personal system has saved you the most time?",
+          "What would make a career workshop genuinely useful?"
+        ],
+        "whatToTalkAbout": "Discipline and systems, Career curiosity, Reliable follow-through.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Vikram is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "mihir.bose@example.com": {
+    "name": "Mihir",
+    "praise": "Your observant creative side gives quiet conversations real depth.",
+    "matches": [
+      {
+        "name": "Leena",
+        "age": 29,
+        "vibe": "Observant creative souls",
+        "howToSpot": "Look for a lavender top and earrings shaped like little leaves.",
+        "compatibility": 98,
+        "whyMatched": "You both prefer thoughtful discovery, remember details, and would spend free time making something meaningful.",
+        "commonAttributes": [
+          "Illustration and observation",
+          "Niche curiosity",
+          "Slow, memorable conversations"
+        ],
+        "unexpectedFlex": "Can identify dozens of birds by their calls.",
+        "canTeach": "How to begin birdwatching without buying expensive equipment.",
+        "freeMonth": "Illustrate a local bird guide and spend mornings volunteering at a shelter.",
+        "iceBreakers": [
+          "What detail do most people overlook?",
+          "Would you rather illustrate a person, place, or bird—and why?"
+        ],
+        "whatToTalkAbout": "Illustration and observation, Niche curiosity, Slow, memorable conversations.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Leena is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "leena.kulkarni@example.com": {
+    "name": "Leena",
+    "praise": "Your gentle curiosity finds beauty in details others miss.",
+    "matches": [
+      {
+        "name": "Mihir",
+        "age": 30,
+        "vibe": "Observant creative souls",
+        "howToSpot": "I’ll have a denim jacket and a black sketchbook tucked under my arm.",
+        "compatibility": 98,
+        "whyMatched": "You both prefer thoughtful discovery, remember details, and would spend free time making something meaningful.",
+        "commonAttributes": [
+          "Illustration and observation",
+          "Niche curiosity",
+          "Slow, memorable conversations"
+        ],
+        "unexpectedFlex": "Has filled twenty sketchbooks without showing anyone.",
+        "canTeach": "How to sketch a recognizable face in ten minutes.",
+        "freeMonth": "Create a small illustrated book and turn a spare room into a studio.",
+        "iceBreakers": [
+          "What detail do most people overlook?",
+          "Would you rather illustrate a person, place, or bird—and why?"
+        ],
+        "whatToTalkAbout": "Illustration and observation, Niche curiosity, Slow, memorable conversations.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Mihir is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "ishaan.suri@example.com": {
+    "name": "Ishaan",
+    "praise": "Your musical, social energy quickly brings a group together.",
+    "matches": [
+      {
+        "name": "Zara",
+        "age": 28,
+        "vibe": "High-energy performers",
+        "howToSpot": "I’ll have a black dress with silver earrings and bright dancing shoes.",
+        "compatibility": 98,
+        "whyMatched": "You both create social momentum through music, movement, humor, and inclusive group energy.",
+        "commonAttributes": [
+          "Music and performance",
+          "Pulling others into the fun",
+          "Spontaneous social plans"
+        ],
+        "unexpectedFlex": "Won an amateur salsa competition.",
+        "canTeach": "How to teach a basic salsa turn.",
+        "freeMonth": "Choreograph a social dance night and learn DJing.",
+        "iceBreakers": [
+          "What song can rescue any room?",
+          "Which is harder: getting someone to sing or getting them to dance?"
+        ],
+        "whatToTalkAbout": "Music and performance, Pulling others into the fun, Spontaneous social plans.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Zara is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "zara.khan@example.com": {
+    "name": "Zara",
+    "praise": "Your expressive energy makes participation feel irresistible.",
+    "matches": [
+      {
+        "name": "Ishaan",
+        "age": 28,
+        "vibe": "High-energy performers",
+        "howToSpot": "I’ll be wearing a maroon shirt and will probably be near the music.",
+        "compatibility": 98,
+        "whyMatched": "You both create social momentum through music, movement, humor, and inclusive group energy.",
+        "commonAttributes": [
+          "Music and performance",
+          "Pulling others into the fun",
+          "Spontaneous social plans"
+        ],
+        "unexpectedFlex": "Has hosted karaoke nights in three countries.",
+        "canTeach": "How to get reluctant people to sing one song.",
+        "freeMonth": "Produce a neighborhood variety show and take dance classes.",
+        "iceBreakers": [
+          "What song can rescue any room?",
+          "Which is harder: getting someone to sing or getting them to dance?"
+        ],
+        "whatToTalkAbout": "Music and performance, Pulling others into the fun, Spontaneous social plans.",
+        "quirkyComment": "Your 13 personality answers matched exactly—Ishaan is your clearest conversation fit tonight."
+      }
+    ]
+  },
+  "kabir.sethi@example.com": {
+    "name": "Kabir",
+    "praise": "Your fearless humor can turn an ordinary moment into a great story.",
+    "matches": []
+  },
+  "rahul.khanna@example.com": {
+    "name": "Rahul",
+    "praise": "Your quick character humor gives conversations instant momentum.",
+    "matches": []
+  },
+  "aditya.verma@example.com": {
+    "name": "Aditya",
+    "praise": "Your gift for drawing out stories makes people feel fascinating.",
+    "matches": []
+  },
+  "ritesh.menon@example.com": {
+    "name": "Ritesh",
+    "praise": "Your visual curiosity and eye for detail invite deeper conversation.",
+    "matches": []
   }
 }
