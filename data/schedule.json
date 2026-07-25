@@ -2,7 +2,7 @@
   "_comment": "Reveal times per round, all California/Pacific (-07:00 summer PDT, -08:00 winter PST). Within a round, index 0 = that round's match 1, index 1 = match 2, etc. A person's matches from every enabled round are merged into one timeline, sorted by these times.",
   "rounds": {
     "1": [
-      "2026-07-24T20:45:00-07:00"
+      "2026-07-24T20:50:00-07:00"
     ],
     "2": [
       "2026-07-24T21:00:00-07:00"
