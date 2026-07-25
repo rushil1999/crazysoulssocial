@@ -1,111 +1,617 @@
 {
-  "alice@example.com": {
-    "name": "Alice",
-    "praise": "Round two, and your answers only got sharper — playful, self-aware, and quietly bold. You clearly know exactly what you're looking for, and that made this easy.",
+  "moneyball480@gmail.com": {
+    "name": "Vikram",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
     "matches": [
       {
-        "name": "Carol",
-        "age": 29,
-        "vibe": "Would host the dinner for eight and own the food, the music, and the chemistry — then win every debate at the table without keeping score.",
-        "howToSpot": "Rust-colored jumpsuit and clay-stained hands she'll laugh about — usually near the courtyard, drink in hand.",
-        "compatibility": 94,
-        "whyMatched": "You both picked the debate about whether ambition improves your life or quietly consumes it as the table you'd join. Same appetite for a good argument, same soft landing after it.",
+        "name": "Chaitra",
+        "age": 34,
+        "vibe": "A curious, socially aware person who can remember every tiny detail of the other person and whose unexpected flex is: I speak up for others if i see something unfair happen, its cool according to me.",
+        "howToSpot": "Pink top , carrying an orange sling bag",
+        "compatibility": 82,
+        "whyMatched": "You both value making people feel seen, purposeful work, warm follow-through, and conversations with people who built something meaningful.",
         "commonAttributes": [
-          "Challenge each other, gently",
-          "Would host the dinner and own the room",
-          "Here for a debate about ambition vs. a quiet life",
-          "Competitive in a fun way"
+          "Conversation rescue",
+          "Travel-versus-work choice",
+          "Most valued compliment"
         ],
-        "unexpectedFlex": "Can throw a lopsided but genuinely usable mug on a pottery wheel in one sitting.",
-        "canTeach": "How to win an argument by asking better questions instead of talking louder.",
-        "freeMonth": "Fire a whole kiln's worth of experiments and teach a free weekend pottery class for total beginners.",
+        "unexpectedFlex": "I speak up for others if i see something unfair happen, its cool according to me",
+        "canTeach": "I can teach them how to cook healthy and tasty food !",
+        "freeMonth": "I stay home and spend time with my loved ones",
         "iceBreakers": [
-          "Ask which climb scared her the most — and whether she'd do it again.",
-          "Take opposite sides on 'does ambition improve your life or consume it' and see who folds first."
+          "What is the full story behind this flex: I speak up for others if i see something unfair happen, its cool according to me?",
+          "If you combined Spending time with my family & friends, teaching other about self care and belief in becoming more than what they are. with I stay home and spend time with my loved ones, what would day one look like?"
         ],
-        "whatToTalkAbout": "The trip you'd take tomorrow with zero planning, the strangest thing each of you is unusually good at, and who's actually more competitive.",
-        "quirkyComment": "Two people who host the dinner and own the room, at one table. Somebody's ceding control tonight."
+        "whatToTalkAbout": "Hospitality, fairness, self-care, healthy cooking, family, and meaningful work.",
+        "quirkyComment": "Nighttime shark swimming meets fearless advocacy—both of you clearly take courage seriously."
       }
     ]
   },
-  "bob@example.com": {
-    "name": "Bob",
-    "praise": "Second time around, you leaned into the fun — honest, a little goofy, and generous with your answers. People are going to gravitate to you tonight.",
+  "chaitrar986@gmail.com": {
+    "name": "Chaitra",
+    "praise": "Your ability to remember every tiny detail of the other person, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
     "matches": [
       {
-        "name": "Dana",
-        "age": 27,
-        "vibe": "Rescues a dying conversation by telling the story that makes her look slightly ridiculous — and the whole group leans in.",
-        "howToSpot": "Red lipstick and a leather jacket, working the room like she owns it.",
-        "compatibility": 90,
-        "whyMatched": "You both kept the social superpower 'make almost anyone laugh,' and you'd both rescue a stalling conversation the same way — with a story at your own expense. Expect a lot of grinning.",
-        "commonAttributes": [
-          "Laughter is the social superpower",
-          "Save a dying conversation with a story at their own expense",
-          "Would learn a completely useless skill for the story",
-          "Here to leave with a story worth retelling"
-        ],
-        "unexpectedFlex": "Can do a dead-on impression of almost anyone after hearing them talk for a minute.",
-        "canTeach": "How to tell a story so a whole table leans in — including where to pause.",
-        "freeMonth": "Write and workshop an hour of brand-new material, then run a scrappy open mic every single night.",
-        "iceBreakers": [
-          "Ask for the impression she's proudest of — then request an encore.",
-          "Trade the most ridiculous story you each have, winner picks the karaoke duet."
-        ],
-        "whatToTalkAbout": "The useless skill each of you would learn on a phone-free Saturday, your go-to karaoke disaster, and what actually makes you laugh.",
-        "quirkyComment": "Odds of an impromptu duet tonight: dangerously high."
-      }
-    ]
-  },
-  "carol@example.com": {
-    "name": "Carol",
-    "praise": "You write like you mean it — thoughtful, funny in a dry way, and completely unpretentious. It made picking your matches genuinely fun.",
-    "matches": [
-      {
-        "name": "Alice",
-        "age": 28,
-        "vibe": "Walks up to the loudest group and asks how everyone knows each other — then quietly runs the night.",
-        "howToSpot": "Emerald jacket with a sketchbook in her bag — follow the loudest, most contagious laugh in the room.",
-        "compatibility": 94,
-        "whyMatched": "You both picked the debate about ambition as the table you'd join, and you both want someone who challenges you without keeping score. The match was mutual — she picked you too.",
-        "commonAttributes": [
-          "Challenge each other, gently",
-          "Both drawn to the ambition debate",
-          "Curious about people whose lives look nothing like theirs",
-          "Competitive in a fun way"
-        ],
-        "unexpectedFlex": "Can sketch a recognizable portrait of anyone in under sixty seconds.",
-        "canTeach": "How to start a conversation with literally anyone in a room full of strangers.",
-        "freeMonth": "Fill three sketchbooks, learn to screen-print, and put on a tiny neighborhood show.",
-        "iceBreakers": [
-          "Ask her to sketch the most interesting stranger in the room.",
-          "Take opposite sides of the ambition debate and see who gives first."
-        ],
-        "whatToTalkAbout": "Your next big climb, the trip you'd take on no notice, and who's secretly more competitive.",
-        "quirkyComment": "You two matched each other. Make of that what you will."
-      },
-      {
-        "name": "Bob",
+        "name": "Vikram",
         "age": 30,
-        "vibe": "The steady one who ends a good conversation warmly and means it when he says he'll come find you later.",
-        "howToSpot": "Navy linen shirt and tortoise-shell glasses — most likely near the record player.",
-        "compatibility": 89,
-        "whyMatched": "You both said the compliment you'd secretly value most is 'you always follow through,' and your phone-free-Saturday answers overlapped almost completely. Comfortable from minute one.",
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I’ve onc swam with Tiger + Great White Sharks in the middle of the ocean at nighttime.",
+        "howToSpot": "A sharp, modern casual look with a subtle sporty edge—anchored by slicked-back black hair, blue-light glasses, and a fitted black long-sleeve long sleeve featuring a prominent 'W' emblem, offset by a green Apple Watch for a pop of color on my left hand. Silver ring right on my right index finger",
+        "compatibility": 82,
+        "whyMatched": "You both value making people feel seen, purposeful work, warm follow-through, and conversations with people who built something meaningful.",
         "commonAttributes": [
-          "Both secretly value 'you always follow through'",
-          "Would do the low-key city crawl, everyone picks one stop",
-          "Here to find people they'd actually make plans with",
-          "Rescue-dog people"
+          "Conversation rescue",
+          "Travel-versus-work choice",
+          "Most valued compliment"
         ],
-        "unexpectedFlex": "Remembers the tiny detail you mentioned once, three weeks later, and brings it up.",
-        "canTeach": "How to make a perfect pour-over without any of the expensive gear.",
-        "freeMonth": "Roast his own coffee from scratch and finally build the board game he's been designing in his head.",
+        "unexpectedFlex": "I’ve onc swam with Tiger + Great White Sharks in the middle of the ocean at nighttime.",
+        "canTeach": "How to teach hospitality and make someone feel included /welcome in all aspects of life.",
+        "freeMonth": "Spending time with my family & friends, teaching other about self care and belief in becoming more than what they are.",
         "iceBreakers": [
-          "Ask which one stop he'd pick if tonight turned into a city crawl.",
-          "Swap rescue-dog stories."
+          "What is the full story behind this flex: I’ve onc swam with Tiger + Great White Sharks in the middle of the ocean at nighttime.?",
+          "If you combined I stay home and spend time with my loved ones with Spending time with my family & friends, teaching other about self care and belief in becoming more than what they are., what would day one look like?"
         ],
-        "whatToTalkAbout": "Favorite trails, the people you'd actually keep seeing after tonight, and the dogs you'd rescue immediately.",
-        "quirkyComment": "Saved a warm one for last. Go say hi."
+        "whatToTalkAbout": "Hospitality, fairness, self-care, healthy cooking, family, and meaningful work.",
+        "quirkyComment": "Nighttime shark swimming meets fearless advocacy—both of you clearly take courage seriously."
+      }
+    ]
+  },
+  "anamikaasnair29@gmail.com": {
+    "name": "Anamikaa",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Kartik",
+        "age": 28,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: taught myself to code and am rebuilding the engine in my car.",
+        "howToSpot": "leather loafers",
+        "compatibility": 89,
+        "whyMatched": "Seven shared choices reveal a gentle social style: finding the person standing alone, creating comfort, valuing empathy, and making real plans afterward.",
+        "commonAttributes": [
+          "Room-entry style",
+          "Social superpower",
+          "Travel-versus-work choice"
+        ],
+        "unexpectedFlex": "taught myself to code and am rebuilding the engine in my car",
+        "canTeach": "how to play a song on the guitar",
+        "freeMonth": "teaching myself something new and learning how to build more things like that",
+        "iceBreakers": [
+          "What is the full story behind this flex: taught myself to code and am rebuilding the engine in my car?",
+          "If you combined I’d turn every day into a new adventure ,finding hidden gems, learning Spanish, improving my photography, and trying experiences I’ve never had before. with teaching myself something new and learning how to build more things like that, what would day one look like?"
+        ],
+        "whatToTalkAbout": "National parks, hidden viewpoints, coding, cars, guitar, fitness, and learning new skills.",
+        "quirkyComment": "One finds hidden trails; the other rebuilds engines. Getting pleasantly lost may become a team sport."
+      }
+    ]
+  },
+  "kartik.jain.mvhs@gmail.com": {
+    "name": "Kartik",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Anamikaa",
+        "age": 25,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I can usually find the best hiking trails and hidden viewpoints without following the crowd.",
+        "howToSpot": "I’m wearing a yellow flowery top with jeans and pink bag",
+        "compatibility": 89,
+        "whyMatched": "Seven shared choices reveal a gentle social style: finding the person standing alone, creating comfort, valuing empathy, and making real plans afterward.",
+        "commonAttributes": [
+          "Room-entry style",
+          "Social superpower",
+          "Travel-versus-work choice"
+        ],
+        "unexpectedFlex": "I can usually find the best hiking trails and hidden viewpoints without following the crowd",
+        "canTeach": "How to plan an unforgettable national park trip , and gym tips",
+        "freeMonth": "I’d turn every day into a new adventure ,finding hidden gems, learning Spanish, improving my photography, and trying experiences I’ve never had before.",
+        "iceBreakers": [
+          "What is the full story behind this flex: I can usually find the best hiking trails and hidden viewpoints without following the crowd?",
+          "If you combined teaching myself something new and learning how to build more things like that with I’d turn every day into a new adventure ,finding hidden gems, learning Spanish, improving my photography, and trying experiences I’ve never had before., what would day one look like?"
+        ],
+        "whatToTalkAbout": "National parks, hidden viewpoints, coding, cars, guitar, fitness, and learning new skills.",
+        "quirkyComment": "One finds hidden trails; the other rebuilds engines. Getting pleasantly lost may become a team sport."
+      }
+    ]
+  },
+  "sheryl.ratnam@gmail.com": {
+    "name": "Sheryl",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Raj",
+        "age": 28,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I've kept my childlike innocence alive along with some sense of having lived a life of integrity.",
+        "howToSpot": "I'm wearing a checks shirt with black and beige squares. Wear rimless glasses, clean shave!",
+        "compatibility": 89,
+        "whyMatched": "You share hosting energy, unusual-question curiosity, a talent for making others comfortable, and an interest in builders with bold stories.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Phone-free plan"
+        ],
+        "unexpectedFlex": "I've kept my childlike innocence alive along with some sense of having lived a life of integrity",
+        "canTeach": "How to lose money in the stock market lol!",
+        "freeMonth": "I'll learn new skills, read books, explore the cityscapes",
+        "iceBreakers": [
+          "What is the full story behind this flex: I've kept my childlike innocence alive along with some sense of having lived a life of integrity?",
+          "If you combined Hanging out with my dog and hiking in nature or the mountains! with I'll learn new skills, read books, explore the cityscapes, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Mystery novels, biryani, integrity, books, city exploration, and strange talents.",
+        "quirkyComment": "Fifteen mystery novels meet a stock-market comedy lesson—there is already material for book sixteen."
+      }
+    ]
+  },
+  "raj1kolamuri@gmail.com": {
+    "name": "Raj",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Sheryl",
+        "age": 29,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I write novels in my free time! I’ve written and published around 15 novels, mostly mystery fiction.",
+        "howToSpot": "I’m wearing a black top, blue jeans, black purse, and I’ve got dimples! :)",
+        "compatibility": 89,
+        "whyMatched": "You share hosting energy, unusual-question curiosity, a talent for making others comfortable, and an interest in builders with bold stories.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Phone-free plan"
+        ],
+        "unexpectedFlex": "I write novels in my free time! I’ve written and published around 15 novels, mostly mystery fiction",
+        "canTeach": "How to make really good biryani",
+        "freeMonth": "Hanging out with my dog and hiking in nature or the mountains!",
+        "iceBreakers": [
+          "What is the full story behind this flex: I write novels in my free time! I’ve written and published around 15 novels, mostly mystery fiction?",
+          "If you combined I'll learn new skills, read books, explore the cityscapes with Hanging out with my dog and hiking in nature or the mountains!, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Mystery novels, biryani, integrity, books, city exploration, and strange talents.",
+        "quirkyComment": "Fifteen mystery novels meet a stock-market comedy lesson—there is already material for book sixteen."
+      }
+    ]
+  },
+  "ayush.bansal.work@gmail.com": {
+    "name": "Ayush",
+    "praise": "Your ability to open up, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Aayush",
+        "age": 26,
+        "vibe": "A curious, socially aware person who can remember every tiny detail of the other person and whose unexpected flex is: 1. completed a Triathlon in rains 2. Ran a 5k in Snow 3. Started a Supper club to meet new people.",
+        "howToSpot": "Formal attire with a grey sweater and specs",
+        "compatibility": 80,
+        "whyMatched": "The gender ratio requires one fallback pair, and you are the strongest unused fit: bold room-entry energy, spontaneous travel, meaningful ambition, and group-friendly conversation. This is a same-gender ratio anomaly.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Preferred conversation"
+        ],
+        "unexpectedFlex": "1. completed a Triathlon in rains 2. Ran a 5k in Snow 3. Started a Supper club to meet new people",
+        "canTeach": "How to bake a Tiramisu cake",
+        "freeMonth": "Learn new recipes and host people for dinner. Also i always wanted to learn magic so ill learn new tricks and try it on new people in public / open mic",
+        "iceBreakers": [
+          "What is the full story behind this flex: 1. completed a Triathlon in rains 2. Ran a 5k in Snow 3. Started a Supper club to meet new people?",
+          "If you combined Probably would start a skill and completely finish it like pottery, or maybe painting. with Learn new recipes and host people for dinner. Also i always wanted to learn magic so ill learn new tricks and try it on new people in public / open mic, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Bhangra, photography, triathlons, supper clubs, baking, travel, and personal transformation.",
+        "quirkyComment": "A bhangra transformation story meets a rain-soaked triathlon and a supper club. Quiet small talk seems unlikely."
+      }
+    ]
+  },
+  "aayush.halgekar@gmail.com": {
+    "name": "Aayush",
+    "praise": "Your ability to remember every tiny detail of the other person, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Ayush",
+        "age": 30,
+        "vibe": "A curious, socially aware person who can open up and whose unexpected flex is: I've a bhangra dancer and have lost 23kg of weight already.",
+        "howToSpot": "Wearing orange flannel knowing there will be half of crowd in black shirt.",
+        "compatibility": 80,
+        "whyMatched": "The gender ratio requires one fallback pair, and you are the strongest unused fit: bold room-entry energy, spontaneous travel, meaningful ambition, and group-friendly conversation. This is a same-gender ratio anomaly.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Preferred conversation"
+        ],
+        "unexpectedFlex": "I've a bhangra dancer and have lost 23kg of weight already.",
+        "canTeach": "I can teach photography in an hour.",
+        "freeMonth": "Probably would start a skill and completely finish it like pottery, or maybe painting.",
+        "iceBreakers": [
+          "What is the full story behind this flex: I've a bhangra dancer and have lost 23kg of weight already.?",
+          "If you combined Learn new recipes and host people for dinner. Also i always wanted to learn magic so ill learn new tricks and try it on new people in public / open mic with Probably would start a skill and completely finish it like pottery, or maybe painting., what would day one look like?"
+        ],
+        "whatToTalkAbout": "Bhangra, photography, triathlons, supper clubs, baking, travel, and personal transformation.",
+        "quirkyComment": "A bhangra transformation story meets a rain-soaked triathlon and a supper club. Quiet small talk seems unlikely."
+      }
+    ]
+  },
+  "swathi_2502@yahoo.com": {
+    "name": "Swathi",
+    "praise": "Your ability to open up, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Sushanto",
+        "age": 29,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I'm better at racquet sports and skiing than people would expect, and I can play the guitar. I'm more of a jack of .",
+        "howToSpot": "I'm almost always wearing black and that smile you mentioned! 😛",
+        "compatibility": 82,
+        "whyMatched": "You both choose adventurous weekends, bold life changes, curious founder energy, playful self-disclosure, and conversations that linger.",
+        "commonAttributes": [
+          "Room-entry style",
+          "Phone-free plan",
+          "Conversation rescue"
+        ],
+        "unexpectedFlex": "I'm better at racquet sports and skiing than people would expect, and I can play the guitar. I'm more of a jack of all trades dabbler but still figuring out what I wanna build expertise in. 😂",
+        "canTeach": "I like scientific history. Maybe some snippets from that? Discoveries made from serendipity?",
+        "freeMonth": "Honestly probably a lot of walking, checking out city downtowns, cafes and jazz bars. I'm always down for a good hike too!",
+        "iceBreakers": [
+          "What is the full story behind this flex: I'm better at racquet sports and skiing than people would expect, and I can play the guitar. I'm more of a jack of all trades dabbler but still figuring out what I wanna build expertise in. 😂?",
+          "If you combined Going to see family. Taking a vacation. Sleeping and doing wholesome things with Honestly probably a lot of walking, checking out city downtowns, cafes and jazz bars. I'm always down for a good hike too!, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Curiosity, skiing, racquet sports, scientific history, jazz bars, family, and adventure.",
+        "quirkyComment": "Independent curiosity meets a skiing, guitar-playing science dabbler—expect several conversational detours."
+      }
+    ]
+  },
+  "sushantopraharaj@gmail.com": {
+    "name": "Sushanto",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Swathi",
+        "age": 34,
+        "vibe": "A curious, socially aware person who can open up and whose unexpected flex is: I am independent and extremely curious.",
+        "howToSpot": "Black top with jeans",
+        "compatibility": 82,
+        "whyMatched": "You both choose adventurous weekends, bold life changes, curious founder energy, playful self-disclosure, and conversations that linger.",
+        "commonAttributes": [
+          "Room-entry style",
+          "Phone-free plan",
+          "Conversation rescue"
+        ],
+        "unexpectedFlex": "I am independent and extremely curious",
+        "canTeach": "I am not sure I would just get to know them.",
+        "freeMonth": "Going to see family. Taking a vacation. Sleeping and doing wholesome things",
+        "iceBreakers": [
+          "What is the full story behind this flex: I am independent and extremely curious?",
+          "If you combined Honestly probably a lot of walking, checking out city downtowns, cafes and jazz bars. I'm always down for a good hike too! with Going to see family. Taking a vacation. Sleeping and doing wholesome things, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Curiosity, skiing, racquet sports, scientific history, jazz bars, family, and adventure.",
+        "quirkyComment": "Independent curiosity meets a skiing, guitar-playing science dabbler—expect several conversational detours."
+      }
+    ]
+  },
+  "ayushvyas7@gmail.com": {
+    "name": "Ayush",
+    "praise": "Your ability to remember every tiny detail of the other person, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Brijula",
+        "age": 31,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: Wait .. for real.",
+        "howToSpot": "White Dress Girl",
+        "compatibility": 79,
+        "whyMatched": "You balance thoughtful strategy with social generosity: both appreciate follow-through, different life paths, group connection, and purposeful self-improvement.",
+        "commonAttributes": [
+          "Most valued compliment",
+          "Ideal dinner guest",
+          "Goal for tonight"
+        ],
+        "unexpectedFlex": "Wait .. for real..",
+        "canTeach": "Making them centered, make them fall in love with themselves",
+        "freeMonth": "10 days isolation to a meditation center 10 days of volunteering for the underprivileged 10 days hanging out with friends and make the bond stronger",
+        "iceBreakers": [
+          "What is the full story behind this flex: Wait .. for real..?",
+          "If you combined Become the best version of myself! with 10 days isolation to a meditation center 10 days of volunteering for the underprivileged 10 days hanging out with friends and make the bond stronger, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Trip planning, calm energy, meditation, volunteering, self-worth, and strong friendships.",
+        "quirkyComment": "The optimal trip planner meets someone planning meditation, service, and friendship in perfect ten-day blocks."
+      }
+    ]
+  },
+  "brijuladhoke@gmail.com": {
+    "name": "Brijula",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Ayush",
+        "age": 33,
+        "vibe": "A curious, socially aware person who can remember every tiny detail of the other person and whose unexpected flex is: I've been told I give a great massage 😎.",
+        "howToSpot": "Just feel the calm energy and walk towards it 😉",
+        "compatibility": 79,
+        "whyMatched": "You balance thoughtful strategy with social generosity: both appreciate follow-through, different life paths, group connection, and purposeful self-improvement.",
+        "commonAttributes": [
+          "Most valued compliment",
+          "Ideal dinner guest",
+          "Goal for tonight"
+        ],
+        "unexpectedFlex": "I've been told I give a great massage 😎",
+        "canTeach": "How to plan a trip in the most optimal way 😂",
+        "freeMonth": "Become the best version of myself!",
+        "iceBreakers": [
+          "What is the full story behind this flex: I've been told I give a great massage 😎?",
+          "If you combined 10 days isolation to a meditation center 10 days of volunteering for the underprivileged 10 days hanging out with friends and make the bond stronger with Become the best version of myself!, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Trip planning, calm energy, meditation, volunteering, self-worth, and strong friendships.",
+        "quirkyComment": "The optimal trip planner meets someone planning meditation, service, and friendship in perfect ten-day blocks."
+      }
+    ]
+  },
+  "prathmesh.bhondave2@gmail.com": {
+    "name": "Prathmesh",
+    "praise": "Your ability to laugh, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Lavanya",
+        "age": 36,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: Plan a whole trip, find places to visit , Best places to eat.",
+        "howToSpot": "Black Dress white stud earring",
+        "compatibility": 92,
+        "whyMatched": "Eight shared choices make this round’s strongest fit: adventure, warm group energy, fun, travel stories, future plans, and an easy transition into shared activities.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Phone-free plan",
+          "Conversation rescue"
+        ],
+        "unexpectedFlex": "Plan a whole trip, find places to visit , Best places to eat.",
+        "canTeach": "Dance Step",
+        "freeMonth": "Relax and rejuvenate at home with variety of home cooked food, yoga, listen to my fav songs, watch movie. May be even invite over some friends.",
+        "iceBreakers": [
+          "What is the full story behind this flex: Plan a whole trip, find places to visit , Best places to eat.?",
+          "If you combined Will find some interesting things to learn and will master it. As i have lot of time will try new book reads. Sleep - cook, connect with friends and have leisure time. with Relax and rejuvenate at home with variety of home cooked food, yoga, listen to my fav songs, watch movie. May be even invite over some friends., what would day one look like?"
+        ],
+        "whatToTalkAbout": "Road trips, hiking, surfing, skiing, dancing, food, strength training, and hosting friends.",
+        "quirkyComment": "A nonstop outdoor adventurer meets a dancer and expert trip planner—someone should open the calendar."
+      }
+    ]
+  },
+  "lavanya.balanaik@icloud.com": {
+    "name": "Lavanya",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Prathmesh",
+        "age": 27,
+        "vibe": "A curious, socially aware person who can laugh and whose unexpected flex is: My unexpected flex is that I can rarely sit still for long. If there’s a new city to explore or an adventure to try.",
+        "howToSpot": "Look out for guy in green bomber jacket 🙂",
+        "compatibility": 92,
+        "whyMatched": "Eight shared choices make this round’s strongest fit: adventure, warm group energy, fun, travel stories, future plans, and an easy transition into shared activities.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Phone-free plan",
+          "Conversation rescue"
+        ],
+        "unexpectedFlex": "My unexpected flex is that I can rarely sit still for long. If there’s a new city to explore or an adventure to try, I’m in. I love surfing, skiing, hiking, road trips, and traveling to experience new places, cultures, and people. I believe the best stories come from saying “yes” to new experiences.",
+        "canTeach": "could teach someone how to start strength training the right way",
+        "freeMonth": "Will find some interesting things to learn and will master it. As i have lot of time will try new book reads. Sleep - cook, connect with friends and have leisure time.",
+        "iceBreakers": [
+          "What is the full story behind this flex: My unexpected flex is that I can rarely sit still for long. If there’s a new city to explore or an adventure to try, I’m in. I love surfing, skiing, hiking, road trips, and traveling to experience new places, cultures, and people. I believe the best stories come from saying “yes” to new experiences.?",
+          "If you combined Relax and rejuvenate at home with variety of home cooked food, yoga, listen to my fav songs, watch movie. May be even invite over some friends. with Will find some interesting things to learn and will master it. As i have lot of time will try new book reads. Sleep - cook, connect with friends and have leisure time., what would day one look like?"
+        ],
+        "whatToTalkAbout": "Road trips, hiking, surfing, skiing, dancing, food, strength training, and hosting friends.",
+        "quirkyComment": "A nonstop outdoor adventurer meets a dancer and expert trip planner—someone should open the calendar."
+      }
+    ]
+  },
+  "vedabondada@gmail.com": {
+    "name": "Veda",
+    "praise": "Your ability to open up, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Dheeraj",
+        "age": 26,
+        "vibe": "A curious, socially aware person who can open up and whose unexpected flex is: I like meditation but have a tendency to do the wildest things.",
+        "howToSpot": "I have curly hair and I’m wearing a black casual shirt",
+        "compatibility": 82,
+        "whyMatched": "You both enter rooms boldly, ask unexpectedly specific questions, value being seen, and want one conversation worth remembering.",
+        "commonAttributes": [
+          "Room-entry style",
+          "Conversation rescue",
+          "Social superpower"
+        ],
+        "unexpectedFlex": "I like meditation but have a tendency to do the wildest things",
+        "canTeach": "Finding their purpose",
+        "freeMonth": "Work on my stand up material",
+        "iceBreakers": [
+          "What is the full story behind this flex: I like meditation but have a tendency to do the wildest things?",
+          "If you combined Sleep. Fix finances. Hit the gym twice a day with Work on my stand up material, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Swimming, headstands, meditation, purpose, stand-up comedy, fitness, and wild experiences.",
+        "quirkyComment": "A national swimmer meets a meditating stand-up comic with a wild streak. That is a strong opening scene."
+      }
+    ]
+  },
+  "dj.bhurewar@gmail.com": {
+    "name": "Dheeraj",
+    "praise": "Your ability to open up, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Veda",
+        "age": 29,
+        "vibe": "A curious, socially aware person who can open up and whose unexpected flex is: I’m a national level swimmer.",
+        "howToSpot": "Side bangs. Gold earrings?",
+        "compatibility": 82,
+        "whyMatched": "You both enter rooms boldly, ask unexpectedly specific questions, value being seen, and want one conversation worth remembering.",
+        "commonAttributes": [
+          "Room-entry style",
+          "Conversation rescue",
+          "Social superpower"
+        ],
+        "unexpectedFlex": "I’m a national level swimmer",
+        "canTeach": "How to do a head stand",
+        "freeMonth": "Sleep. Fix finances. Hit the gym twice a day",
+        "iceBreakers": [
+          "What is the full story behind this flex: I’m a national level swimmer?",
+          "If you combined Work on my stand up material with Sleep. Fix finances. Hit the gym twice a day, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Swimming, headstands, meditation, purpose, stand-up comedy, fitness, and wild experiences.",
+        "quirkyComment": "A national swimmer meets a meditating stand-up comic with a wild streak. That is a strong opening scene."
+      }
+    ]
+  },
+  "sivaramganeshkrishnan@gmail.com": {
+    "name": "Ganesh",
+    "praise": "Your ability to remember every tiny detail of the other person, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Richa",
+        "age": 37,
+        "vibe": "A curious, socially aware person who can laugh and whose unexpected flex is: My fitness routine.",
+        "howToSpot": "Wearing a black with a heavy hair. I think my glasses are bit unique and my smile",
+        "compatibility": 86,
+        "whyMatched": "You share city-crawl energy, bold-decision curiosity, humor, reliability, and an instinct to turn a good conversation into a wider social circle.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Phone-free plan",
+          "Preferred conversation"
+        ],
+        "unexpectedFlex": "My fitness routine",
+        "canTeach": "Dance, how to have an icebreaker, topics to start a conversation, fitness, how to survive in bayarea 😅",
+        "freeMonth": "Learn a sport",
+        "iceBreakers": [
+          "What is the full story behind this flex: My fitness routine?",
+          "If you combined Catch up on sleep, play some sport or try snowboarding if winter. with Learn a sport, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Road trips, cooking, dance, fitness, sport, humor, and bold decisions.",
+        "quirkyComment": "Dal, dance, fitness, sport, and Bay Area survival could become a surprisingly practical masterclass."
+      }
+    ]
+  },
+  "trivediricha@icloud.com": {
+    "name": "Richa",
+    "praise": "Your ability to laugh, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Ganesh",
+        "age": 31,
+        "vibe": "A curious, socially aware person who can remember every tiny detail of the other person and whose unexpected flex is: West coast road trip.",
+        "howToSpot": "Yellow black sweatshirt",
+        "compatibility": 86,
+        "whyMatched": "You share city-crawl energy, bold-decision curiosity, humor, reliability, and an instinct to turn a good conversation into a wider social circle.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Phone-free plan",
+          "Preferred conversation"
+        ],
+        "unexpectedFlex": "West coast road trip",
+        "canTeach": "Making Dal",
+        "freeMonth": "Catch up on sleep, play some sport or try snowboarding if winter.",
+        "iceBreakers": [
+          "What is the full story behind this flex: West coast road trip?",
+          "If you combined Learn a sport with Catch up on sleep, play some sport or try snowboarding if winter., what would day one look like?"
+        ],
+        "whatToTalkAbout": "Road trips, cooking, dance, fitness, sport, humor, and bold decisions.",
+        "quirkyComment": "Dal, dance, fitness, sport, and Bay Area survival could become a surprisingly practical masterclass."
+      }
+    ]
+  },
+  "rbadarma@mtu.edu": {
+    "name": "Ranjith",
+    "praise": "Your ability to open up, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Saahithi",
+        "age": 31,
+        "vibe": "A curious, socially aware person who can remember every tiny detail of the other person and whose unexpected flex is: I like trying new things.",
+        "howToSpot": "Black top blue jeans",
+        "compatibility": 89,
+        "whyMatched": "Seven aligned answers connect your playful, open energy: both enjoy new skills, bold trips, fun people, warm group movement, and plans beyond tonight.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Phone-free plan"
+        ],
+        "unexpectedFlex": "I like trying new things",
+        "canTeach": "Bake a cake",
+        "freeMonth": "Learn to play the guitar",
+        "iceBreakers": [
+          "What is the full story behind this flex: I like trying new things?",
+          "If you combined Try new hobbies, play lot of sports, sleep well, watch movies. with Learn to play the guitar, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Epic road trips, sports, puzzles, books, yoga, public speaking, and trying new hobbies.",
+        "quirkyComment": "A 6,000-mile road trip meets a 21-book sabbatical plan—both of you commit hard to the story."
+      }
+    ]
+  },
+  "saahithic@gmail.com": {
+    "name": "Saahithi",
+    "praise": "Your ability to remember every tiny detail of the other person, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Ranjith",
+        "age": 33,
+        "vibe": "A curious, socially aware person who can open up and whose unexpected flex is: I have done 6000+ miles road trip with less than a week prep.",
+        "howToSpot": "Maroon shirt",
+        "compatibility": 89,
+        "whyMatched": "Seven aligned answers connect your playful, open energy: both enjoy new skills, bold trips, fun people, warm group movement, and plans beyond tonight.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Phone-free plan"
+        ],
+        "unexpectedFlex": "I have done 6000+ miles road trip with less than a week prep.",
+        "canTeach": "Any sports or puzzle solving",
+        "freeMonth": "Try new hobbies, play lot of sports, sleep well, watch movies.",
+        "iceBreakers": [
+          "What is the full story behind this flex: I have done 6000+ miles road trip with less than a week prep.?",
+          "If you combined Learn to play the guitar with Try new hobbies, play lot of sports, sleep well, watch movies., what would day one look like?"
+        ],
+        "whatToTalkAbout": "Epic road trips, sports, puzzles, books, yoga, public speaking, and trying new hobbies.",
+        "quirkyComment": "A 6,000-mile road trip meets a 21-book sabbatical plan—both of you commit hard to the story."
+      }
+    ]
+  },
+  "ec132520@gmail.com": {
+    "name": "Disha",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Atul",
+        "age": 33,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I'm a very kind.",
+        "howToSpot": "?",
+        "compatibility": 89,
+        "whyMatched": "You share a love of city exploration, fun energy, ambitious builders, new social worlds, and turning a strong conversation into future plans.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Social superpower"
+        ],
+        "unexpectedFlex": "I'm a very kind.",
+        "canTeach": "?",
+        "freeMonth": "?",
+        "iceBreakers": [
+          "What is the full story behind this flex: I'm a very kind.?",
+          "If you combined Start my own business. with ?, what would day one look like?"
+        ],
+        "whatToTalkAbout": "Solo glamping, business ideas, dance, music, city walks, photography, and community.",
+        "quirkyComment": "Solo birthday glamping meets spontaneous city walks with music and photography—excellent roaming energy."
+      }
+    ]
+  },
+  "luta0002@gmail.com": {
+    "name": "Atul",
+    "praise": "Your ability to feel comfortable, paired with genuine curiosity, gives your conversations an easy and memorable warmth.",
+    "matches": [
+      {
+        "name": "Disha",
+        "age": 36,
+        "vibe": "A curious, socially aware person who can feel comfortable and whose unexpected flex is: I went for solo glamping on my birthday!.",
+        "howToSpot": "I’m wearing a white bangle.",
+        "compatibility": 89,
+        "whyMatched": "You share a love of city exploration, fun energy, ambitious builders, new social worlds, and turning a strong conversation into future plans.",
+        "commonAttributes": [
+          "Sunset instinct",
+          "Room-entry style",
+          "Social superpower"
+        ],
+        "unexpectedFlex": "I went for solo glamping on my birthday!",
+        "canTeach": "I love dancing and I believe I’m a good teacher as well so a basic dance step.",
+        "freeMonth": "Start my own business.",
+        "iceBreakers": [
+          "What is the full story behind this flex: I went for solo glamping on my birthday!?",
+          "If you combined ? with Start my own business., what would day one look like?"
+        ],
+        "whatToTalkAbout": "Solo glamping, business ideas, dance, music, city walks, photography, and community.",
+        "quirkyComment": "Solo birthday glamping meets spontaneous city walks with music and photography—excellent roaming energy."
       }
     ]
   }
