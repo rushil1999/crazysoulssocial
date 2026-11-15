@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  const person = verify(email, firstName);
+  const person = await verify(email, firstName);
   if (!person) {
     return NextResponse.json({ error: "Not authorized" }, { status: 404 });
   }

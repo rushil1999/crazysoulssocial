@@ -112,6 +112,48 @@ export default function RevealExperience() {
     };
   }, []);
 
+  // A guest with no match and no scheduled window is usually a late arrival:
+  // they filled the form after a round was committed and are waiting to be
+  // paired off the bench, which can happen within a minute. WaitingForNext
+  // polls on its own, but that screen only renders when a window is scheduled
+  // — so poll here too rather than leaving them on a static page.
+  //
+  // Backs off (10s → 60s) and pauses while the tab is hidden, because every
+  // check is a round trip to the store and the event runs for hours.
+  const waitingForFirst =
+    phase !== "gate" && !!data && data.matchCount === 0 && !data.nextWindow;
+
+  useEffect(() => {
+    if (!waitingForFirst) return;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout>;
+    let attempt = 0;
+
+    const delay = () => {
+      const steps = [10_000, 10_000, 15_000, 20_000, 30_000];
+      return steps[Math.min(attempt, steps.length - 1)] ?? 60_000;
+    };
+
+    async function tick() {
+      if (cancelled) return;
+      if (typeof document !== "undefined" && document.hidden) {
+        timer = setTimeout(tick, 15_000);
+        return;
+      }
+      const found = await checkForNext();
+      if (cancelled || found) return; // found → parent advances, effect tears down
+      attempt += 1;
+      timer = setTimeout(tick, delay());
+    }
+
+    timer = setTimeout(tick, delay());
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [waitingForFirst]);
+
   const revealTimeFor = (i: number) => {
     if (!data) return "";
     return data.revealTimes[i] ?? data.revealTimes[data.revealTimes.length - 1];
@@ -153,7 +195,7 @@ export default function RevealExperience() {
   return (
     <main className="min-h-screen flex items-center justify-center px-5 py-12">
       <PulseFeed active={phase !== "gate"} />
-      <PushOptIn active={phase !== "gate"} />
+      <PushOptIn active={phase !== "gate"} email={email || undefined} />
       {restoring ? (
         <div className="text-beige/70 animate-pulse font-display text-xl tracking-wide">
           Loading…

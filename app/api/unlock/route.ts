@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const person = verify(email, firstName);
+  const person = await verify(email, firstName);
   if (!person) {
     return NextResponse.json(
       {
@@ -37,5 +37,8 @@ export async function POST(request: Request) {
     revealTimes: person.revealTimes,
     matchCount: person.matches.length,
     nextWindow: person.nextWindow,
+    // True for a guest who's filled the form but has no introduction yet —
+    // the client shows a countdown rather than an empty reveal.
+    waiting: person.waiting ?? false,
   });
 }

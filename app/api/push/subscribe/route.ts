@@ -6,6 +6,8 @@ export const dynamic = "force-dynamic";
 type Body = {
   subscription?: { endpoint?: string; keys?: { p256dh?: string; auth?: string } };
   endpoint?: string;
+  /** Optional — lets this one guest be notified when their match lands. */
+  email?: string;
 };
 
 /** POST /api/push/subscribe — store a guest's push subscription. */
@@ -29,10 +31,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid subscription" }, { status: 400 });
   }
 
-  await addSubscription({
-    endpoint: sub.endpoint,
-    keys: { p256dh: sub.keys.p256dh, auth: sub.keys.auth },
-  });
+  await addSubscription(
+    {
+      endpoint: sub.endpoint,
+      keys: { p256dh: sub.keys.p256dh, auth: sub.keys.auth },
+    },
+    body.email
+  );
   return NextResponse.json({ ok: true });
 }
 
