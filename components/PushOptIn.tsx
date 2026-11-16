@@ -36,7 +36,19 @@ function isStandalone() {
  * - iPhone: Safari only delivers push to an INSTALLED app, so if we're in a
  *   plain Safari tab we show an "Add to Home Screen" hint instead.
  */
-export default function PushOptIn({ active }: { active: boolean }) {
+/**
+ * `email`, when known, tags this device's subscription with the guest it
+ * belongs to, so a single introduction can notify just those two phones
+ * instead of buzzing the whole room. Untagged devices still get room-wide
+ * pulses.
+ */
+export default function PushOptIn({
+  active,
+  email,
+}: {
+  active: boolean;
+  email?: string;
+}) {
   const [status, setStatus] = useState<Status>("hidden");
   const [error, setError] = useState<string | null>(null);
 
@@ -100,7 +112,7 @@ export default function PushOptIn({ active }: { active: boolean }) {
       const res = await fetch("/api/push/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subscription: sub.toJSON() }),
+        body: JSON.stringify({ subscription: sub.toJSON(), email }),
       });
       if (!res.ok) throw new Error("subscribe failed");
       setStatus("done");

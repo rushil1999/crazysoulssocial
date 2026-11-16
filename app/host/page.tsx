@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import HostRounds from "@/components/HostRounds";
 
 const SECRET_KEY = "cs_pulse_secret";
 const QUEUE_KEY = "cs_pulse_queue";
@@ -25,6 +26,9 @@ export default function HostConsole() {
   const [draft, setDraft] = useState("");
   const [sendingId, setSendingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // Rounds first: on the night, running introductions is the job, and pulses
+  // are the garnish.
+  const [tab, setTab] = useState<"rounds" | "pulses">("rounds");
 
   // Restore secret + queue from this device.
   useEffect(() => {
@@ -123,7 +127,7 @@ export default function HostConsole() {
         >
           <div className="eyebrow mb-3">Crazy Souls · Host</div>
           <h1 className="font-display text-2xl mb-5 tracking-wide">
-            <span className="gradient-text">Pulse console</span>
+            <span className="gradient-text">Host console</span>
           </h1>
           <input
             className="field mb-4"
@@ -143,16 +147,47 @@ export default function HostConsole() {
   return (
     <main className="min-h-screen px-5 py-10">
       <div className="max-w-xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5">
           <div>
             <div className="eyebrow">Crazy Souls · Host</div>
             <h1 className="font-display text-2xl tracking-wide">
-              <span className="gradient-text">Pulse console</span>
+              <span className="gradient-text">Host console</span>
             </h1>
           </div>
           <span className="chip">✦ live</span>
         </div>
 
+        {/* Two jobs, one phone. */}
+        <div className="flex gap-2 mb-6">
+          {(["rounds", "pulses"] as const).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`flex-1 rounded-xl px-4 py-2.5 text-sm capitalize transition ${
+                tab === t
+                  ? "bg-gold/20 text-cream ring-1 ring-gold/50"
+                  : "tile text-beige/80"
+              }`}
+            >
+              {t === "rounds" ? "Introductions" : "Pulses"}
+            </button>
+          ))}
+        </div>
+
+        {tab === "rounds" ? (
+          <HostRounds
+            secret={secret}
+            onAuthFail={() => {
+              setSecret(null);
+              try {
+                sessionStorage.removeItem(SECRET_KEY);
+              } catch {
+                /* ignore */
+              }
+            }}
+          />
+        ) : (
+          <>
         {error && (
           <motion.p
             initial={{ opacity: 0 }}
@@ -244,6 +279,8 @@ export default function HostConsole() {
               ))}
             </div>
           </div>
+        )}
+          </>
         )}
       </div>
     </main>

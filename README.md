@@ -7,7 +7,39 @@ matches **one at a time** behind live countdowns — full with why-you-matched,
 shared interests, ice breakers, talking points, and a quirky comment.
 
 Built with Next.js (App Router), Tailwind, Framer Motion, and canvas-confetti.
-Data lives in static JSON — no database, no external API.
+
+---
+
+## Two ways to run an event
+
+**Live (use this).** Guests fill the Tally form, the submissions arrive by
+webhook, and you pair the room from `/host` on your phone: preview, commit,
+done. Matches appear on guests' phones immediately — no commit, no redeploy.
+Late arrivals are paired automatically against whoever is still waiting.
+
+→ **[docs/event-night.md](docs/event-night.md)** is the runbook. Start there.
+
+```
+Tally form ──▶ /api/intake ──▶ roster (Redis)
+                                  │
+             /host ── preview ────┤  deterministic pairing: orientation
+                   └─ commit ─────┤  respected, nobody repeated
+                                  ▼
+                        cards (Redis) ──▶ /api/unlock, /api/match
+                                  │              (time-gated)
+                                  └──▶ web push to the two phones involved
+```
+
+**Static (what July ran on).** Matches hand-written into `data/matches*.json`
+and shipped with a redeploy. Everything below the "How the data works" heading
+describes this path. It still works, unchanged — those files are read whenever
+a guest has no live data, so past events and their links keep resolving. You
+only need it as a fallback.
+
+The thing that forced a redeploy was never the design, it was the static
+`import` in `lib/data.ts`: a bundled JSON file is frozen into the build. The
+live path reads the same shapes out of the Redis store that already powers
+pulses and push.
 
 ---
 
@@ -150,6 +182,10 @@ factor (e.g. a name or PIN check), it's a small addition to `/api/unlock`.
 
 ## Running multiple rounds
 
+> Describes the static path. Running live, you tap **Commit** on `/host` and the
+> round is published — see [docs/event-night.md](docs/event-night.md). Rounds
+> behave the same either way.
+
 Rounds are **additive**: a guest sees their matches from *every* enabled round,
 merged into one time-sorted timeline. Nothing is replaced — round 2 simply adds
 to what they already have, and each match unlocks at its own scheduled time.
@@ -288,6 +324,9 @@ curl -X DELETE https://your-site/api/pulses \
 
 ### Updating data after it's live
 
+> Only for the static path. A live event never needs this — that's the point of
+> [docs/event-night.md](docs/event-night.md).
+
 Static data means an update = a quick redeploy:
 
 ```bash
@@ -305,6 +344,20 @@ Vercel auto-rebuilds in ~1 minute. Git also keeps a history of every data change
 ---
 
 ## Event-day checklist
+
+**Running live** — the full version is in
+[docs/event-night.md](docs/event-night.md):
+
+1. Set `EVENT_ID` to this event, and confirm `ANTHROPIC_API_KEY` is set.
+2. Point the Tally webhook at `/api/intake`, submit one test form, and check
+   `/api/intake?secret=…&debug=1` maps `email`, `name`, `gender`, `openTo` and
+   `howToSpot`.
+3. `npx tsx scripts/simulate.ts 35 3` — rehearse the night end to end.
+4. **Reset this event** on `/host` before doors open.
+5. During: preview → commit, once per round. Late arrivals handle themselves.
+6. **Close the event** at the end.
+
+**Running static:**
 
 1. Finalize `data/schedule.json` reveal times (correct date + timezone offset).
 2. Paste real AI matches into `data/matches.json` (or scaffold with `gen-links`).

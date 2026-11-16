@@ -1,5 +1,20 @@
 # AI matching prompt
 
+> **This is now automated.** The app writes cards itself — see
+> [event-night.md](event-night.md). Two things changed in the move:
+>
+> 1. **Who gets paired is decided in code, not by the model** (`lib/scoring.ts`
+>    and `lib/pairing.ts`). Pairing is instant, reproducible, and previewable
+>    before you commit it, and it enforces what the model can't be trusted to —
+>    no repeats across rounds, no double-bookings, and no introduction outside
+>    what both guests said they were open to.
+> 2. **The model only writes the card** for a pair that's already chosen. That
+>    prompt lives in `lib/cards.ts` and is the one below, adapted to produce
+>    both directions of a pair in one call.
+>
+> Keep this file, `lib/cards.ts`, and the `Match` type in `lib/data.ts` in sync.
+> The manual recipe below still works if you ever need to hand-build a round.
+
 Copy everything in the **Prompt** block below into your LLM (ChatGPT/Claude),
 then paste in each pair of guests' "Beyond Small Talk" form answers. The model
 returns JSON you drop straight into `data/matches.json` (round 1) or

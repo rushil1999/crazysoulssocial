@@ -2,8 +2,30 @@ import roundConfig from "@/data/round.json";
 import scheduleData from "@/data/schedule.json";
 import matches1 from "@/data/matches.json";
 import matches2 from "@/data/matches_2.json";
+import {
+  getCard,
+  getGuest,
+  getState,
+  type Person as StoredPerson,
+} from "@/lib/store";
 
 /**
+ * Reading a guest's profile.
+ *
+ * There are two sources, tried in order:
+ *
+ *  1. The live store (lib/store.ts), written during the event by /api/round
+ *     and /api/intake. This is the path a running event uses — new matches
+ *     appear the moment they're committed, with no commit and no redeploy.
+ *
+ *  2. The static JSON in data/, imported at build time. This is how the July
+ *     event worked, and it still resolves exactly as it did, so past events
+ *     and their links keep working untouched.
+ *
+ * The static imports below are what forced a redeploy for every change: a
+ * bundled import is frozen into the build. They're kept deliberately, as the
+ * fallback, and are no longer on the path for a live event.
+ *
  * Every field is derivable from the "Beyond Small Talk" intake form — a direct
  * answer or an AI synthesis of the personality answers. (The form also collects
  * gender and SMS consent, which feed matching/ops, not the card.)
@@ -42,8 +64,8 @@ export type Person = {
 };
 
 /**
- * A guest's combined view across every enabled round: all their matches merged
- * into one timeline, each with its own reveal time, sorted chronologically.
+ * A guest's combined view across every round: all their matches merged into
+ * one timeline, each with its own reveal time, sorted chronologically.
  */
 export type Profile = {
   name: string;
@@ -52,20 +74,25 @@ export type Profile = {
   revealTimes: string[]; // parallel to `matches`
   /**
    * The next scheduled reveal time beyond this guest's current matches, if any.
-   * Lets the client show a "next match unlocks in…" countdown for a round whose
-   * matches file is filled *during* the event (matches_2.json, etc.). Null when
-   * there's no upcoming window. Includes a 30-min grace so a window whose data
-   * is filled slightly late still surfaces.
+   * Lets the client show a "next match unlocks in…" countdown for a round
+   * that hasn't been run yet. Null when there's no upcoming window.
    */
   nextWindow: string | null;
+  /**
+   * True when this guest is in the roster but has no matches yet — they've
+   * filled the form and are waiting for the next round. The reveal UI uses
+   * this to show a countdown instead of "we couldn't find you".
+   */
+  waiting?: boolean;
 };
 
 type MatchesFile = Record<string, Person>;
 
+// ── Static fallback (pre-Redis events) ──────────────────────────────────────
+
 /**
- * Registry of matching rounds (matches only). To add round 3, drop in
- * data/matches_3.json, import it above, and add a `3:` entry here — then add a
- * "3" entry to schedule.json and list 3 in data/round.json's enabledRounds.
+ * Registry of matching rounds from the bundled JSON. Only used for events that
+ * predate the live store; a running event never reaches this.
  */
 const roundMatches: Record<number, MatchesFile> = {
   1: matches1 as MatchesFile,
@@ -87,15 +114,7 @@ for (const [r, file] of Object.entries(roundMatches)) {
   roundIndex[Number(r)] = idx;
 }
 
-/**
- * Build a guest's combined profile by merging their matches from every enabled
- * round into a single, time-sorted timeline. Returns null if the email isn't in
- * any enabled round.
- */
-export function getProfileByEmail(email: string): Profile | null {
-  if (!email) return null;
-  const key = email.trim().toLowerCase();
-
+function staticProfile(key: string): Profile | null {
   const entries: { time: string; match: Match }[] = [];
   let name = "";
   let praise = "";
@@ -105,15 +124,13 @@ export function getProfileByEmail(email: string): Profile | null {
     const person = roundIndex[r]?.[key];
     if (!person) continue;
     if (!found) {
-      // Greet with the earliest round they appear in.
       name = person.name;
       praise = person.praise;
       found = true;
     }
     const times = scheduleRounds[String(r)] ?? [];
     person.matches.forEach((match, j) => {
-      const time = times[j] ?? times[times.length - 1] ?? "";
-      entries.push({ time, match });
+      entries.push({ time: times[j] ?? times[times.length - 1] ?? "", match });
     });
   }
 
@@ -122,12 +139,8 @@ export function getProfileByEmail(email: string): Profile | null {
   entries.sort(
     (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
   );
-
   const revealTimes = entries.map((e) => e.time);
 
-  // Next scheduled reveal beyond this guest's current matches — a round whose
-  // matches may be filled in later during the event. 30-min grace so a window
-  // whose data lands slightly after its time still shows.
   const lastMatchMs = revealTimes.reduce(
     (max, t) => Math.max(max, new Date(t).getTime()),
     0
@@ -140,22 +153,105 @@ export function getProfileByEmail(email: string): Profile | null {
       .filter((x) => x.ms > lastMatchMs && x.ms > graceMs)
       .sort((a, b) => a.ms - b.ms)[0]?.t ?? null;
 
+  return { name, praise, matches: entries.map((e) => e.match), revealTimes, nextWindow };
+}
+
+// ── Live store ───────────────────────────────────────────────────────────────
+
+async function liveProfile(key: string): Promise<Profile | null> {
+  const state = await getState();
+  const guest = await getGuest(key);
+
+  // Nothing live for this event at all — let the static path answer.
+  if (!guest && state.currentRound < 1) return null;
+
+  const entries: { time: string; match: Match }[] = [];
+  let name = guest?.name ?? "";
+  let praise = "";
+
+  for (let r = 1; r <= state.currentRound; r++) {
+    const card: StoredPerson | null = await getCard(r, key);
+    if (!card) continue;
+    if (!name) name = card.name;
+    // The most recent round's praise wins — it was written about them most
+    // recently and with the most answers in hand.
+    if (card.praise) praise = card.praise;
+    const time = state.revealAt[String(r)] ?? "";
+    card.matches.forEach((match) => entries.push({ time, match }));
+  }
+
+  // In the roster but nothing yet — a late arrival waiting for the next round.
+  if (!entries.length) {
+    if (!guest) return null;
+    return {
+      name: guest.name,
+      praise: "",
+      matches: [],
+      revealTimes: [],
+      nextWindow: state.upcoming[0] ?? null,
+      waiting: true,
+    };
+  }
+
+  entries.sort(
+    (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
+  );
+  const revealTimes = entries.map((e) => e.time);
+  const lastMatchMs = revealTimes.reduce(
+    (max, t) => Math.max(max, new Date(t).getTime()),
+    0
+  );
+
+  const nextWindow =
+    state.upcoming
+      .map((t) => ({ t, ms: new Date(t).getTime() }))
+      .filter((x) => x.ms > lastMatchMs)
+      .sort((a, b) => a.ms - b.ms)[0]?.t ?? null;
+
   return {
     name,
-    praise,
+    praise: praise || "Your answers were specific, which is rarer than it sounds.",
     matches: entries.map((e) => e.match),
     revealTimes,
     nextWindow,
   };
 }
 
+// ── Public API ───────────────────────────────────────────────────────────────
+
 /**
- * Light two-factor identity check: the email must exist in an enabled round AND
- * the supplied first name must match the first name on file (case-insensitive).
- * Returns the combined Profile only on a full match — otherwise null.
+ * A guest's combined profile across every round, live store first and the
+ * bundled JSON as fallback. Returns null when the email isn't known at all.
  */
-export function verify(email: string, firstName: string): Profile | null {
-  const profile = getProfileByEmail(email);
+export async function getProfileByEmail(email: string): Promise<Profile | null> {
+  if (!email) return null;
+  const key = email.trim().toLowerCase();
+
+  // Always try live first. With Redis absent (local `npm run dev`) the store
+  // falls back to its in-process map, so the whole flow still works end to end
+  // locally — and either way this returns null when there's no live data for
+  // the email, which hands over to the bundled JSON below.
+  try {
+    const live = await liveProfile(key);
+    if (live) return live;
+  } catch {
+    // Store unreachable mid-event — fall through rather than locking everyone
+    // out. Guests with bundled data still get in.
+  }
+
+  return staticProfile(key);
+}
+
+/**
+ * Light two-factor identity check: the email must be known AND the supplied
+ * first name must match the first name on file (case-insensitive). Returns the
+ * combined Profile only on a full match — otherwise null.
+ */
+export async function verify(
+  email: string,
+  firstName: string
+): Promise<Profile | null> {
+  const profile = await getProfileByEmail(email);
   if (!profile || !firstName) return null;
   const onFileFirst = (profile.name || "").trim().split(/\s+/)[0].toLowerCase();
   if (!onFileFirst) return null;
