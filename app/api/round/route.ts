@@ -12,10 +12,14 @@ import {
   putState,
   recordPairs,
   resetEvent,
+  getNeverMatch,
+  putNeverMatch,
+  storeConfigured,
   type EventState,
   type Guest,
   type StoredPair,
 } from "@/lib/store";
+import { resolveNeverMatch } from "@/lib/never-match";
 import { solve } from "@/lib/pairing";
 import { fallbackCard, writeCards, cardsConfigured } from "@/lib/cards";
 import { sendPushToEmails } from "@/lib/push";
@@ -25,7 +29,14 @@ export const dynamic = "force-dynamic";
 // runs out of time is resumable (see `finish` below), so this is a soft limit.
 export const maxDuration = 60;
 
-type Action = "preview" | "commit" | "finish" | "schedule" | "close" | "reset";
+type Action =
+  | "preview"
+  | "commit"
+  | "finish"
+  | "schedule"
+  | "close"
+  | "reset"
+  | "neverMatch";
 
 type Body = {
   secret?: string;
@@ -40,7 +51,22 @@ type Body = {
   times?: string[];
   /** Re-run a committed round's pairing from scratch. Dangerous; off by default. */
   force?: boolean;
+  /** For `neverMatch`: the raw list, one pair per line. Omit to just read it. */
+  neverMatch?: string;
 };
+
+/**
+ * Everyone who must not be paired this round: everyone already introduced,
+ * plus the host's never-match list resolved against the current roster.
+ */
+async function exclusions(pool: Guest[]) {
+  const [history, text] = await Promise.all([getHistory(), getNeverMatch()]);
+  const blocked = resolveNeverMatch(text, pool);
+  return {
+    history: new Set<string>([...history, ...blocked.keys]),
+    blocked,
+  };
+}
 
 function authorized(body: Body): string | null {
   const secret = process.env.PULSE_ADMIN_SECRET;
@@ -102,6 +128,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, closed: true });
   }
 
+  if (action === "neverMatch") {
+    if (typeof body.neverMatch === "string") {
+      await putNeverMatch(body.neverMatch);
+    }
+    const text = await getNeverMatch();
+    const blocked = resolveNeverMatch(text, pool);
+    return NextResponse.json({
+      ok: true,
+      text,
+      resolved: blocked.resolved,
+      problems: blocked.unresolved,
+    });
+  }
+
   if (action === "schedule") {
     const times = (body.times ?? [])
       .map((t) => new Date(t))
@@ -133,7 +173,7 @@ export async function POST(request: Request) {
       });
     }
 
-    const history = await getHistory();
+    const { history, blocked } = await exclusions(pool);
     const sol = solve(pool, history);
 
     return NextResponse.json({
@@ -141,6 +181,8 @@ export async function POST(request: Request) {
       round: state.currentRound + 1,
       rosterSize: pool.length,
       cardsConfigured,
+      neverMatchApplied: blocked.resolved,
+      neverMatchProblems: blocked.unresolved,
       pairs: sol.pairs.map((p) => ({
         a: nameOf(pool, p.a),
         b: nameOf(pool, p.b),
@@ -185,7 +227,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Bad revealAt" }, { status: 400 });
     }
 
-    const history = await getHistory();
+    const { history } = await exclusions(pool);
     const sol = solve(pool, history);
 
     const stored: StoredPair[] = sol.pairs.map((p) => ({

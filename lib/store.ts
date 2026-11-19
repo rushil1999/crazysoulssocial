@@ -43,6 +43,7 @@ type Mem = {
   debug: Map<string, unknown>;
   history: Set<string>;
   bench: Set<string>;
+  neverMatch: string;
 };
 function freshMem(): Mem {
   return {
@@ -53,6 +54,7 @@ function freshMem(): Mem {
     debug: new Map(),
     history: new Set(),
     bench: new Set(),
+    neverMatch: "",
   };
 }
 
@@ -141,6 +143,7 @@ const k = {
   debug: (id: string, name: string) => `ev:${id}:debug:${name}`,
   history: (id: string) => `ev:${id}:history`,
   bench: (id: string) => `ev:${id}:bench`,
+  neverMatch: (id: string) => `ev:${id}:neverMatch`,
 };
 
 /**
@@ -425,6 +428,39 @@ export async function clearBench(eventId = EVENT_ID): Promise<void> {
   } else {
     mem.bench.clear();
   }
+}
+
+// ── Never-match list ─────────────────────────────────────────────────────────
+
+/**
+ * Pairs who must never be introduced — people who arrived together, exes,
+ * colleagues, anyone who asks.
+ *
+ * Stored as the raw text the host typed, not as resolved email pairs, so a
+ * name can be entered before that guest has filled the form and still takes
+ * effect when they do. It is resolved against the roster each time a round is
+ * solved (see lib/never-match.ts).
+ *
+ * Deliberately survives `resetEvent` — it is configuration for the night, not
+ * event data, and it is usually entered before doors open.
+ */
+export async function putNeverMatch(
+  text: string,
+  eventId = EVENT_ID
+): Promise<void> {
+  if (redis) {
+    await redis.set(k.neverMatch(eventId), text);
+  } else {
+    mem.neverMatch = text;
+  }
+}
+
+export async function getNeverMatch(eventId = EVENT_ID): Promise<string> {
+  if (redis) {
+    const v = await redis.get<string>(k.neverMatch(eventId));
+    return typeof v === "string" ? v : "";
+  }
+  return mem.neverMatch ?? "";
 }
 
 // ── Debug slot ───────────────────────────────────────────────────────────────

@@ -33,7 +33,7 @@ export default function HostConsole() {
   // Restore secret + queue from this device.
   useEffect(() => {
     try {
-      const s = sessionStorage.getItem(SECRET_KEY);
+      const s = localStorage.getItem(SECRET_KEY);
       if (s) setSecret(s);
       const q = localStorage.getItem(QUEUE_KEY);
       if (q) setQueue(JSON.parse(q) as QueueItem[]);
@@ -56,7 +56,7 @@ export default function HostConsole() {
     const s = secretInput.trim();
     if (!s) return;
     try {
-      sessionStorage.setItem(SECRET_KEY, s);
+      localStorage.setItem(SECRET_KEY, s);
     } catch {
       /* ignore */
     }
@@ -97,7 +97,7 @@ export default function HostConsole() {
         if (res.status === 401) {
           setSecret(null);
           try {
-            sessionStorage.removeItem(SECRET_KEY);
+            localStorage.removeItem(SECRET_KEY);
           } catch {
             /* ignore */
           }
@@ -180,7 +180,7 @@ export default function HostConsole() {
             onAuthFail={() => {
               setSecret(null);
               try {
-                sessionStorage.removeItem(SECRET_KEY);
+                localStorage.removeItem(SECRET_KEY);
               } catch {
                 /* ignore */
               }
