@@ -188,7 +188,29 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const secret = process.env.PULSE_ADMIN_SECRET;
-  if (!secret || searchParams.get("secret") !== secret) {
+
+  if (!secret) {
+    // Distinguish "server isn't configured" from "you got the password wrong".
+    // Returning the same message for both sends you hunting for a typo in a
+    // password that was never going to work.
+    return NextResponse.json(
+      { error: "PULSE_ADMIN_SECRET isn't set on the server." },
+      { status: 503 }
+    );
+  }
+
+  // Accept the secret from a header as well as the query string. A secret
+  // containing &, #, + or a space survives a header intact but is mangled in a
+  // URL — # truncates the rest, & starts a new parameter — which looks exactly
+  // like a wrong password. Both sides are trimmed because a value pasted into
+  // Vercel's env var box often carries a trailing newline.
+  const supplied = (
+    request.headers.get("x-admin-secret") ??
+    searchParams.get("secret") ??
+    ""
+  ).trim();
+
+  if (supplied !== secret.trim()) {
     return NextResponse.json({ error: "Not authorized" }, { status: 401 });
   }
 

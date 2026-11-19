@@ -34,6 +34,13 @@ type Roster = {
     closed?: boolean;
   };
   guests: RosterGuest[];
+  /** Present only when asked for with debug — how the last form submission
+   *  mapped onto the fields matching actually uses. */
+  lastIntake?: {
+    at?: string;
+    mapping?: Record<string, string>;
+    problem?: string | null;
+  };
 };
 
 type PreviewPair = {
@@ -92,31 +99,46 @@ export default function HostRounds({
   const [revealIn, setRevealIn] = useState(0);
   const [confirming, setConfirming] = useState<"commit" | "reset" | null>(null);
   const [showRoster, setShowRoster] = useState(false);
+  const [mapping, setMapping] = useState<Record<string, string> | null>(null);
 
-  const loadRoster = useCallback(async () => {
-    setBusy("roster");
-    setError(null);
-    try {
-      const res = await fetch(
-        `/api/intake?secret=${encodeURIComponent(secret)}`
-      );
-      if (res.status === 401) {
-        onAuthFail();
-        return;
+  // The secret goes in a header, not the query string: it keeps it out of
+  // browser history and Vercel's request logs, and a password containing
+  // &, # or a space survives a header intact where a URL would mangle it.
+  const loadRoster = useCallback(
+    async (opts: { debug?: boolean } = {}) => {
+      setBusy(opts.debug ? "mapping" : "roster");
+      setError(null);
+      try {
+        const res = await fetch(`/api/intake${opts.debug ? "?debug=1" : ""}`, {
+          headers: { "x-admin-secret": secret },
+        });
+        if (res.status === 401) {
+          onAuthFail();
+          return;
+        }
+        if (res.status === 503) {
+          const body = await res.json().catch(() => ({}));
+          setError(body.error ?? "The server isn't configured.");
+          return;
+        }
+        if (!res.ok) throw new Error("Couldn't load the roster.");
+        const data = (await res.json()) as Roster;
+        setRoster(data);
+        if (opts.debug) setMapping(data.lastIntake?.mapping ?? {});
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Couldn't load the roster.");
+      } finally {
+        setBusy(null);
       }
-      if (!res.ok) throw new Error("Couldn't load the roster.");
-      setRoster((await res.json()) as Roster);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Couldn't load the roster.");
-    } finally {
-      setBusy(null);
-    }
-  }, [secret, onAuthFail]);
+    },
+    [secret, onAuthFail]
+  );
 
   useEffect(() => {
     loadRoster();
-    // Keep the count fresh while guests are filling the form.
-    const id = setInterval(loadRoster, 20_000);
+    // Keep the count fresh while guests are filling the form. Wrapped so the
+    // timer never passes an argument into loadRoster's options.
+    const id = setInterval(() => loadRoster(), 20_000);
     return () => clearInterval(id);
   }, [loadRoster]);
 
@@ -220,7 +242,7 @@ export default function HostRounds({
         <div className="flex gap-2">
           <button
             className="btn-ghost flex-1"
-            onClick={loadRoster}
+            onClick={() => loadRoster()}
             disabled={busy === "roster"}
           >
             {busy === "roster" ? "…" : "Refresh"}
@@ -432,6 +454,94 @@ export default function HostRounds({
           )}
         </motion.div>
       )}
+
+      {/* ── Form check ────────────────────────────────────────────────────── */}
+      <div className="glass rounded-2xl p-5">
+        <div className="eyebrow mb-3">Form check</div>
+        <button
+          className="btn-ghost w-full mb-3"
+          onClick={() => loadRoster({ debug: true })}
+          disabled={busy === "mapping"}
+        >
+          {busy === "mapping" ? "Checking…" : "Check the form mapping"}
+        </button>
+        <p className="text-beige/60 text-xs leading-relaxed">
+          Shows where the last submission&apos;s answers landed. Run it after
+          changing a question&apos;s wording — matching finds questions by what
+          they say, so a reworded question can quietly stop counting.
+        </p>
+
+        {mapping && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-5"
+          >
+            {Object.keys(mapping).length === 0 ? (
+              <p className="text-gold text-sm leading-relaxed">
+                No submission has arrived yet. If guests have filled the form,
+                the Tally webhook isn&apos;t pointing at this app.
+              </p>
+            ) : (
+              <>
+                <div className="space-y-1.5 mb-4">
+                  {(
+                    [
+                      ["email", "Email"],
+                      ["name", "First name"],
+                      ["gender", "Gender"],
+                      ["openTo", "Open to meeting"],
+                      ["howToSpot", "How to spot them"],
+                    ] as const
+                  ).map(([slot, label]) => {
+                    const found = Object.values(mapping).includes(slot);
+                    return (
+                      <div
+                        key={slot}
+                        className="flex items-center gap-2 text-sm"
+                      >
+                        <span className={found ? "text-gold" : "text-beige/40"}>
+                          {found ? "✓" : "✗"}
+                        </span>
+                        <span
+                          className={found ? "text-cream/90" : "text-beige/60"}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {!Object.values(mapping).includes("openTo") && (
+                  <p className="text-gold text-sm leading-relaxed mb-4">
+                    Nothing is landing in &ldquo;open to meeting&rdquo;. Pairing
+                    will still run, but it will ignore who people said they
+                    wanted to meet.
+                  </p>
+                )}
+
+                <details className="text-sm">
+                  <summary className="text-beige/70 cursor-pointer">
+                    Every question ({Object.keys(mapping).length})
+                  </summary>
+                  <div className="mt-3 space-y-1.5 max-h-72 overflow-y-auto">
+                    {Object.entries(mapping).map(([label, slot]) => (
+                      <div
+                        key={label}
+                        className="border-b border-white/5 last:border-0 pb-1.5"
+                      >
+                        <div className="text-beige/55 text-xs">{slot}</div>
+                        <div className="text-cream/80 text-xs">{label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              </>
+            )}
+          </motion.div>
+        )}
+      </div>
 
       {/* ── End of night ──────────────────────────────────────────────────── */}
       <div className="glass rounded-2xl p-5">
