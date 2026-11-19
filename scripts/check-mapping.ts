@@ -14,7 +14,8 @@
  */
 
 import { mapSubmission, type TallyField } from "../lib/tally";
-import { normalizeOpenTo, normalizeGender } from "../lib/scoring";
+import { normalizeOpenTo, normalizeGender, eligible } from "../lib/scoring";
+import type { Guest } from "../lib/store";
 
 let failures = 0;
 const check = (cond: boolean, msg: string) => {
@@ -196,6 +197,35 @@ check(flexible.size === 3, `"Open to more than one gender" → ${[...flexible].j
 check(normalizeGender("Prefer not to answer") === "unknown", `"Prefer not to answer" → unknown (allowed, matched last)`);
 check(normalizeOpenTo(["Men"]).has("man"), `"Men" → man`);
 check(normalizeOpenTo(["Women"]).has("woman"), `"Women" → woman`);
+
+// A guest whose `active` flag didn't survive the store round-trip must still be
+// pairable. This shipped broken: `filter(g => g.active)` and `if (!a.active)`
+// both read a missing flag as "withdrawn", so every guest dropped out and the
+// host saw "not enough guests checked in" beside a roster showing several.
+console.log("\nResilience:");
+{
+  const a = { ...guest } as Guest;
+  const b: Guest = {
+    ...guest,
+    email: "other@example.com",
+    name: "Other",
+    gender: "Woman",
+    openTo: ["Men"],
+  };
+  // Simulate the flag going missing in storage.
+  delete (a as Partial<Guest>).active;
+  delete (b as Partial<Guest>).active;
+
+  const e = eligible(a, b, new Set<string>());
+  check(e.ok, `a guest with no "active" flag is still eligible${e.ok ? "" : ` (got ${e.reason})`}`);
+
+  const withdrawn: Guest = { ...b, active: false };
+  const e2 = eligible(a, withdrawn, new Set<string>());
+  check(
+    !e2.ok && e2.reason === "inactive",
+    `an explicitly withdrawn guest is still excluded`
+  );
+}
 
 console.log("\nEvery question, and where it landed:");
 for (const [label, slot] of Object.entries(mapping)) {

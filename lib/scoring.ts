@@ -79,7 +79,10 @@ export function eligible(
   const ea = a.email.toLowerCase();
   const eb = b.email.toLowerCase();
   if (ea === eb) return { ok: false, reason: "self" };
-  if (!a.active || !b.active) return { ok: false, reason: "inactive" };
+  // `=== false`, not falsy: only an explicit deactivation excludes someone. A
+  // missing flag must not quietly make every pair ineligible.
+  if (a.active === false || b.active === false)
+    return { ok: false, reason: "inactive" };
   if (history.has([ea, eb].sort().join("|")))
     return { ok: false, reason: "repeat" };
 

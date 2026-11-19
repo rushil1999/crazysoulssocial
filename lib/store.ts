@@ -176,7 +176,10 @@ export function pairKey(a: string, b: string): string {
 
 export async function putGuest(guest: Guest, eventId = EVENT_ID): Promise<void> {
   const email = normalizeEmail(guest.email);
-  const record = { ...guest, email };
+  // Coerce `active` so it is always a real boolean on the way in. JSON.stringify
+  // drops undefined keys, so an undefined here would come back missing and read
+  // as "not active" to anything testing it for truthiness.
+  const record = { ...guest, email, active: guest.active !== false };
   if (redis) {
     await redis.hset(k.guests(eventId), { [email]: JSON.stringify(record) });
   } else {

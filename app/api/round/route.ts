@@ -52,9 +52,17 @@ function authorized(body: Body): string | null {
   return null;
 }
 
-/** Guests eligible for a solve: present and not withdrawn. */
+/**
+ * Guests eligible for a solve: present and not withdrawn.
+ *
+ * Tested against `!== false`, not for truthiness. A guest is excluded only if
+ * they were explicitly deactivated — a missing or malformed flag means active.
+ * The other way round, any field that fails to survive the store round-trip
+ * silently empties the room, and the only symptom is "not enough guests" while
+ * the roster plainly shows several.
+ */
 function roster(guests: Guest[]): Guest[] {
-  return guests.filter((g) => g.active);
+  return guests.filter((g) => g.active !== false);
 }
 
 function nameOf(guests: Guest[], email: string): string {
@@ -108,13 +116,20 @@ export async function POST(request: Request) {
 
   if (action === "preview") {
     if (pool.length < 2) {
+      // Name which of the two possible causes this is. "Not enough guests"
+      // next to a roster showing several is a dead end to debug.
+      const note =
+        guests.length >= 2
+          ? `${guests.length} guests are in the roster but only ${pool.length} can be paired — the rest are marked inactive.`
+          : "Not enough guests checked in yet.";
       return NextResponse.json({
         ok: true,
         round: state.currentRound + 1,
         rosterSize: pool.length,
+        totalGuests: guests.length,
         pairs: [],
         unmatched: pool.map((g) => g.name),
-        note: "Not enough guests checked in yet.",
+        note,
       });
     }
 
