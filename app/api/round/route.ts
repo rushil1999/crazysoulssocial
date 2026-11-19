@@ -45,7 +45,10 @@ type Body = {
 function authorized(body: Body): string | null {
   const secret = process.env.PULSE_ADMIN_SECRET;
   if (!secret) return "PULSE_ADMIN_SECRET isn't set on the server.";
-  if (body.secret !== secret) return "Wrong admin secret.";
+  // Trimmed on both sides: a value pasted into Vercel's env var box often
+  // carries a trailing newline, which otherwise fails against a password the
+  // host typed correctly.
+  if ((body.secret ?? "").trim() !== secret.trim()) return "Wrong admin secret.";
   return null;
 }
 

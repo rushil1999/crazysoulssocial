@@ -42,8 +42,16 @@ written cards costs a few cents.
 In your form → **Integrations → Webhooks → Add webhook**:
 
 ```
-https://crazysouls.social/api/intake
+https://beyondsmalltalk.vercel.app/api/intake
 ```
+
+**Not `crazysouls.social`.** That domain points at GitHub Pages, which serves
+static files and cannot run an API route — the webhook would be accepted by
+Tally, reported as configured, and silently deliver nothing. The app, and
+every route in this repo, lives on the Vercel deployment. If you later want
+the app on your own domain, add it to the Vercel project (a subdomain such as
+`app.crazysouls.social` works, and leaves the marketing site where it is) and
+then update this URL.
 
 If you set `TALLY_SIGNING_SECRET`, put the same value in Tally's signing-secret
 field.
@@ -53,7 +61,7 @@ field.
 Submit your own form once, then open:
 
 ```
-https://crazysouls.social/api/intake?secret=YOUR_SECRET&debug=1
+https://beyondsmalltalk.vercel.app/api/intake?secret=YOUR_SECRET&debug=1
 ```
 
 You'll get back every question label and the slot it went to. You're looking for

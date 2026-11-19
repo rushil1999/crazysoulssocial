@@ -36,10 +36,32 @@ export type TallyPayload = {
   };
 };
 
+/**
+ * Questions that are operational rather than personal. These are kept on the
+ * guest record but never become matching signals — everyone ticks a consent
+ * box, so counting it as a shared answer adds a constant to every pair and
+ * compresses the score range, and "you both consented to text updates" is not
+ * a conversation starter to put on a card.
+ */
+const NOT_A_SIGNAL = [
+  /consent/i,
+  /\bterms\b/i,
+  /privacy/i,
+  /subscribe/i,
+  // Narrow on purpose: a bare /phone/ also swallows "Your phone is
+  // confiscated for an entire Saturday", which is a real signal.
+  /phone number/i,
+];
+
 /** Label patterns, most specific first — the first match wins. */
 const SLOTS: { slot: string; test: RegExp }[] = [
   { slot: "email", test: /e-?mail/i },
-  { slot: "age", test: /\bage\b|how old/i },
+  // "stopped aging … what number is technically on record" is an age question
+  // that says neither "age" nor "how old".
+  {
+    slot: "age",
+    test: /\bage\b|how old|stopped aging|on record|what number is technically/i,
+  },
   { slot: "gender", test: /gender|identify as|you identify/i },
   {
     slot: "openTo",
@@ -68,12 +90,25 @@ const CHOICE_TYPES = new Set([
  * case-insensitive substrings of the question label; edit freely.
  */
 const CHOICE_LABELS: { test: RegExp; as: string }[] = [
+  // Tally sends the whole scenario as the label, not the page heading, so
+  // these match the scenario text. Without them a key becomes the first five
+  // words ("a rare bay area sunset"), which reads badly on a card.
+  { test: /empty seat|rare bay area sunset/i, as: "who gets the empty seat" },
+  { test: /rooftop party|40 minutes late/i, as: "walking in alone" },
+  { test: /phone is confiscated/i, as: "ideal free Saturday" },
+  { test: /join only one table/i, as: "conversation they'd pick" },
+  { test: /conversation is visibly dying/i, as: "rescuing a conversation" },
+  { test: /social superpower/i, as: "social superpower" },
+  { test: /free trip leaves tomorrow|work opportunity/i, as: "travel vs work" },
+  { test: /compliment/i, as: "valued compliment" },
+  { test: /only one dinner|sitting across/i, as: "ideal dinner guest" },
+  { test: /which introduction/i, as: "who they're curious about" },
+  { test: /worth leaving home/i, as: "what makes a night worth it" },
+  { test: /stuck at an airport/i, as: "airport companion" },
+  { test: /twenty minutes/i, as: "leaving a conversation" },
   { test: /natural rhythm/i, as: "natural rhythm" },
   { test: /difficult choice|unnecessarily difficult/i, as: "difficult choices" },
   { test: /reveal more/i, as: "reveals more than intended" },
-  { test: /compliment/i, as: "valued compliment" },
-  { test: /dinner/i, as: "ideal dinner" },
-  { test: /travel|promotion/i, as: "travel vs work" },
 ];
 
 /** A readable, stable key for a choice question. */
@@ -195,7 +230,10 @@ export function mapSubmission(payload: TallyPayload, now = Date.now()): Mapped {
       continue;
     }
 
-    if (CHOICE_TYPES.has(type)) {
+    if (NOT_A_SIGNAL.some((re) => re.test(label))) {
+      extra[label] = text;
+      mapping[label] = "kept, not used for matching";
+    } else if (CHOICE_TYPES.has(type)) {
       choices[choiceKey(label)] = text;
       mapping[label] = `choice: ${choiceKey(label)}`;
     } else {

@@ -18,8 +18,16 @@ export function normalizeGender(raw?: string): Gender {
   const s = (raw ?? "").trim().toLowerCase();
   if (!s) return "unknown";
   if (/\b(non[\s-]?binary|nb|enby|genderqueer)\b/.test(s)) return "nonbinary";
-  if (/\b(man|male|m|guy|gentleman)\b/.test(s)) return "man";
-  if (/\b(woman|female|f|girl|lady)\b/.test(s)) return "woman";
+  // Plurals matter: a "who are you open to meeting?" question offers "Men" and
+  // "Women", not "man" and "woman". Missing those made openTo parse to nothing
+  // for every guest, which silently disables the orientation constraint.
+  // Woman is tested first so "women" can never be read as "men" — \b prevents
+  // that anyway, but the ordering makes it true by construction rather than by
+  // a regex subtlety.
+  if (/\b(woman|women|female|females|f|girl|girls|lady|ladies)\b/.test(s))
+    return "woman";
+  if (/\b(man|men|male|males|m|guy|guys|gentleman|gentlemen)\b/.test(s))
+    return "man";
   return "unknown";
 }
 
@@ -32,7 +40,13 @@ export function normalizeOpenTo(raw?: string[] | string): Set<Gender> {
   for (const item of items) {
     const s = item.trim().toLowerCase();
     if (!s) continue;
-    if (/\b(everyone|everybody|any|all|anyone|no preference)\b/.test(s)) {
+    // "Open to more than one gender" names no gender token, so without this it
+    // would parse to nothing and be read as "didn't answer" — penalising the
+    // most flexible guests and matching them last, which is backwards.
+    if (
+      /\b(everyone|everybody|any|all|anyone|no preference)\b/.test(s) ||
+      /more than one|multiple|both|any gender|all genders/.test(s)
+    ) {
       ALL.forEach((g) => out.add(g));
       continue;
     }
