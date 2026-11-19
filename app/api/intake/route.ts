@@ -108,7 +108,7 @@ export async function POST(request: Request) {
 
   const benchGuests = (
     await Promise.all(benchEmails.map((e) => getGuest(e)))
-  ).filter((g): g is Guest => Boolean(g) && g!.active);
+  ).filter((g): g is Guest => Boolean(g) && g!.active !== false);
 
   const found = bestPartner(guest, benchGuests, history);
 
