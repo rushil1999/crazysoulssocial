@@ -34,13 +34,8 @@ type Roster = {
     closed?: boolean;
   };
   guests: RosterGuest[];
-  /** Present only when asked for with debug — how the last form submission
-   *  mapped onto the fields matching actually uses. */
-  lastIntake?: {
-    at?: string;
-    mapping?: Record<string, string>;
-    problem?: string | null;
-  };
+  /** False when no Redis is configured — nothing will survive a refresh. */
+  storeConfigured?: boolean;
 };
 
 type PreviewPair = {
@@ -58,6 +53,8 @@ type Preview = {
   averageScore: number | null;
   cardsConfigured?: boolean;
   note?: string;
+  totalGuests?: number;
+  neverMatchApplied?: number;
 };
 
 type Commit = {
@@ -99,48 +96,65 @@ export default function HostRounds({
   const [revealIn, setRevealIn] = useState(0);
   const [confirming, setConfirming] = useState<"commit" | "reset" | null>(null);
   const [showRoster, setShowRoster] = useState(false);
-  const [mapping, setMapping] = useState<Record<string, string> | null>(null);
+  const [neverText, setNeverText] = useState<string | null>(null);
+  const [neverResult, setNeverResult] = useState<{
+    resolved: number;
+    problems: { line: string; reason: string }[];
+  } | null>(null);
 
   // The secret goes in a header, not the query string: it keeps it out of
   // browser history and Vercel's request logs, and a password containing
   // &, # or a space survives a header intact where a URL would mangle it.
-  const loadRoster = useCallback(
-    async (opts: { debug?: boolean } = {}) => {
-      setBusy(opts.debug ? "mapping" : "roster");
-      setError(null);
-      try {
-        const res = await fetch(`/api/intake${opts.debug ? "?debug=1" : ""}`, {
-          headers: { "x-admin-secret": secret },
-        });
-        if (res.status === 401) {
-          onAuthFail();
-          return;
-        }
-        if (res.status === 503) {
-          const body = await res.json().catch(() => ({}));
-          setError(body.error ?? "The server isn't configured.");
-          return;
-        }
-        if (!res.ok) throw new Error("Couldn't load the roster.");
-        const data = (await res.json()) as Roster;
-        setRoster(data);
-        if (opts.debug) setMapping(data.lastIntake?.mapping ?? {});
-      } catch (e) {
-        setError(e instanceof Error ? e.message : "Couldn't load the roster.");
-      } finally {
-        setBusy(null);
+  const loadRoster = useCallback(async () => {
+    setBusy("roster");
+    setError(null);
+    try {
+      const res = await fetch("/api/intake", {
+        headers: { "x-admin-secret": secret },
+      });
+      if (res.status === 401) {
+        onAuthFail();
+        return;
       }
-    },
-    [secret, onAuthFail]
-  );
+      if (res.status === 503) {
+        const body = await res.json().catch(() => ({}));
+        setError(body.error ?? "The server isn't configured.");
+        return;
+      }
+      if (!res.ok) throw new Error("Couldn't load the roster.");
+      setRoster((await res.json()) as Roster);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Couldn't load the roster.");
+    } finally {
+      setBusy(null);
+    }
+  }, [secret, onAuthFail]);
 
   useEffect(() => {
     loadRoster();
-    // Keep the count fresh while guests are filling the form. Wrapped so the
-    // timer never passes an argument into loadRoster's options.
+    // Keep the count fresh while guests are filling the form.
     const id = setInterval(() => loadRoster(), 20_000);
     return () => clearInterval(id);
   }, [loadRoster]);
+
+  // Pull the never-match list once on load, so a refresh mid-event doesn't
+  // leave the box looking empty when the server still has it.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const res = await fetch("/api/round", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secret, action: "neverMatch" }),
+      }).catch(() => null);
+      if (!res || !res.ok || cancelled) return;
+      const data = await res.json().catch(() => null);
+      if (data && !cancelled) setNeverText(data.text ?? "");
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [secret]);
 
   async function act(action: string, extra: Record<string, unknown> = {}) {
     setBusy(action);
@@ -198,6 +212,17 @@ export default function HostRounds({
     }
   }
 
+  async function saveNeverMatch() {
+    const data = await act("neverMatch", { neverMatch: neverText ?? "" });
+    if (data) {
+      setNeverText(data.text ?? "");
+      setNeverResult({
+        resolved: data.resolved ?? 0,
+        problems: data.problems ?? [],
+      });
+    }
+  }
+
   async function doReset() {
     setConfirming(null);
     await act("reset");
@@ -212,6 +237,26 @@ export default function HostRounds({
   return (
     <div className="space-y-6">
       {error && <p className="text-sm text-gold">{error}</p>}
+
+      {/*
+        Without Redis the store falls back to an in-memory map that lives
+        inside a single serverless instance, so guests appear and vanish
+        depending on which instance answers. That has to be impossible to miss
+        rather than something you discover on the night.
+      */}
+      {roster && roster.storeConfigured === false && (
+        <div className="glass rounded-2xl p-5 ring-1 ring-gold/50">
+          <div className="eyebrow mb-2 text-gold">Nothing is being saved</div>
+          <p className="text-cream/90 text-sm leading-relaxed">
+            No database is connected, so guests are held in memory and are lost
+            on a refresh or whenever the server restarts. Set{" "}
+            <span className="font-mono text-xs">KV_REST_API_URL</span> and{" "}
+            <span className="font-mono text-xs">KV_REST_API_TOKEN</span> in
+            Vercel, then redeploy. Everything will work until then, but nothing
+            will persist.
+          </p>
+        </div>
+      )}
 
       {/* ── The room ──────────────────────────────────────────────────────── */}
       <div className="glass rounded-2xl p-5">
@@ -325,7 +370,16 @@ export default function HostRounds({
             </div>
 
             {preview.note && (
-              <p className="text-gold text-sm mb-3">{preview.note}</p>
+              <p className="text-gold text-sm mb-3 leading-relaxed">
+                {preview.note}
+              </p>
+            )}
+
+            {!!preview.neverMatchApplied && (
+              <p className="text-beige/70 text-sm mb-3">
+                {preview.neverMatchApplied} pair
+                {preview.neverMatchApplied === 1 ? "" : "s"} kept apart.
+              </p>
             )}
 
             <div className="space-y-1 max-h-64 overflow-y-auto mb-4">
@@ -413,6 +467,33 @@ export default function HostRounds({
         )}
       </div>
 
+      {/*
+        Rounds already committed, read from the server rather than from this
+        page's memory — so a refresh mid-event (or picking the console up on a
+        second device) still shows where the night is.
+      */}
+      {!commit && roster && roster.state.currentRound >= 1 && (
+        <div className="glass rounded-2xl p-5">
+          <div className="eyebrow mb-2">
+            Round {roster.state.currentRound} is live
+          </div>
+          <p className="text-cream/90 leading-relaxed">
+            {roster.guests.filter((g) => g.rounds.length > 0).length} guests
+            have been introduced
+            {roster.state.revealAt[String(roster.state.currentRound)] &&
+              `, revealed at ${clock(
+                roster.state.revealAt[String(roster.state.currentRound)]
+              )}`}
+            .
+          </p>
+          {benched > 0 && (
+            <p className="text-gold text-sm mt-2">
+              {benched} waiting for the next round.
+            </p>
+          )}
+        </div>
+      )}
+
       {/* ── Result ────────────────────────────────────────────────────────── */}
       {commit && (
         <motion.div
@@ -455,92 +536,47 @@ export default function HostRounds({
         </motion.div>
       )}
 
-      {/* ── Form check ────────────────────────────────────────────────────── */}
+      {/* ── Never match ───────────────────────────────────────────────────── */}
       <div className="glass rounded-2xl p-5">
-        <div className="eyebrow mb-3">Form check</div>
-        <button
-          className="btn-ghost w-full mb-3"
-          onClick={() => loadRoster({ debug: true })}
-          disabled={busy === "mapping"}
-        >
-          {busy === "mapping" ? "Checking…" : "Check the form mapping"}
-        </button>
-        <p className="text-beige/60 text-xs leading-relaxed">
-          Shows where the last submission&apos;s answers landed. Run it after
-          changing a question&apos;s wording — matching finds questions by what
-          they say, so a reworded question can quietly stop counting.
+        <div className="eyebrow mb-3">Never match</div>
+        <p className="text-beige/70 text-sm leading-relaxed mb-3">
+          Two people per line. Names or emails — whatever you have at the door.
+          They will never be introduced to each other.
         </p>
+        <textarea
+          value={neverText ?? ""}
+          onChange={(e) => setNeverText(e.target.value)}
+          rows={5}
+          spellCheck={false}
+          placeholder={"Priya, Sam\nalex@example.com, jordan@example.com"}
+          className="field w-full font-mono text-sm mb-3"
+        />
+        <button
+          className="btn-ghost w-full"
+          onClick={saveNeverMatch}
+          disabled={busy === "neverMatch" || neverText === null}
+        >
+          {busy === "neverMatch" ? "Saving…" : "Save"}
+        </button>
 
-        {mapping && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-5"
-          >
-            {Object.keys(mapping).length === 0 ? (
-              <p className="text-gold text-sm leading-relaxed">
-                No submission has arrived yet. If guests have filled the form,
-                the Tally webhook isn&apos;t pointing at this app.
+        {neverResult && (
+          <div className="mt-4 space-y-2">
+            <p className="text-cream/90 text-sm">
+              {neverResult.resolved} pair
+              {neverResult.resolved === 1 ? "" : "s"} will be kept apart.
+            </p>
+            {neverResult.problems.map((p, i) => (
+              <p key={i} className="text-gold text-sm leading-relaxed">
+                &ldquo;{p.line}&rdquo; — {p.reason}
               </p>
-            ) : (
-              <>
-                <div className="space-y-1.5 mb-4">
-                  {(
-                    [
-                      ["email", "Email"],
-                      ["name", "First name"],
-                      ["gender", "Gender"],
-                      ["openTo", "Open to meeting"],
-                      ["howToSpot", "How to spot them"],
-                    ] as const
-                  ).map(([slot, label]) => {
-                    const found = Object.values(mapping).includes(slot);
-                    return (
-                      <div
-                        key={slot}
-                        className="flex items-center gap-2 text-sm"
-                      >
-                        <span className={found ? "text-gold" : "text-beige/40"}>
-                          {found ? "✓" : "✗"}
-                        </span>
-                        <span
-                          className={found ? "text-cream/90" : "text-beige/60"}
-                        >
-                          {label}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {!Object.values(mapping).includes("openTo") && (
-                  <p className="text-gold text-sm leading-relaxed mb-4">
-                    Nothing is landing in &ldquo;open to meeting&rdquo;. Pairing
-                    will still run, but it will ignore who people said they
-                    wanted to meet.
-                  </p>
-                )}
-
-                <details className="text-sm">
-                  <summary className="text-beige/70 cursor-pointer">
-                    Every question ({Object.keys(mapping).length})
-                  </summary>
-                  <div className="mt-3 space-y-1.5 max-h-72 overflow-y-auto">
-                    {Object.entries(mapping).map(([label, slot]) => (
-                      <div
-                        key={label}
-                        className="border-b border-white/5 last:border-0 pb-1.5"
-                      >
-                        <div className="text-beige/55 text-xs">{slot}</div>
-                        <div className="text-cream/80 text-xs">{label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </details>
-              </>
-            )}
-          </motion.div>
+            ))}
+          </div>
         )}
+
+        <p className="text-beige/60 text-xs leading-relaxed mt-4">
+          Safe to fill in before doors: a name starts working the moment that
+          guest fills the form. Kept when you reset the event.
+        </p>
       </div>
 
       {/* ── End of night ──────────────────────────────────────────────────── */}

@@ -13,8 +13,11 @@ import {
   recordPairs,
   removeFromBench,
   getDebug,
+  getNeverMatch,
+  storeConfigured,
   type Guest,
 } from "@/lib/store";
+import { resolveNeverMatch } from "@/lib/never-match";
 import { bestPartner } from "@/lib/pairing";
 import { writeCards } from "@/lib/cards";
 import { mapSubmission, verifySignature, type TallyPayload } from "@/lib/tally";
@@ -103,7 +106,19 @@ export async function POST(request: Request) {
 
   // ── Late arrival ───────────────────────────────────────────────────────────
   const round = state.currentRound;
-  const history = await getHistory();
+
+  // The host's never-match list applies to instant bench pairings too,
+  // resolved against the whole roster so names work, not just the bench.
+  const [rawHistory, neverMatchText, everyone] = await Promise.all([
+    getHistory(),
+    getNeverMatch(),
+    allGuests(),
+  ]);
+  const history = new Set<string>([
+    ...rawHistory,
+    ...resolveNeverMatch(neverMatchText, everyone).keys,
+  ]);
+
   const benchEmails = (await getBench()).filter((e) => e !== guest.email);
 
   const benchGuests = (
@@ -222,6 +237,10 @@ export async function GET(request: Request) {
 
   const body: Record<string, unknown> = {
     count: guests.length,
+    // False means no Redis is configured, so the app is running on a
+    // per-instance in-memory store: data appears and disappears depending on
+    // which serverless instance answers. The host console shows this loudly.
+    storeConfigured,
     state,
     bench,
     guests: guests
