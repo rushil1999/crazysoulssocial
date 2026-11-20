@@ -36,6 +36,8 @@ type Roster = {
   guests: RosterGuest[];
   /** False when no Redis is configured — nothing will survive a refresh. */
   storeConfigured?: boolean;
+  /** Why it isn't configured, in words. */
+  storeHint?: string | null;
 };
 
 type PreviewPair = {
@@ -248,13 +250,15 @@ export default function HostRounds({
         <div className="glass rounded-2xl p-5 ring-1 ring-gold/50">
           <div className="eyebrow mb-2 text-gold">Nothing is being saved</div>
           <p className="text-cream/90 text-sm leading-relaxed">
-            No database is connected, so guests are held in memory and are lost
-            on a refresh or whenever the server restarts. Set{" "}
-            <span className="font-mono text-xs">KV_REST_API_URL</span> and{" "}
-            <span className="font-mono text-xs">KV_REST_API_TOKEN</span> in
-            Vercel, then redeploy. Everything will work until then, but nothing
-            will persist.
+            Guests are being held in memory, so they are lost on a refresh and
+            can differ between requests. Everything below will appear to work
+            until then — but nothing is being kept.
           </p>
+          {roster.storeHint && (
+            <p className="text-beige/80 text-sm leading-relaxed mt-3">
+              {roster.storeHint}
+            </p>
+          )}
         </div>
       )}
 

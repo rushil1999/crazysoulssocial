@@ -22,8 +22,7 @@ In Vercel → Settings → Environment Variables. The first three you already ha
 
 | Variable | Needed? | What it's for |
 |---|---|---|
-| `KV_REST_API_URL` | already set | Redis — now holds the live event too |
-| `KV_REST_API_TOKEN` | already set | " |
+| `REDIS_URL`<br>*or* a REST pair | **required** | Redis — now holds the live event too |
 | `PULSE_ADMIN_SECRET` | already set | gates `/host` and both new APIs |
 | `NEXT_PUBLIC_VAPID_PUBLIC_KEY` | already set | web push |
 | `VAPID_PRIVATE_KEY` | already set | " |
@@ -36,6 +35,22 @@ In Vercel → Settings → Environment Variables. The first three you already ha
 Without `ANTHROPIC_API_KEY` everything still runs — cards get built from the
 form answers directly. They're accurate, just flatter. Roughly 20 pairs of
 written cards costs a few cents.
+
+**The Redis one is not optional.** Either kind works:
+
+- a `REDIS_URL` (`redis://…` or `rediss://…`), which is what most "add Redis"
+  buttons give you, or
+- a REST pair — `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`, or
+  `KV_REST_API_URL` + `KV_REST_API_TOKEN`.
+
+If both are present the REST pair is used, because it suits serverless better.
+
+Without either, the app does not crash — it falls back to an in-memory store
+that lives inside a single serverless instance, so guests appear and vanish
+depending on which instance answers, and a refresh loses the room. `/host`
+says so in red at the top when this is the case. **If that banner is showing
+on the night, stop and fix it before doors.** It is the one check worth making
+every single time.
 
 ### 2. Point Tally at the app
 

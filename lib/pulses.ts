@@ -1,4 +1,4 @@
-import { Redis } from "@upstash/redis";
+import { redis } from "@/lib/redis";
 
 /**
  * A single audience "pulse" — an anonymous fun fact broadcast to the whole room
@@ -22,11 +22,7 @@ const MAX = 50; // keep only the most recent N
  * NOTE: the in-memory fallback is per-process and NOT for production. Real
  * deploys have the env vars and use Redis (shared across serverless instances).
  */
-const hasRedis = Boolean(
-  process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
-);
 
-const redis = hasRedis ? Redis.fromEnv() : null;
 
 // Dev-only in-memory store, newest-first to mirror the Redis LPUSH order.
 // Pinned to globalThis so it survives Next.js dev module recompilation/HMR

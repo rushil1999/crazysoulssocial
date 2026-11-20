@@ -1,4 +1,4 @@
-import { Redis } from "@upstash/redis";
+import { redis, redisConfigured, redisHint } from "@/lib/redis";
 
 /**
  * Live event store.
@@ -21,14 +21,9 @@ import { Redis } from "@upstash/redis";
 
 export const EVENT_ID = process.env.EVENT_ID || "devils-acre-2026-11-22";
 
-const hasRedis = Boolean(
-  process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
-);
-
 /** True on a real deploy. False for `npm run dev` with no store provisioned. */
-export const storeConfigured = hasRedis;
-
-const redis = hasRedis ? Redis.fromEnv() : null;
+export const storeConfigured = redisConfigured;
+export { redisHint };
 
 /**
  * Dev-only in-memory store, pinned to globalThis so it survives Next.js dev
