@@ -1,5 +1,5 @@
 import webpush from "web-push";
-import { Redis } from "@upstash/redis";
+import { redis } from "@/lib/redis";
 
 /** A browser Push API subscription (what PushManager.subscribe() returns). */
 export type PushSub = {
@@ -24,10 +24,7 @@ if (pushConfigured) {
 // Same Redis-or-in-memory story as lib/pulses.ts: real deploys have the Vercel
 // Redis env vars; local dev without them falls back to a globalThis-pinned map
 // (survives Next dev recompiles).
-const hasRedis = Boolean(
-  process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
-);
-const redis = hasRedis ? Redis.fromEnv() : null;
+
 
 const globalForPush = globalThis as unknown as {
   __pushSubs?: Map<string, PushSub>;

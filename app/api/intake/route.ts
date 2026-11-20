@@ -15,6 +15,7 @@ import {
   getDebug,
   getNeverMatch,
   storeConfigured,
+  redisHint,
   type Guest,
 } from "@/lib/store";
 import { resolveNeverMatch } from "@/lib/never-match";
@@ -241,6 +242,9 @@ export async function GET(request: Request) {
     // per-instance in-memory store: data appears and disappears depending on
     // which serverless instance answers. The host console shows this loudly.
     storeConfigured,
+    // Why, in words — a TCP REDIS_URL and a missing database look identical
+    // from the outside but need completely different fixes.
+    storeHint: redisHint,
     state,
     bench,
     guests: guests
