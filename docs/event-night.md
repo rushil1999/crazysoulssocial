@@ -27,7 +27,7 @@ In Vercel → Settings → Environment Variables. The first three you already ha
 | `NEXT_PUBLIC_VAPID_PUBLIC_KEY` | already set | web push |
 | `VAPID_PRIVATE_KEY` | already set | " |
 | `VAPID_SUBJECT` | already set | " |
-| `ANTHROPIC_API_KEY` | **add this** | writes the match cards |
+| `ANTHROPIC_API_KEY` | already set | writes the match cards — **needs credit on the account**, see below |
 | `EVENT_ID` | **add this** | e.g. `devils-acre-2026-11-22`. Change it for each event — that's what keeps one night's data separate from the next |
 | `ANTHROPIC_MODEL` | optional | defaults to `claude-sonnet-5-5` |
 | `TALLY_SIGNING_SECRET` | optional | rejects anything that isn't really from Tally |
@@ -35,6 +35,16 @@ In Vercel → Settings → Environment Variables. The first three you already ha
 Without `ANTHROPIC_API_KEY` everything still runs — cards get built from the
 form answers directly. They're accurate, just flatter. Roughly 20 pairs of
 written cards costs a few cents.
+
+**A key that's set isn't the same as a key that works.** The console reports
+`Cards written 0/6` and, under it, the exact reason — for example:
+
+> Card writing fell back: Anthropic API 400 (model "claude-sonnet-5-5"): Your
+> credit balance is too low to access the Anthropic API.
+
+That one is fixed at console.anthropic.com → Plans & Billing, not in the code.
+Add credit, then tap **Finish cards** — the round is already live and nobody is
+waiting on it.
 
 **The Redis one is not optional.** Either kind works:
 
@@ -179,6 +189,13 @@ their cards and can reread them.
 **"Cards written 11/14."** The round is already live and all fourteen pairs can
 see their match — the remaining three are on the plain version. Tap **Finish
 cards** to complete the writing. Nobody is blocked while you do.
+
+**"Cards written 0/14", with a line underneath in amber.** That line is the
+reason, straight from the API — a key problem, no credit on the account, a
+model name it won't accept, or a timeout. Each needs a different fix and the
+message says which. Whatever it says, the round is fine: everyone has a card
+built from their answers, the reveal happened, and phones buzzed. Fix it when
+you have a minute and tap **Finish cards**; don't stop the evening for it.
 
 **A guest says they can't get in.** They must use the exact email and first name
 they signed up with. Check **Who's here** on the host console for the spelling.
