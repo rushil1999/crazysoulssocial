@@ -22,6 +22,23 @@ const MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5-5";
 
 export const cardsConfigured = Boolean(API_KEY);
 
+/**
+ * Why the last card-writing attempt fell back, if it did.
+ *
+ * Without this, a failure is invisible: the round still works, every guest
+ * still gets a usable card, and the only symptom is "Cards written 0/6" with
+ * no cause. A wrong model name, an expired key and an account with no credit
+ * all look identical from the outside and need completely different fixes.
+ *
+ * Never contains the API key — only the status and the provider's own message.
+ */
+let lastError: string | null = null;
+export const cardError = () => lastError;
+
+function note(reason: string) {
+  lastError = reason;
+}
+
 export type CardPair = {
   /** What A sees about B. */
   aSeesB: Match;
@@ -266,6 +283,15 @@ export async function writeCards(
       });
 
       if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        let message = detail.slice(0, 300);
+        try {
+          const parsed = JSON.parse(detail);
+          message = parsed?.error?.message ?? message;
+        } catch {
+          /* not JSON — keep the raw snippet */
+        }
+        note(`Anthropic API ${res.status} (model "${MODEL}"): ${message}`);
         // 429 and 5xx are worth another go; a 400 won't fix itself.
         if (res.status === 429 || res.status >= 500) continue;
         break;
@@ -283,7 +309,13 @@ export async function writeCards(
       const parsed = extractJson(text);
       const aSeesB = parsed?.aSeesB as RawCard | undefined;
       const bSeesA = parsed?.bSeesA as RawCard | undefined;
-      if (!parsed || !aSeesB || !bSeesA) continue;
+      if (!parsed || !aSeesB || !bSeesA) {
+        note(
+          `Model "${MODEL}" replied but the JSON couldn't be read: ${text.slice(0, 200)}`
+        );
+        continue;
+      }
+      lastError = null;
 
       const praiseA =
         typeof parsed.praiseA === "string" && parsed.praiseA.trim()
@@ -301,8 +333,13 @@ export async function writeCards(
         praiseB,
         generated: true,
       };
-    } catch {
-      /* abort or network — retry, then fall back */
+    } catch (e) {
+      note(
+        e instanceof Error && e.name === "AbortError"
+          ? `Timed out after ${timeoutMs / 1000}s waiting for model "${MODEL}".`
+          : `Couldn't reach the Anthropic API: ${e instanceof Error ? e.message : String(e)}`
+      );
+      /* retry, then fall back */
     } finally {
       clearTimeout(timer);
     }

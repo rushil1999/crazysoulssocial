@@ -65,6 +65,7 @@ type Commit = {
   pairs: number;
   cardsWritten: number;
   cardsPending: number;
+  cardError?: string | null;
   unmatched: string[];
   notified: number;
   cardsConfigured?: boolean;
@@ -210,6 +211,7 @@ export default function HostRounds({
         ...commit,
         cardsWritten: commit.cardsWritten + (data.cardsWritten ?? 0),
         cardsPending: data.cardsPending ?? 0,
+        cardError: data.cardError ?? null,
       });
     }
   }
@@ -513,6 +515,12 @@ export default function HostRounds({
             Cards written {commit.cardsWritten}/{commit.pairs}
             {commit.notified > 0 && ` · ${commit.notified} phones notified`}
           </p>
+
+          {commit.cardError && (
+            <p className="text-gold text-sm mt-3 leading-relaxed">
+              Card writing fell back: {commit.cardError}
+            </p>
+          )}
 
           {commit.cardsPending > 0 && (
             <>
