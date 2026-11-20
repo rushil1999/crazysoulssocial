@@ -21,7 +21,7 @@ import {
 } from "@/lib/store";
 import { resolveNeverMatch } from "@/lib/never-match";
 import { solve } from "@/lib/pairing";
-import { fallbackCard, writeCards, cardsConfigured } from "@/lib/cards";
+import { fallbackCard, writeCards, cardsConfigured, cardError } from "@/lib/cards";
 import { sendPushToEmails } from "@/lib/push";
 
 export const dynamic = "force-dynamic";
@@ -299,6 +299,8 @@ export async function POST(request: Request) {
       pairs: stored.length,
       cardsWritten: written,
       cardsPending: stored.length - written,
+      // Present only when card writing fell back, and says why.
+      cardError: cardError(),
       unmatched: sol.unmatched.map((e) => nameOf(pool, e)),
       notified: atReveal ? emails.length : 0,
       cardsConfigured,
@@ -323,6 +325,7 @@ export async function POST(request: Request) {
       round,
       cardsWritten: written,
       cardsPending: remaining.length,
+      cardError: cardError(),
     });
   }
 
