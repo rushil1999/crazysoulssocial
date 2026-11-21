@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import EmailGate from "@/components/EmailGate";
 import Praise from "@/components/Praise";
 import Countdown from "@/components/Countdown";
+import MatchAlert from "@/components/MatchAlert";
 import MatchReveal from "@/components/MatchReveal";
 import PulseFeed from "@/components/PulseFeed";
 import PushOptIn from "@/components/PushOptIn";
 import WaitingForNext from "@/components/WaitingForNext";
+import { chime, primeAttention } from "@/lib/attention";
+import { useWakeLock } from "@/lib/use-wake-lock";
 
 type UnlockResult = {
   name: string;
@@ -17,7 +20,14 @@ type UnlockResult = {
   nextWindow: string | null;
 };
 
-type Phase = "gate" | "praise" | "countdown" | "reveal" | "waiting" | "done";
+type Phase =
+  | "gate"
+  | "praise"
+  | "countdown"
+  | "reveal"
+  | "waiting"
+  | "alert"
+  | "done";
 
 export default function RevealExperience() {
   const [phase, setPhase] = useState<Phase>("gate");
@@ -59,18 +69,33 @@ export default function RevealExperience() {
     return null;
   }
 
-  // Re-fetch and, if the guest has gained a match since, jump into revealing it.
+  // Re-fetch and, if the guest has gained a match since, announce it.
   // Returns true when a new match arrived (the waiting screen then unmounts).
+  //
+  // This is the moment the guest is not looking at their phone: they filled
+  // the form, put it in a pocket and started talking to someone. So the page
+  // makes a noise and takes over the screen rather than quietly swapping in a
+  // countdown nobody is watching. Tapping through goes to the usual flow.
   async function checkForNext(): Promise<boolean> {
     const prev = dataRef.current?.matchCount ?? 0;
     const d = await recheck();
     if (d && d.matchCount > prev) {
       setIndex(prev); // first not-yet-seen match
-      setPhase("countdown"); // its time has passed → reveals right away
+      chime();
+      setPhase("alert");
       return true;
     }
     return false;
   }
+
+  // Unlock audio on the guest's first tap, whatever they tap. Safari only
+  // starts an AudioContext inside a real gesture, and there is no second
+  // chance to ask — by the time a match lands, any tap is long past.
+  useEffect(() => {
+    const prime = () => primeAttention();
+    document.addEventListener("pointerdown", prime, { once: true });
+    return () => document.removeEventListener("pointerdown", prime);
+  }, []);
 
   // Auto-restore an already-unlocked session (no need to re-enter details).
   useEffect(() => {
@@ -122,6 +147,13 @@ export default function RevealExperience() {
   // check is a round trip to the store and the event runs for hours.
   const waitingForFirst =
     phase !== "gate" && !!data && data.matchCount === 0 && !data.nextWindow;
+
+  // Hold the screen awake whenever the guest is waiting on us rather than
+  // reading. A dark phone needs a deliberate wake-and-unlock to check; an
+  // awake one needs a glance. Released as soon as they're reading a match.
+  useWakeLock(
+    phase !== "gate" && (waitingForFirst || phase === "waiting" || phase === "alert")
+  );
 
   useEffect(() => {
     if (!waitingForFirst) return;
@@ -196,6 +228,12 @@ export default function RevealExperience() {
     <main className="min-h-screen flex items-center justify-center px-5 py-12">
       <PulseFeed active={phase !== "gate"} />
       <PushOptIn active={phase !== "gate"} email={email || undefined} />
+      {phase === "alert" && data && (
+        // Straight to the reveal, not via the countdown. Its reveal time has
+        // already passed, so that screen would only say "Your match is ready"
+        // a second time and ask for a second tap to see the same thing.
+        <MatchAlert name={data.name} onOpen={() => setPhase("reveal")} />
+      )}
       {restoring ? (
         <div className="text-beige/70 animate-pulse font-display text-xl tracking-wide">
           Loading…
